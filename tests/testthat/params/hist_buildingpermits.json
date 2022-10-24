@@ -1,0 +1,19 @@
+{
+    "filename": "data/Building_Permits.csv",
+    "variables": ["EstProjectCost"],
+    "y_variable": "EstProjectCost",
+    "group": "species",
+    "colour": "black",
+    "fill": "",
+    "facet_row": "None",
+    "facet_column": "None",
+    "bin_width": 20000,
+    "alpha": 0.5,
+	  "height": 10,
+	  "width": 15,
+	  "title": "Title",
+	  "caption":"Caption",
+    "save": false,
+    "device":"pdf",
+    "interactive":false
+}

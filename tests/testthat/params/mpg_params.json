@@ -1,0 +1,18 @@
+{
+    "filename": "./data/ggplotmpg.csv",
+    "y_variable": "hwy",
+    "x_variable": "class",
+    "colour": "class",
+    "fill": "class",
+    "rotxlabs": 45,
+    "boxplot": {
+		"addboxplot": true,
+	    "width": 0.1
+    },
+	"save":{
+	  "save": true,
+	  "width": 15,
+	  "height": 10,
+	  "device": "png"
+	}
+}

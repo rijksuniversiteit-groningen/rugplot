@@ -1,0 +1,30 @@
+{
+	"filename": "data/iris.csv",
+	"variables": ["sepal_length","species"],
+	"y_variable": "sepal_length",
+	"x_variable": "species",
+	"colour": "black",
+	"fill": "species",
+	"facet_row": "speciesx",
+	"alpha": 0.5,
+	"position":"dodge",
+	"linetype": "dashed",
+	"color_manual": {
+	  "values": ["#8dd3c7","#ffffb3","#bebada"],
+	  "breaks": ["versicolor","virginica","setosa"]
+	},
+	"boxplot":{
+	  "addboxplot": true,
+	  "width": 0.1
+	},
+	"title": "Iris plot",
+	"caption": "This is my caption",
+	"rotxlabs" : 45,
+  "save":{
+    "save": false,
+    "width": 15,
+    "height": 10,
+    "device": "pdf"
+  },
+	"interactive": false
+}

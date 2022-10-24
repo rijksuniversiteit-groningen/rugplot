@@ -1,0 +1,61 @@
+{
+  "type":"object",
+  "properties": {
+    "filename": {
+      "title": "Filename",
+      "description": "File in table format, see the data.table::fread function for more details",
+      "type": "string",
+      "required": true
+    },
+    "col_ids": {
+      "title": "Column names",
+      "description": "Columns/variable names to read from the file, empty reads all columns",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true
+    },
+    "idvars": {
+      "title": "Variable names/ids",
+      "description": "vector of id variables. Can be integer, corresponding id column numbers, or character `id column names` vector. If missing, all non-measure columns will be assigned to it. If integer, must be positive;",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "measure.vars": {
+      "title": "Measure variables for melting",
+      "description": "Can be missing, vector, list, or pattern-based; see `Fast melt for data.table`",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default":[]
+    },
+    "variable.name": {
+      "title": "Variable name",
+      "description": "Name for the measured variable names column",
+      "type": "string",
+      "default": "variable"
+    },
+    "value.name": {
+      "title": "Value name",
+      "description": "name for the molten data values column(s)",
+      "type": "string",
+      "default": "value"
+    },
+    "verbose": {
+      "title": "Verbose",
+      "description": "Report timings?",
+      "type": "boolean",
+      "default": false
+      },
+    "save": {
+	    "title": "Save file?",
+	    "type": "boolean",
+	    "default": false,
+	    "required": true
+	  }
+  }
+}

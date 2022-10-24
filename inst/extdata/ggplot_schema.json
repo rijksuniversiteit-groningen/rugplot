@@ -1,0 +1,140 @@
+{
+  "type":"object",
+  "properties": {
+    "filename": {
+      "title": "Filename",
+      "description": "File in table format, see the data.table::fread function for more details",
+      "type": "string",
+      "required": true
+    },
+    "variables": {
+      "title": "Column/Variable names",
+      "description": "Columns to be loaded from the datafile",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default":[]
+    },
+    "tplot": {
+      "title": "ggplot",
+      "description": "Type of graph",
+	    "type": "string",
+	    "enum": ["Boxplot", "Density", "Dot + Error",
+                "Dotplot", "Histogram", "Scatter", "Violin"],
+      "required": true,
+      "default": "Violin"
+    },
+    "y_variable": {
+      "title": "Y variable",
+      "description": "Variable for the vertical axis",
+      "type": "string",
+      "required": true
+    },
+    "x_variable": {
+      "title": "X variable",
+      "description": "Variable for the horizontal axis",
+      "type": "string",
+      "required": true
+    },
+    "group": {
+      "title": "Group",
+      "description": "Columns/variable name to create groups",
+      "type": "string",
+    },
+    "colour": {
+      "title": "Colour",
+      "description": "Line color of the histogram",
+      "type": "string"
+    },
+    "fill": {
+      "title": "Fill",
+      "description": "Color to fill the histogram bars",
+      "type": "string"
+    },
+    "facet_row":{
+      "title": "Facet row",
+      "description": "Variable to create facets in horizontal direction",
+      "type": "string",
+      "default": "None"
+    },
+    "facet_column":{
+      "title": "Facet row",
+      "description": "Variable to create facets in vertical direction",
+      "type": "string",
+      "default": "None"
+    },
+    "jitter": {
+	    "title": "Jitter",
+	    "description": "Show data points (jittered)",
+	    "type": "boolean",
+	    "default": false,
+	  },
+    "notch": {
+	    "title": "Notch",
+	    "description": "Notched box plot",
+	    "type": "boolean",
+	    "default": false,
+	  },
+    "bin_width":{
+      "title": "Bin width",
+      "description": "Numeric integer representing bin size",
+      "type": "number",
+      "default" : 1,
+    },
+    "alpha": {
+      "title": "Opacity",
+      "description": "Transparency level",
+	    "type": "number",
+	    "default":0.5,
+	    "minimum":0,
+	    "maximum":1,
+	    "required": true
+    },
+	  "height":{
+	    "title": "Height",
+	    "description": "Height in centimeters",
+	    "type": "number",
+	    "default":10,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	  },
+	  "width":{
+	    "title": "Width",
+	    "description": "Width in centimeters",
+	    "type": "number",
+	    "default":15,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	  },
+	  "title":{
+	    "title": "Title",
+	    "type": "string"
+	  },
+	  "caption":{
+	    "title": "Caption",
+	    "type": "string"
+	  },
+    "save": {
+	    "title": "Save file?",
+	    "type": "boolean",
+	    "default": false,
+	    "required": true
+	  },
+	  "device": {
+	    "title": "Device",
+	    "type": "string",
+	    "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	    "default": "pdf"
+	  },
+    "interactive": {
+	    "title": "Interactive version",
+	    "type": "boolean",
+	    "default": false,
+	    "required": true
+	  }
+  }
+}

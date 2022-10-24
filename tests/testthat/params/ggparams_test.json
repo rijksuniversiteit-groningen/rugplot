@@ -1,0 +1,11 @@
+{
+	"filename": "iris.csv",
+	"tplot": "Histogram",
+	"y_variable": "petal",
+	"x_variable": "is required",
+	"alpha": 0.5,
+	"height": 10,
+	"width": 15,
+	"save": false,
+	"interactive": false
+}
