@@ -29,6 +29,8 @@
 #'
 #' "interactive": <boolean, save Interactive version>
 #'
+#' To validate the JSON object use "pca_projection_schema.json" when calling the `validate_parameters` function.
+#'
 #' @return a ggplot object
 #' @export
 #'

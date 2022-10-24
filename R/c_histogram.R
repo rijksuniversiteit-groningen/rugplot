@@ -40,7 +40,8 @@
 #'
 #' "interactive": <boolean, save Interactive version>
 #'
-#' Further information can be found in [geom_histogram](https://ggplot2.tidyverse.org/reference/geom_histogram.html)
+#' Further information can be found in [geom_histogram](https://ggplot2.tidyverse.org/reference/geom_histogram.html).
+#' To validate the JSON object use "histogram_schema.json" when calling the `validate_parameters` function.
 #'
 #' @return a ggplot object and if indicated in 'lp' stores the plot in a file (s)
 #' @export

@@ -31,7 +31,9 @@ c_pcaproj(lp)
 
 "device": <enum, ["eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"]>
 
-"interactive": <boolean, save Interactive version>}
+"interactive": <boolean, save Interactive version>
+
+To validate the JSON object use "pca_projection_schema.json" when calling the `validate_parameters` function.}
 }
 \value{
 a ggplot object

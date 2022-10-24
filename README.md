@@ -30,16 +30,14 @@ devtools::install_github("rijksuniversiteit-groningen/rvispack")
 ```
 
 The main visualization functions implemented in `rvispack` receive an
-`R list` object including information such as data filenaeme,
+`R list` object including information such as data file name,
 variables and output format. However, a
 [JSON](https://www.json.org/json-en.html) object stored in a file can
 also be used. The JSON object is validated against a predefined [JSON
-schema](https://www.json.org/json-en.html). In fact the containerized
+schema](https://www.json.org/json-en.html). In fact, the containerized
 version works with JSON objects.
 
 ### A simple example
-
-The input format 
 
 Given the following `violin_parameters_iris.json` file
 
@@ -62,9 +60,8 @@ generate a violin plot.
 
   # creating the plot
   p <- c_violin(lp)
+  p
 ```
-
-will produce the below violin plot. 
 
 ![alt violin plot](./tests/testthat/results/Rplots.pdf.png)
 
@@ -106,9 +103,10 @@ We can run
 
 ![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
 
-The files can be found in `tests/testhat/data` and `tests/testhat/params`.
+The files in the above example can be found in `tests/testhat/data`
+and `tests/testhat/params`.
 
-### List of implemented visualizations
+### List the implemented visualizations
 
 ```
 help(package=rvispack)

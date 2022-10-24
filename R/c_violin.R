@@ -67,6 +67,7 @@
 #' "interactive": <boolean, save Interactive version>
 #'
 #' Further information can be found in \href{https://ggplot2.tidyverse.org/reference/geom_violin.html}{geom_violin} documentation.
+#' To validate the JSON object use "violin_schema.json" when calling the `validate_parameters` function.
 #'
 #' @return a ggplot object and if indicated in 'lparams' stores the plot in a file (s)
 #' @export
