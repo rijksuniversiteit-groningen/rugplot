@@ -1,5 +1,5 @@
 {
-    "filename": "./data/ggplotmpg.csv",
+    "filename": "ggplotmpg.csv",
     "y_variable": "hwy",
     "x_variable": "class",
     "colour": "class",
