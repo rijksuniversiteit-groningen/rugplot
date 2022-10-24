@@ -12,14 +12,16 @@ techniques. Currently, the most complete function is to create
 as `histograms` and `projections`. The later technique is generated as
 a result of applying Principal Component Analysis.
 
-## TODO: Containerized version
+## Docker containers
 
 The visualizations implemented in the `rvispack` package are designed
 to be containerized and executed from the command line.
 
+TODO: add containerized documentation.
+
 ## Installation in R
 
-You can install the development version of rvispack from
+You can install the development version of `rvispack` from
 [GitHub](https://github.com/) with:
 
 ``` r
@@ -27,23 +29,17 @@ You can install the development version of rvispack from
 devtools::install_github("rijksuniversiteit-groningen/rvispack")
 ```
 
-### Implemented visualizations
+The main visualization functions implemented in `rvispack` receive an
+`R list` object including information such as data filenaeme,
+variables and output format. However, a
+[JSON](https://www.json.org/json-en.html) object stored in a file can
+also be used. The JSON object is validated against a predefined [JSON
+schema](https://www.json.org/json-en.html). In fact the containerized
+version works with JSON objects.
 
-```
-help(package=rvispack)
-```
+### A simple example
 
-### Help
-```
-?<function name>
-```
-
-For example
-```
-?c_violin
-```
-
-## A simple example
+The input format 
 
 Given the following `violin_parameters_iris.json` file
 
@@ -54,7 +50,8 @@ Given the following `violin_parameters_iris.json` file
 }
 ```
 
-and `iris.csv` are in the current working directory.
+and `iris.csv` data file, the following source code can be used to
+generate a violin plot.
 
 ```r
   # list of parameters lp
@@ -67,16 +64,14 @@ and `iris.csv` are in the current working directory.
   p <- c_violin(lp)
 ```
 
-will produce a violin plot in the `Rplots.pdf` file. 
+will produce the below violin plot. 
 
 ![alt violin plot](./tests/testthat/results/Rplots.pdf.png)
 
 
 ## A more elaborated example
 
-Given the following `mpg_params.json` and `ggplotmpg.csv` files exist
-in the same folder. The latter file can be found in
-`tests/testhat/data`.
+Given the following `mpg_params.json` and `ggplotmpg.csv` files. 
 
 ```json
 {
@@ -111,3 +106,20 @@ We can run
 
 ![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
 
+The files can be found in `tests/testhat/data` and `tests/testhat/params`.
+
+### List of implemented visualizations
+
+```
+help(package=rvispack)
+```
+
+### List required parameters
+```
+?<function name>
+```
+
+For example
+```
+?c_violin
+```
