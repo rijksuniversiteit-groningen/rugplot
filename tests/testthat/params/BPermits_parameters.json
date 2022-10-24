@@ -1,0 +1,17 @@
+{
+    "filename": "data/Building_Permits.csv",
+    "variables": ["Latitude","PermitClass"],
+    "y_variable": "Latitude",
+    "x_variable": "PermitClass",
+    "colour": "PermitClass",
+    "fill": "",
+    "alpha": 0.5,
+	  "height": 10,
+	  "width": 15,
+	  "title": "Estimated Project Cost",
+	  "caption":"Caption",
+	  "rotxlabs":45,
+    "save": false,
+    "device":"pdf",
+    "interactive":false
+}

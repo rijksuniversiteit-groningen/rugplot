@@ -1,0 +1,85 @@
+{
+  "type":"object",
+  "properties": {
+    "filename": {
+      "title": "Filename",
+      "description": "Csv file including more than 3 columns",
+      "type": "string",
+      "required": true
+    },
+    "col_ids": {
+      "title": "Column names",
+      "description": "Numeric columns to be used to apply PCA",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 3,
+      "uniqueItems": true
+    },
+	  "colour": {
+	    "title":"colour",
+	    "description": "Categorical variable to colour the projected points",
+	    "type": "string",
+	    "default": ""
+	  },
+	  "scale":{
+	    "title": "Scale",
+	    "description": "Scale variables",
+	    "type": "boolean",
+	    "default":true,
+	    "required": true
+	  },
+	  "biplot":{
+	    "title": "Biplot",
+	    "description": "Display biplot (loadings)",
+	    "type": "boolean",
+	    "default":true,
+	    "required": true
+	  },
+	  "height":{
+	    "title": "Height",
+	    "description": "Height in centimeters",
+	    "type": "number",
+	    "default":10,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	  },
+	  "width":{
+	    "title": "Width",
+	    "description": "Width in centimeters",
+	    "type": "number",
+	    "default":15,
+	    "minimum":1,
+	    "maximum":2000,
+	    "required": true
+	  },
+	  "title":{
+	    "title": "Title",
+	    "type": "string"
+	  },
+	  "caption":{
+	    "title": "Caption",
+	    "type": "string"
+	  },
+	  "save": {
+	    "title": "Save file?",
+	    "type": "boolean",
+	    "default": false,
+	    "required": true
+	  },
+	  "device": {
+	    "title": "Device",
+	    "type": "string",
+	    "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	    "default": "pdf"
+	  },
+    "interactive": {
+	    "title": "Interactive version",
+	    "type": "boolean",
+	    "default": false,
+	    "required": true
+	  }
+	}
+}

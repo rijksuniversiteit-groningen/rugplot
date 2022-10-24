@@ -1,0 +1,15 @@
+{
+    "filename": "data/iris.csv",
+    "variables": [],
+    "y_variable": "sepal_width",
+    "colour": "black",
+    "fill": "",
+    "alpha": 0.5,
+	  "height": 10,
+	  "width": 15,
+	  "title": "Title",
+	  "caption":"Caption",
+    "save": false,
+    "device":"pdf",
+    "interactive":true
+}

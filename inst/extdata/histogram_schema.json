@@ -1,0 +1,125 @@
+{
+  "type":"object",
+  "properties": {
+    "filename": {
+      "title": "Filename",
+      "description": "File in table format, see the data.table::fread function for more details",
+      "type": "string",
+      "required": true
+    },
+    "variables": {
+      "title": "Column/Variable names",
+      "description": "Columns to be loaded from the datafile",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default":[]
+    },
+    "y_variable": {
+      "title": "Y variable",
+      "description": "Variable for vertical axis",
+      "type": "string",
+      "required": true
+    },
+    "group": {
+      "title": "Group",
+      "description": "Columns/variable name to create groups",
+      "type": "string",
+    },
+    "colour": {
+      "title": "Colour",
+      "description": "Line color of the histogram",
+      "type": "string"
+    },
+    "fill": {
+      "title": "Fill",
+      "description": "Color to fill the histogram bars",
+      "type": "string"
+    },
+    "facet_row":{
+      "title": "Facet row",
+      "description": "Variable to create facets in horizontal direction",
+      "type": "string",
+      "default": "None"
+    },
+    "facet_column":{
+      "title": "Facet row",
+      "description": "Variable to create facets in vertical direction",
+      "type": "string",
+      "default": "None"
+    },
+    "bin_width":{
+      "title": "Bin width",
+      "description": "Numeric integer representing bin size",
+      "type": "number",
+      "default" : 1,
+    },
+    "alpha": {
+      "title": "Opacity",
+      "description": "Transparency level",
+	    "type": "number",
+	    "default":0.5,
+	    "minimum":0,
+	    "maximum":1,
+    },
+	  "title":{
+	    "title": "Title",
+	    "type": "string"
+	  },
+	  "caption":{
+	    "title": "Caption",
+	    "type": "string"
+	  },
+	  "rotxlabs": {
+	    "title": "Rotate x labels",
+	    "type": "number",
+      "default": 0,
+      "minimum": -360,
+      "exclusiveMinimum": true,
+      "maximum": 360
+	  },
+    "save": {
+	    "title": "Save",
+	    "type": "object",
+	    "properties" : {
+	      "save": {
+	        "title": "Save file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+	      "width" : {
+	        "title": "Width",
+	        "description": "Output width in centimeters",
+	        "type": "number",
+	        "default":15,
+	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+	      "height":{
+	        "title": "Height",
+	        "description": "Output height in centimeters",
+	        "type": "number",
+	        "default":10,
+	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+    	  "device": {
+	        "title": "Device",
+	        "type": "string",
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	        "default": "pdf"
+	      }
+	    }
+    },
+    "interactive": {
+	    "title": "Interactive version",
+	    "type": "boolean",
+	    "default": false,
+	  }
+  }
+}
