@@ -1,13 +1,7 @@
 {
   "filename" : "./data/iris.csv",
-  "col_ids": ["sepal_length", "sepal_width", "petal_length", "petal_width", "species"],
   "colour" : "species",
   "scale": true,
 	"biplot": true,
-	"height": 10,
-	"width": 15,
-	"title": "My title",
-	"caption": "My caption",
-	"save": false,
-  "interactive": false
+	"title": "Iris PCA projection"
 }

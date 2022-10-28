@@ -76,11 +76,6 @@
 
 c_violin <- function(lparams) {
 
-  # reading and validating list of parameters lp
-  # lparams <- validate_json_file(fileparams)
-  # validating lparams against the violin json schema
-  # res <- validate_parameters(fileparams,pschema="violin_schema.json")
-
   dt <- read_data(lparams$filename,lparams$variables)
   # factor variables
   fnames <- select_factors(dt)
@@ -184,13 +179,14 @@ c_violin <- function(lparams) {
   }
   now <- Sys.time()
   if (!is.null(lparams$save) && lparams$save$save == TRUE){
+    cat("Creating plot ...","\n")
     outputfile <- file.path(paste0(lparams$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".",lparams$save$device))
     ggplot2::ggsave(outputfile,plot=p, device= lparams$save$device,  width = lparams$save$width,
                     height =lparams$save$height, units = "cm")
     cat(paste("Plot saved in: ",outputfile),"\n")
   }
   if (!is.null(lparams$interactive) && lparams$interactive == TRUE) {
-    cat("Creating plot ...","\n")
+    cat("Creating interactive plot ...","\n")
     outputfile <- file.path(paste0(lparams$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".html"))
     ip <- plotly::ggplotly(p,width=800,height=600)
     htmlwidgets::saveWidget(ip, outputfile)

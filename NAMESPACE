@@ -3,6 +3,7 @@
 export(c_histogram)
 export(c_pcaproj)
 export(c_violin)
+export(display_schema)
 export(read_data)
 export(validate_json_file)
 export(validate_parameters)

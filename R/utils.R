@@ -24,7 +24,7 @@ read_data <- function(filename,select_columns){
   # Check for empty list
   if (length(select_columns)<1) {
     select_columns = NULL
-    cat("Reading all columns\n")
+    cat("\nReading all columns\n")
   } else {
     cat("Selected columns",select_columns,"\n")
   }
@@ -106,13 +106,25 @@ add_facets <- function(splot,lpars,factornames){
   splot
 }
 
+#' Display json schema
+#'
+#' @param jsonschema a JSON file stored in ext/data
+#'
+#' @return displays detailed information about the parameters required in a JSON object.
+#' @export
+#'
+# #' @examples
+display_schema <- function(jsonschema) {
+  jsfile <- system.file("extdata", pschema=jsonschema, package = "rvispack")
+  strschema <- paste(readLines(jsfile),collapse="\n")
+  cat(jsonlite::prettify(x))
+}
+
 # TODO: create functions to display the required parameters in json structure
 # TODO: write a function to extract the json structure from the schema
 
 jsonstruct <- function(jsonschema) {
-  rjs <- jsonlite::fromJSON(system.file("extdata",jsonschema,package = "pcaprojection"))
-
-  for (p in rjs) {
-    print(str(p))
-  }
+  # for (p in rjs) {
+  #   print(str(p))
+  # }
 }

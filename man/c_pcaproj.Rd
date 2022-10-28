@@ -7,31 +7,32 @@
 c_pcaproj(lp)
 }
 \arguments{
-\item{lp}{list of parameters in a json file
+\item{lp}{a list of parameters created using the `validate_json_file` function
 
-"filename": <string, csv file including more than 3 columns>
+"filename": <string, required data file including more than 3 columns>
 
-"col_ids": <array, numeric columns for applying PCA>
+"variables": <array, numeric columns for applying PCA>
 
 "colour": <string, categorical variable to colour the projected points>
 
-"scale": <boolean, whether to scale the selected variables>
+"scale": <boolean, required whether to scale the selected variables>
 
 "biplot": <boolean, Display biplot (loadings)>
-
-"height": <number, in cm of the output visualization file>
-
-"width": <number, in cm of the output visualization file>
 
 "title": <string, title of the plot>
 
 "caption": <string, caption of the plot>
 
-"save": <boolean, save the file?>
+"save": <object, composed of 'save', 'height', 'width' and 'device'>
+
+"save": <boolean, save the file?
+
+"height": <number, in cm of the output visualization file>
+
+"width": <number, in cm of the output visualization file>
 
 "device": <enum, ["eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"]>
-
-"interactive": <boolean, save Interactive version>
+"interactive": <boolean, save interactive html version>
 
 To validate the JSON object use "pca_projection_schema.json" when calling the `validate_parameters` function.}
 }
