@@ -26,7 +26,7 @@
     "group": {
       "title": "Group",
       "description": "Columns/variable name to create groups",
-      "type": "string",
+      "type": "string"
     },
     "colour": {
       "title": "Colour",
@@ -54,7 +54,7 @@
       "title": "Bin width",
       "description": "Numeric integer representing bin size",
       "type": "number",
-      "default" : 1,
+      "default" : 1
     },
     "alpha": {
       "title": "Opacity",
@@ -62,7 +62,7 @@
 	    "type": "number",
 	    "default":0.5,
 	    "minimum":0,
-	    "maximum":1,
+	    "maximum":1
     },
 	  "title":{
 	    "title": "Title",
@@ -119,7 +119,7 @@
     "interactive": {
 	    "title": "Interactive version",
 	    "type": "boolean",
-	    "default": false,
+	    "default": false
 	  }
   }
 }
