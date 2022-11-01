@@ -14,3 +14,4 @@ validate_parameters(params, pschema = "pca_projection_schema.json")
 \description{
 Validate that a  json file meets a required schema
 }
+\keyword{internal}

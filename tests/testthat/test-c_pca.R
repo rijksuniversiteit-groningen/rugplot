@@ -1,5 +1,5 @@
 test_that("Validating columns", {
-  lp <- validate_json_file("params/pca_parameters.json")
+  lp <- rutils::validate_json_file("params/pca_parameters.json")
   expect_type(lp,"list")
   validate_parameters("params/pca_parameters.json")
 

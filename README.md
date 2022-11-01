@@ -17,7 +17,8 @@ a result of applying Principal Component Analysis.
 The visualizations implemented in the `rvispack` package are designed
 to be containerized and executed from the command line.
 
-TODO: add containerized documentation.
+- The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/using/visualization/rvispack.html).
 
 ## Installation in R
 

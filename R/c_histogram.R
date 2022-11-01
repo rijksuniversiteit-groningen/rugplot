@@ -51,7 +51,7 @@ c_histogram <- function(lp){
 
   cat("Creating the histogram ...\n")
 
-  cols <- read_data(lp$filename,lp$variables)
+  cols <- rutils::read_data(lp$filename,lp$variables)
 
   str(cols)
   list_factors <- select_factors(cols)

@@ -7,7 +7,7 @@
       "type": "string",
       "required": true
     },
-    "col_ids": {
+    "variables": {
       "title": "Column names",
       "description": "Numeric columns to be used to apply PCA",
       "type": "array",
@@ -17,12 +17,6 @@
       "minItems": 3,
       "uniqueItems": true
     },
-	  "colour": {
-	    "title":"colour",
-	    "description": "Categorical variable to colour the projected points",
-	    "type": "string",
-	    "default": ""
-	  },
 	  "scale":{
 	    "title": "Scale",
 	    "description": "Scale variables",
@@ -30,30 +24,17 @@
 	    "default":true,
 	    "required": true
 	  },
+	  "colour": {
+	    "title":"colour",
+	    "description": "Categorical variable to colour the projected points",
+	    "type": "string",
+	    "default": ""
+	  },
 	  "biplot":{
 	    "title": "Biplot",
 	    "description": "Display biplot (loadings)",
 	    "type": "boolean",
-	    "default":true,
-	    "required": true
-	  },
-	  "height":{
-	    "title": "Height",
-	    "description": "Height in centimeters",
-	    "type": "number",
-	    "default":10,
-	    "minimum":1,
-	    "maximum":2000,
-	    "required": true
-	  },
-	  "width":{
-	    "title": "Width",
-	    "description": "Width in centimeters",
-	    "type": "number",
-	    "default":15,
-	    "minimum":1,
-	    "maximum":2000,
-	    "required": true
+	    "default":true
 	  },
 	  "title":{
 	    "title": "Title",
@@ -63,23 +44,44 @@
 	    "title": "Caption",
 	    "type": "string"
 	  },
-	  "save": {
-	    "title": "Save file?",
-	    "type": "boolean",
-	    "default": false,
-	    "required": true
-	  },
-	  "device": {
-	    "title": "Device",
-	    "type": "string",
-	    "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
-	    "default": "pdf"
-	  },
+    "save": {
+	    "title": "Save",
+	    "type": "object",
+	    "properties" : {
+	      "save": {
+	        "title": "Save file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+	      "width" : {
+	        "title": "Width",
+	        "description": "Output width in centimeters",
+	        "type": "number",
+	        "default":15,
+	        "minimum":1,
+	        "required": true
+	      },
+	      "height":{
+	        "title": "Height",
+	        "description": "Output height in centimeters",
+	        "type": "number",
+	        "default":10,
+	        "minimum":1,
+	        "required": true
+	      },
+    	  "device": {
+	        "title": "Device",
+	        "type": "string",
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	        "default": "pdf"
+	      }
+	    }
+    },
     "interactive": {
 	    "title": "Interactive version",
 	    "type": "boolean",
-	    "default": false,
-	    "required": true
+	    "default": false
 	  }
 	}
 }
