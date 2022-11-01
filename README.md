@@ -27,6 +27,7 @@ You can install the development version of `rvispack` from
 
 ``` r
 # install.packages("devtools")
+devtools::install_github("rijksuniversiteit-groningen/rutils",subdir="rutils")
 devtools::install_github("rijksuniversiteit-groningen/rvispack")
 ```
 
@@ -54,7 +55,7 @@ generate a violin plot.
 
 ```r
   # list of parameters lp
-  lp <- validate_json_file("violin_parameters_iris.json")
+  lp <- rutils::validate_json_file("violin_parameters_iris.json")
 
   # Validating the JSON object against the violin schema
   validate_parameters("violin_parameters_iris.json","violin_schema.json")
@@ -95,7 +96,7 @@ Given the following `mpg_params.json` and `ggplotmpg.csv` files.
 We can run
 
 ```r
-  lp <- validate_json_file("mpg_params.json")
+  lp <- rutils::validate_json_file("mpg_params.json")
 
   validate_parameters("`mpg_params.json","violin_schema.json")
 
