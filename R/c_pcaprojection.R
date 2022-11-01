@@ -55,7 +55,7 @@ c_pcaproj <- function(lp){
   else
     colvars <- lp$variables
 
-  cols <- read_data(lp$filename,colvars)
+  cols <- rutils::read_data(lp$filename,colvars)
 
   pcacols <- colnames(cols)
   cat(str(cols))

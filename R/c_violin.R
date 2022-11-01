@@ -76,7 +76,7 @@
 
 c_violin <- function(lparams) {
 
-  dt <- read_data(lparams$filename,lparams$variables)
+  dt <- rutils::read_data(lparams$filename,lparams$variables)
   # factor variables
   fnames <- select_factors(dt)
   # numeric variables
