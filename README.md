@@ -27,7 +27,7 @@ You can install the development version of `rvispack` from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rijksuniversiteit-groningen/rutils",subdir="rutils")
+devtools::install_github("rijksuniversiteit-groningen/cds-utils",subdir="rutils")
 devtools::install_github("rijksuniversiteit-groningen/rvispack")
 ```
 
