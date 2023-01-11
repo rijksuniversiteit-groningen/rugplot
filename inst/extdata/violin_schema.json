@@ -26,7 +26,8 @@
     "x_variable": {
       "title": "X variable",
       "description": "Variable for the horizontal axis",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "factorx": {
       "title":"Convert to factor",
@@ -43,51 +44,57 @@
     "group": {
       "title": "Group",
       "description": "Columns/variable name to create groups",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "colour": {
       "title": "Colour",
       "description": "Line color",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "fill": {
       "title": "Fill",
       "description": "Color to fill the violin plots",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "linetype": {
       "title": "Line type",
       "description": "Line type",
       "type": "string",
       "enum" : ["blank", "solid", "dashed", "dotted", "dotdash",
-      "longdash", "twodash"]
+      "longdash", "twodash"],
+      "default": "solid"
     },
     "size":{
       "title": "Size",
       "description": "Size",
-      "type": "number"
+      "type": ["number","null"],
+      "default": null
     },
     "weight":{
       "title": "Weight",
       "description": "Weight",
-      "type": "number"
+      "type": ["number","null"],
+      "default": null
     },
     "facet_row":{
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string","null"],
+      "default": null
     },
     "facet_column":{
       "title": "Facet row",
       "description": "Variable to create facets in vertical direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string","null"],
+      "default": null
     },
     "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
-	    "type": "number",
+	    "type": ["number", "null"],
 	    "default":0.5,
 	    "minimum":0,
 	    "maximum":1

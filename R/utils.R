@@ -26,31 +26,4 @@ select_numeric <- function (dt){
     dt))
 }
 
-add_facets <- function(splot,lpars,factornames){
-
-  if (!is.null(lpars$facet_row))
-      if (lpars$facet_row %in% factornames)
-        facets <- paste(lpars$facet_row,"~")
-      else {
-        warning(paste(lpars$facet_row,"not in:",factornames))
-        facets <- ". ~"
-      }
-  else
-    facets <- ". ~"
-
-  if (!is.null(lpars$facet_colum))
-      if (lpars$facet_colum %in% factornames)
-        facets <- paste(facets,lpars$facet_column)
-      else {
-        facets <- paste(facets,".")
-        warning(paste(lpars$facet_column,"not in: ",factornames))
-      }
-  else
-    facets <- paste(facets,".")
-
-  cat(paste("Facets:",facets),"\n")
-  if (facets != ". ~ .")
-    splot <- paste(splot, "+ ggplot2::facet_grid(", facets, ")")
-  splot
-}
 

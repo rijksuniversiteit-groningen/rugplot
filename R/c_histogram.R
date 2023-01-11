@@ -2,7 +2,7 @@
 #'
 #' Creates a ggplot histogram
 #'
-#' @param lp a list of parameters created using the `validate_json_file` function
+#' @param lp a list of parameters created from a JSON file
 #'
 #' "filename": <string, required>
 #'
@@ -69,22 +69,7 @@ c_histogram <- function(lp){
     if (!is.null(lp$colour) && lp$colour %in% list_factors)
       ", color = lp$colour, fill = lp$colour",
     ")) + ggplot2::geom_histogram(",
-    if (!is.null(lp$fill))
-      if (! lp$fill %in% list_factors)
-        "fill = 'lp$fill', ",
-    if (!is.null(lp$colour))
-      if (! lp$colour %in% list_factors)
-        "colour = 'lp$colour', ",
-    if (!is.null(lp$position))
-      "position = lp$position, ",
-    if (!is.null(lp$alpha))
-      "alpha = lp$alpha, ",
-    if (!is.null(lp$linetype))
-      "linetype = lp$linetype, ",
-    if (!is.null(lp$size))
-      "size = lp$size, ",
-    if (!is.null(lp$weight))
-      "width = lp$weight",
+    add_attributes(lp),
     ") + ggplot2::theme_bw() + ",
     "ggplot2::labs(",
     if (!is.null(lp$title))
@@ -107,6 +92,10 @@ c_histogram <- function(lp){
     p,
     c("lp\\$y_variable" = lp$y_variable,
       "lp\\$colour" = as.character(lp$colour),
+      "lp\\$position" = as.character(lp$position),
+      "lp\\$linetype" = as.character(lp$linetype),
+      "lp\\$rotxlabs" = as.character(lp$rotxlabs),
+      "lp\\$fill" = as.character(lp$fill),
       "lp\\$bin_width" = as.character(lp$bin_width),
       "lp\\$alpha" = as.character(lp$alpha),
       "lp\\$title" = as.character(lp$title),

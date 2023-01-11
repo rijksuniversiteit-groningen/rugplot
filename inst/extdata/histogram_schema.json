@@ -41,14 +41,14 @@
     "facet_row":{
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string","null"],
+      "default": null
     },
     "facet_column":{
       "title": "Facet row",
       "description": "Variable to create facets in vertical direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string", "null"],
+      "default": null
     },
     "bin_width":{
       "title": "Bin width",

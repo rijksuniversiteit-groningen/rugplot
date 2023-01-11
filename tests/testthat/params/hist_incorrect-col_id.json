@@ -1,7 +1,7 @@
 {
     "filename": "data/iris.csv",
     "variables": [],
-    "y_variable": "length",
+    "y_variable": "sepal_length",
     "group": "species",
     "colour": "black",
     "fill": "",
@@ -17,5 +17,5 @@
 	    "width": 15,
       "device":"pdf"
     },
-    "interactive":true
+    "interactive":false
 }

@@ -21,14 +21,14 @@
 #'
 #' "save": <object, composed of 'save', 'height', 'width' and 'device'>
 #'
-#' "save": <boolean, save the file?
+#' "save": <boolean, whether to save the visualization or not>
 #'
 #' "height": <number, in cm of the output visualization file>
 #'
 #' "width": <number, in cm of the output visualization file>
 #'
 #' "device": <enum, ["eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"]>
-
+#'
 #' "interactive": <boolean, save interactive html version>
 #'
 #' To validate the JSON object use "pca_projection_schema.json" when calling the `validate_parameters` function.
@@ -93,22 +93,3 @@ c_pcaproj <- function(lp){
   p
 }
 
-pca_params <- function(json_schema){
-  # json_params <- '{
-  #   "filename": "<path/filename>",
-  #   "col_ids": ["<var1>","<var2>","<...>","<varN>"],
-  #   "colour": "<categorical varX>",
-  #   "scale": true,
-  #   "biplot": true,
-  #   "height": 10,
-  #   "width": 15,
-  #   "title": "<MyTitle>",
-  #   "caption": "<MyCaption>",
-  #   "save": false,
-  #   "device": "<pdf>",
-  #   "interactive":true
-  # }'
-
-  djson <- jsonlite::prettify(json_params)
-  djson
-}
