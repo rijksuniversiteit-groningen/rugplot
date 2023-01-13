@@ -5,38 +5,43 @@
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "<filename path>"
     },
     "variables": {
       "title": "Column/Variable names",
       "description": "Columns to be loaded from the datafile",
-      "type": "array",
+      "type": ["array", "null"],
       "items": {
         "type": "string"
       },
       "uniqueItems": true,
-      "default":[]
+      "default":null
     },
     "y_variable": {
       "title": "Y variable",
       "description": "Variable for vertical axis",
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "<required column name>"
     },
     "group": {
       "title": "Group",
       "description": "Columns/variable name to create groups",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "colour": {
       "title": "Colour",
       "description": "Line color of the histogram",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "fill": {
       "title": "Fill",
       "description": "Color to fill the histogram bars",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "facet_row":{
       "title": "Facet row",
@@ -66,11 +71,13 @@
     },
 	  "title":{
 	    "title": "Title",
-	    "type": "string"
+	    "type": ["string","null"],
+	    "default": null
 	  },
 	  "caption":{
 	    "title": "Caption",
-	    "type": "string"
+	    "type": ["string", "null"],
+	    "default": null
 	  },
 	  "rotxlabs": {
 	    "title": "Rotate x labels",
@@ -86,6 +93,18 @@
 	    "properties" : {
 	      "save": {
 	        "title": "Save file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+	      "outputfilename": {
+	        "title": "Output filename",
+	        "type": ["string", "null"],
+	        "default": null,
+	        "required": false
+	      },
+	      "overwrite": {
+	        "title": "Overwrite file?",
 	        "type": "boolean",
 	        "default": false,
 	        "required": true
@@ -108,18 +127,21 @@
 	        "maximum":2000,
 	        "required": true
 	      },
+	      "dpi":{
+	        "title": "dpi",
+	        "description": "Dots per inch",
+	        "type": "number",
+	        "default":72,
+	        "required": true
+	      },
     	  "device": {
 	        "title": "Device",
 	        "type": "string",
-	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
+	        "png", "bmp", "svg", "html"],
 	        "default": "pdf"
 	      }
 	    }
-    },
-    "interactive": {
-	    "title": "Interactive version",
-	    "type": "boolean",
-	    "default": false
-	  }
+    }
   }
 }

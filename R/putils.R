@@ -4,6 +4,8 @@ iscolor <- function(lcols) {
              error = function(e) FALSE)
   })
 }
+
+
 add_facets <- function(splot,lpars,factornames){
 
   if (!is.null(lpars$facet_row))
@@ -87,6 +89,80 @@ add_attributes <- function(lparams){
        ", width = lp$weight"
       else
         "width = lp$weight"
-    }
+    },
+    sep = ""
   )
+}
+
+# Replace name of variables by values
+replace_vars <- function(ggcode_plot, lparams){
+  ggcode_plot <- stringr::str_replace_all(
+    ggcode_plot,
+    c("lp\\$y_variable" = lparams$y_variable,
+      "lp\\$x_variable" = as.character(lparams$x_variable),
+      "lp\\$colour" = as.character(lparams$colour),
+      "lp\\$fill" = as.character(lparams$fill),
+      "lp\\$alpha" = as.character(lparams$alpha),
+      "lp\\$linetype" = as.character(lparams$linetype),
+      "lp\\$rotxlabs" = as.character(lparams$rotxlabs),
+      "lp\\$position" = as.character(lparams$position),
+      "lp\\$size" = as.character(lparams$size),
+      "lp\\$weight" = as.character(lparams$weight),
+      "lp\\$alpha" = as.character(lparams$alpha),
+      "lp\\$title" = as.character(lparams$title),
+      "lp\\$caption" = as.character(lparams$caption)
+    )
+  )
+}
+
+json_defaults <- function(jsonl){
+  if (!is.null(jsonl$properties))
+    json_defaults(jsonl$properties)
+  else {
+    property <-""
+    for (name in names(jsonl)){
+      print(paste(name,":",class(jsonl[[name]]$default)))
+      if (!is.null(jsonl[[name]]$properties))
+        property <- paste(property,toJSON(name,auto_unbox = TRUE),":",
+                          json_defaults(jsonl[[name]]),",")
+      else
+        property <- paste(property,toJSON(name,auto_unbox = TRUE),":",
+                          toJSON(jsonl[[name]]$default,auto_unbox = TRUE,null = "null"),",")
+    }
+    return(paste("{",gsub('.{1}$', '', property),"}"))
+  }
+}
+
+save_plot <- function(lparams,myplot){
+  ldevice = lparams$save$device
+  if (lparams$save$save == TRUE){
+    if (!is.null(lparams$save$outputfilename)){
+        outputfile <- lparams$save$outputfilename
+        if(endsWith(outputfile, paste0(".",ldevice)))
+          outputfile <- substr(outputfile,1,nchar(outputfile)- nchar(ldevice) - 1)
+    }
+    else
+      outputfile <- file.path(paste0(lparams$filename,"-hist-"))
+
+    if (file.exists(paste0(outputfile,".",ldevice)) && !lparams$save$overwrite)
+      outputfile <- file.path(paste0(outputfile, format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+
+    outputfile <- paste0(outputfile,".",ldevice)
+    if (ldevice == "html"){
+      ip <- plotly::ggplotly(myplot,
+                               width = lparams$save$width * 37.8,
+                               height = lparams$save$height * 37.8 )
+      htmlwidgets::saveWidget(ip, outputfile)
+    }
+    else {
+      ggplot2::ggsave(outputfile,
+                    plot=myplot,
+                    device= ldevice,
+                    width = lparams$save$width,
+                    height = lparams$save$height,
+                    dpi = lparams$save$dpi,
+                    units = "cm")
+    }
+    cat(paste("Histogram saved in: ",outputfile),"\n")
+  }
 }

@@ -2,7 +2,7 @@
 #'
 #' Creates violin plot(s) using ggplot
 #'
-#' @param lparams a list of parameters created using the `validate_json_file` function
+#' @param lp a list of parameters created using the `validate_json_file` function
 #'
 #' "filename": <string, required>
 #'
@@ -69,14 +69,14 @@
 #' Further information can be found in \href{https://ggplot2.tidyverse.org/reference/geom_violin.html}{geom_violin} documentation.
 #' To validate the JSON object use "violin_schema.json" when calling the `validate_parameters` function.
 #'
-#' @return a ggplot object and if indicated in 'lparams' stores the plot in a file (s)
+#' @return a ggplot object and if indicated in 'lp' stores the plot in a file (s)
 #' @export
 #'
 # #' @examples
 
-c_violin <- function(lparams) {
+c_violin <- function(lp) {
 
-  dt <- rutils::read_data(lparams$filename,lparams$variables)
+  dt <- rutils::read_data(lp$filename,lp$variables)
   # factor variables
   fnames <- select_factors(dt)
   # numeric variables
@@ -84,110 +84,83 @@ c_violin <- function(lparams) {
 
   varnames <- colnames(dt)
 
-  if (! lparams$y_variable %in% varnames)
-    stop(paste("'",lparams$y_variable,"' must be a column in the file",lparams$filename))
+  if (! lp$y_variable %in% varnames)
+    stop(paste("'",lp$y_variable,"' must be a column in the file",lp$filename))
 
   xvar <- "''"
-  if (!is.null(lparams$x_variable) && lparams$x_variable %in% varnames)
-    if (lparams$x_variable %in% fnames)
-      xvar <- lparams$x_variable
-    else if (lparams$factorx == TRUE)
-      xvar <- "as.factor(lparams$x_variable)"
+  if (!is.null(lp$x_variable) && lp$x_variable %in% varnames)
+    if (lp$x_variable %in% fnames)
+      xvar <- lp$x_variable
+    else if (lp$factorx == TRUE)
+      xvar <- "as.factor(lp$x_variable)"
 
   p <- paste(
-    "ggplot2::ggplot(dt, ggplot2::aes(","x = xvar, y = lparams$y_variable ",
-    if (!is.null(lparams$fill))
-      if (lparams$fill %in% fnames)
-        ",fill = lparams$fill",
-    if (!is.null(lparams$colour))
-      if (lparams$colour %in% fnames)
-        ", colour = lparams$colour",
-    ")) + ggplot2::geom_violin(",
-    if (!is.null(lparams$fill))
-      if (! lparams$fill %in% fnames)
-        "fill = 'lparams$fill', ",
-    if (!is.null(lparams$colour))
-      if (! lparams$colour %in% fnames)
-        "colour = 'lparams$colour', ",
-    if (!is.null(lparams$position))
-      "position = 'lparams$position', ",
-    if (!is.null(lparams$alpha))
-      "alpha = lparams$alpha, ",
-    if (!is.null(lparams$linetype))
-      "linetype = 'lparams$linetype', ",
-    if (!is.null(lparams$size))
-      "size = lparams$size, ",
-    if (!is.null(lparams$weight))
-      "width = lparams$weight",
-    ") + ",
-    "ggplot2::theme_bw() +",
-    "ggplot2::labs(",
-    if (!is.null(lparams$title))
-      "title = 'lparams$title'",
-    if (!is.null(lparams$caption))
-      ", caption = 'lparams$caption'",
-    ") + ",
-    "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
+    "ggplot2::ggplot(dt, ggplot2::aes(","x = lp$x_variable, y = lp$y_variable",
+    if (!is.null(lp$fill))
+      if (lp$fill %in% fnames)
+        ",fill = lp$fill",
+    if (!is.null(lp$colour))
+      if (lp$colour %in% fnames)
+        ", colour = lp$colour",
+    ")) +\n  ggplot2::geom_violin(",
+    add_attributes(lp),
+    ") +\n",
+    "  ggplot2::theme_bw() +\n",
+    "  ggplot2::labs(",
+    if (!is.null(lp$title))
+      "title = 'lp$title'",
+    if (!is.null(lp$caption))
+      ", caption = 'lp$caption'",
+    ") +\n",
+    "  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)) +\n",
     sep =""
    )
 
-  p <- add_facets(p,lparams,fnames)
+  p <- add_facets(p,lp,fnames)
 
-  if (!is.null(lparams$rotxlabs))
+  if (!is.null(lp$rotxlabs))
     p <- paste(p,
-      " + ggplot2::theme(\n    ",
-        "axis.text.x = ggplot2::element_text(angle = lparams$rotxlabs, hjust = 1))\n")
+      "  ggplot2::theme(\n    ",
+        "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n",sep="")
 
-  p <- stringr::str_replace_all(
-    p,
-    c("lparams\\$y_variable" = lparams$y_variable,
-      "xvar" = as.character(xvar),
-      "lparams\\$colour" = as.character(lparams$colour),
-      "lparams\\$fill" = as.character(lparams$fill),
-      "lparams\\$alpha" = as.character(lparams$alpha),
-      "lparams\\$linetype" = as.character(lparams$linetype),
-      "lparams\\$position" = as.character(lparams$position),
-      "lparams\\$size" = as.character(lparams$size),
-      "lparams\\$weight" = as.character(lparams$weight),
-      "lparams\\$alpha" = as.character(lparams$alpha),
-      "lparams\\$title" = as.character(lparams$title),
-      "lparams\\$caption" = as.character(lparams$caption)
-    )
-  )
-  p <- stringr::str_replace_all(p, ",\n    \\)", "\n  \\)")
+  # particular case for the x_variable
+  p <- stringr::str_replace_all(p,c("lp\\$x_variable" = as.character(xvar)))
+  p <- replace_vars(p,lp)
+
   cat(p,"\n")
+  # p <- stringr::str_replace_all(p, ",\n    \\)", "  \\)")
   p <- eval(parse(text = p))
 
   # manual color
-  if (!is.null(lparams$color_manual)) {
-    vals <- lparams$color_manual$values
+  if (!is.null(lp$color_manual)) {
+    vals <- lp$color_manual$values
     cat("colors:",vals,"\n")
     p <- p + ggplot2::scale_color_manual(values = vals,
                                         breaks = NULL)
     p <- p + ggplot2::scale_fill_manual(values = vals,
-                                         breaks = lparams$color_manual$breaks,
-                                        labels = lparams$color_manual$labels)
+                                         breaks = lp$color_manual$breaks,
+                                        labels = lp$color_manual$labels)
   }
 
-  if (!is.null(lparams$boxplot) && lparams$boxplot$addboxplot == TRUE){
-    if (!is.null(lparams$boxplot$width)){
-      cat(paste("Adding boxplots: \n width:",lparams$boxplot$width),"\n")
-      p <- p + ggplot2::geom_boxplot(colour="#636363", width = lparams$boxplot$width,alpha=0.2)
+  if (!is.null(lp$boxplot) && lp$boxplot$addboxplot == TRUE){
+    if (!is.null(lp$boxplot$width)){
+      cat(paste("Adding boxplots: \n width:",lp$boxplot$width),"\n")
+      p <- p + ggplot2::geom_boxplot(colour="#636363", width = lp$boxplot$width,alpha=0.2)
     } else {
       p <- p + ggplot2::geom_boxplot(colour="#636363", width = 0.1,alpha=0.2)
     }
   }
   now <- Sys.time()
-  if (!is.null(lparams$save) && lparams$save$save == TRUE){
+  if (!is.null(lp$save) && lp$save$save == TRUE){
     cat("Creating plot ...","\n")
-    outputfile <- file.path(paste0(lparams$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".",lparams$save$device))
-    ggplot2::ggsave(outputfile,plot=p, device= lparams$save$device,  width = lparams$save$width,
-                    height =lparams$save$height, units = "cm")
+    outputfile <- file.path(paste0(lp$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".",lp$save$device))
+    ggplot2::ggsave(outputfile,plot=p, device= lp$save$device,  width = lp$save$width,
+                    height =lp$save$height, units = "cm")
     cat(paste("Plot saved in: ",outputfile),"\n")
   }
-  if (!is.null(lparams$interactive) && lparams$interactive == TRUE) {
+  if (!is.null(lp$interactive) && lp$interactive == TRUE) {
     cat("Creating interactive plot ...","\n")
-    outputfile <- file.path(paste0(lparams$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".html"))
+    outputfile <- file.path(paste0(lp$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".html"))
     ip <- plotly::ggplotly(p,width=800,height=600)
     htmlwidgets::saveWidget(ip, outputfile)
     cat(paste("Interactive plot in: ",outputfile),"\n")

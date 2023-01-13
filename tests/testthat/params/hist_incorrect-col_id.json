@@ -4,18 +4,18 @@
     "y_variable": "sepal_length",
     "group": "species",
     "colour": "black",
-    "fill": "",
-    "facet_row": "None",
-    "facet_column": "None",
+    "fill": null,
+    "facet_row": null,
+    "facet_column": null,
     "bin_width": 1,
     "alpha": 0.5,
-	  "title": "Title",
+	  "title": "Test histogram",
 	  "caption":"Caption",
     "save": {
       "save": false,
+      "overwrite": false,
   	  "height": 10,
 	    "width": 15,
       "device":"pdf"
-    },
-    "interactive":false
+    }
 }

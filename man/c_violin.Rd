@@ -4,10 +4,10 @@
 \alias{c_violin}
 \title{Violin plots}
 \usage{
-c_violin(lparams)
+c_violin(lp)
 }
 \arguments{
-\item{lparams}{a list of parameters created using the `validate_json_file` function
+\item{lp}{a list of parameters created using the `validate_json_file` function
 
 "filename": <string, required>
 
@@ -75,7 +75,7 @@ Further information can be found in \href{https://ggplot2.tidyverse.org/referenc
 To validate the JSON object use "violin_schema.json" when calling the `validate_parameters` function.}
 }
 \value{
-a ggplot object and if indicated in 'lparams' stores the plot in a file (s)
+a ggplot object and if indicated in 'lp' stores the plot in a file (s)
 }
 \description{
 Creates violin plot(s) using ggplot

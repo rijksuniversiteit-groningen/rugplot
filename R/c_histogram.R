@@ -49,11 +49,10 @@
 # #' @examples
 c_histogram <- function(lp){
 
-  cat("Creating the histogram ...\n")
+  cat("\nCreating the histogram ...\n")
 
   cols <- rutils::read_data(lp$filename,lp$variables)
 
-  str(cols)
   list_factors <- select_factors(cols)
   cat("Categorical columns:",list_factors,"\n")
 
@@ -64,22 +63,22 @@ c_histogram <- function(lp){
     stop(paste("'",lp$y_variable,"' must be a column in",lp$filename))
   }
 
-  p <- paste(
-    "ggplot2::ggplot(cols, ggplot2::aes(","x = lp$y_variable ",
-    if (!is.null(lp$colour) && lp$colour %in% list_factors)
-      ", color = lp$colour, fill = lp$colour",
-    ")) + ggplot2::geom_histogram(",
-    add_attributes(lp),
-    ") + ggplot2::theme_bw() + ",
-    "ggplot2::labs(",
-    if (!is.null(lp$title))
-      "title = 'lp$title'",
-    if (!is.null(lp$caption))
-      ", caption = 'lp$caption'",
-    ") + ",
-    "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
-    sep =""
-    )
+  p <- paste("ggplot2::ggplot(cols, ggplot2::aes(",
+            "x = lp$y_variable",
+            if (!is.null(lp$colour) && lp$colour %in% list_factors)
+              ", color = lp$colour, fill = lp$colour",
+            ")) +\n  ggplot2::geom_histogram(",
+            add_attributes(lp),
+            ") +\n  ggplot2::theme_bw() +\n  ",
+            "ggplot2::labs(",
+            if (!is.null(lp$title))
+              "title = 'lp$title'",
+            if (!is.null(lp$caption))
+              ", caption = 'lp$caption'",
+            ") +\n  ",
+            "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))\n  ",
+            sep =""
+            )
 
   p <- add_facets(p,lp,list_factors)
 
@@ -88,23 +87,13 @@ c_histogram <- function(lp){
                " + ggplot2::theme(\n    ",
                "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n")
 
-  p <- stringr::str_replace_all(
-    p,
-    c("lp\\$y_variable" = lp$y_variable,
-      "lp\\$colour" = as.character(lp$colour),
-      "lp\\$position" = as.character(lp$position),
-      "lp\\$linetype" = as.character(lp$linetype),
-      "lp\\$rotxlabs" = as.character(lp$rotxlabs),
-      "lp\\$fill" = as.character(lp$fill),
-      "lp\\$bin_width" = as.character(lp$bin_width),
-      "lp\\$alpha" = as.character(lp$alpha),
-      "lp\\$title" = as.character(lp$title),
-      "lp\\$caption" = as.character(lp$caption)
-      )
-    )
+  p <- replace_vars(p,lp)
   p <- stringr::str_replace_all(p, ",\n    \\)", "\n  \\)")
   cat(p,"\n")
   p <- eval(parse(text = p))
+
+  if (!is.null(lp$save))
+      save_plot(lp,p)
 
   now <- Sys.time()
   if (!is.null(lp$save) && lp$save$save == TRUE){
@@ -112,39 +101,14 @@ c_histogram <- function(lp){
     ggplot2::ggsave(outputfile,plot=p, device= lp$save$device,  width = lp$save$width,
                     height =lp$save$height, units = "cm")
     cat(paste("Histogram saved in: ",outputfile),"\n")
-  }
-  if (!is.null(lp$interactive) && lp$interactive == TRUE) {
-    cat("Creating interactive plot ...\n")
-    outputfile <- file.path(paste0(lp$filename,"-hist-",format(now, "%Y%m%d_%H%M%S"),".html"))
-    ip <- plotly::ggplotly(p)
-    htmlwidgets::saveWidget(ip, outputfile)
-    print(paste("Interactive plot created:",outputfile))
+    if (!is.null(lp$save$interactive) && lp$save$interactive == TRUE) {
+      cat("Creating interactive plot ...\n")
+      outputfile <- file.path(paste0(lp$filename,"-hist-",format(now, "%Y%m%d_%H%M%S"),".html"))
+      ip <- plotly::ggplotly(p)
+      htmlwidgets::saveWidget(ip, outputfile)
+      print(paste("Interactive plot created:",outputfile))
+    }
   }
   p
 }
 
-
-hist_params <- function(){
-  json_params <- '{
-    "filename": "<path/filename>",
-    "variables": [],
-    "y-variable": "<varname>",
-    "group": "<vargroup>",
-    "colour": "black",
-    "fill": "lightblue",
-    "facet_row": "no-groups",
-    "facet_column": "no-groups",
-    "bin_width": -1,
-    "alpha": 0.5,
-	  "height": 10,
-	  "width": 15,
-	  "title": "Title",
-	  "caption":"Caption",
-    "save": false,
-    "device":"pdf",
-    "interactive":false
-  }'
-
-  djson <- jsonlite::prettify(json_params)
-  djson
-}

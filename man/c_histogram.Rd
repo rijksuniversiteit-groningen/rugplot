@@ -7,7 +7,7 @@
 c_histogram(lp)
 }
 \arguments{
-\item{lp}{a list of parameters created using the `validate_json_file` function
+\item{lp}{a list of parameters created from a JSON file
 
 "filename": <string, required>
 
