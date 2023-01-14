@@ -3,5 +3,14 @@
   "colour" : "species",
   "scale": true,
 	"biplot": true,
-	"title": "Iris PCA projection"
+	"title": "Iris PCA projection",
+    "save": {
+        "save": false,
+        "outputfilename": null,
+        "overwrite": false,
+        "width": 15,
+        "height": 10,
+        "dpi": 72,
+        "device": "pdf"
+    }
 }

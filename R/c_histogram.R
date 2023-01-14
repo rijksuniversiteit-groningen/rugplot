@@ -70,15 +70,11 @@ c_histogram <- function(lp){
             ")) +\n  ggplot2::geom_histogram(",
             add_attributes(lp),
             ") +\n  ggplot2::theme_bw() +\n  ",
-            "ggplot2::labs(",
-            if (!is.null(lp$title))
-              "title = 'lp$title'",
-            if (!is.null(lp$caption))
-              ", caption = 'lp$caption'",
-            ") +\n  ",
-            "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))\n  ",
+            "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
             sep =""
             )
+  if (!is.null(lp$labels))
+    p <- add_labels(p,lp$labels)
 
   p <- add_facets(p,lp,list_factors)
 

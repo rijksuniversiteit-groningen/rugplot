@@ -4,11 +4,21 @@
     "y_variable": "sepal_length",
     "group": "species",
     "colour": "black",
-    "fill": null,
+    "fill": "turquoise2",
     "facet_row": null,
     "facet_column": null,
     "bin_width": 1,
     "alpha": 0.5,
+    "labels": {
+        "title": "My new histogram title",
+        "subtitle": null,
+        "tag": null,
+        "x": "Sepal length",
+        "y": null,
+        "colour": null,
+        "fill": null,
+        "caption": null
+    },
 	  "title": "Test histogram",
 	  "caption":"Caption",
     "save": {

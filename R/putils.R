@@ -36,6 +36,38 @@ add_facets <- function(splot,lpars,factornames){
   splot
 }
 
+add_labels <- function(ggsourceplot,labels){
+  labs <- paste0(
+    if (!is.null(labels$title)) {
+      "title = 'lp$labels$title',"
+    },
+    if (!is.null(labels$subtitle)) {
+      "subtitle = 'lp$labels$subtitle',"
+    },
+    if (!is.null(labels$tag)) {
+      "tag = 'lp$labels$tag',"
+    },
+    if (!is.null(labels$x)) {
+      "x = 'lp$labels$x',"
+    },
+    if (!is.null(labels$y)) {
+      "y = 'lp$labels$y',"
+    },
+    if (!is.null(labels$colour)) {
+      "colour = 'lp$labels$colour',"
+    },
+    if (!is.null(labels$fill)) {
+      "fill = 'lp$labels$fill',"
+    },
+    if (!is.null(labels$caption)) {
+      "caption = 'lp$labels$caption',"
+    }
+  )
+  labs <- gsub('.{1}$', '', labs)
+  if (length(labs) > 0)
+      ggsourceplot <- paste(ggsourceplot, " +\n  ggplot2::labs(", labs, ")")
+  ggsourceplot
+}
 
 add_attributes <- function(lparams){
   atts <- paste(
@@ -80,8 +112,14 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$size" = as.character(lparams$size),
       "lp\\$weight" = as.character(lparams$weight),
       "lp\\$alpha" = as.character(lparams$alpha),
-      "lp\\$title" = as.character(lparams$title),
-      "lp\\$caption" = as.character(lparams$caption)
+      "lp\\$labels\\$title" = as.character(lparams$labels$title),
+      "lp\\$labels\\$subtitle" = as.character(lparams$labels$subtitle),
+      "lp\\$labels\\$tag" = as.character(lparams$labels$tag),
+      "lp\\$labels\\$x" = as.character(lparams$labels$x),
+      "lp\\$labels\\$y" = as.character(lparams$labels$y),
+      "lp\\$labels\\$colour" = as.character(lparams$labels$colour),
+      "lp\\$labels\\$fill" = as.character(lparams$labels$fill),
+      "lp\\$labels\\$caption" = as.character(lparams$labels$caption)
     )
   )
 }

@@ -39,7 +39,7 @@
 # #' @examples
 c_pcaproj <- function(lp){
 
-  cat("Print creating the PCA projection ...")
+  cat("\nCreating the PCA projection ...")
   colorear <- lp$colour
 
   if (colorear == ""){
@@ -75,21 +75,10 @@ c_pcaproj <- function(lp){
                          loadings.label.size = 4) + ggplot2::theme_bw()
   p <- p + ggplot2::labs(title = lp$title,caption = lp$caption)
   p <- p + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
-  now <- Sys.time()
-  if (!is.null(lp$save) && lp$save$save == TRUE){
-    cat("Creating plot ...","\n")
-    outputfile <- file.path(paste0(lp$filename,"-pca-",format(now, "%Y%m%d_%H%M%S"),".",lp$save$device))
-    ggplot2::ggsave(outputfile,plot=p, device= lp$save$device,  width = lp$save$width,
-                    height =lp$save$height, units = "cm")
-    cat(paste("Projection saved in: ",outputfile))
-  }
-  if (!is.null(lp$interactive) && lp$interactive == TRUE) {
-    cat("Creating interactive plot ...")
-    outputfile <- file.path(paste0(lp$filename,"-pca-",format(now, "%Y%m%d_%H%M%S"),".html"))
-    ip <- plotly::ggplotly(p)
-    htmlwidgets::saveWidget(ip, outputfile)
-    cat(paste("Interactive PCA plot in: ",outputfile))
-  }
+
+  if (!is.null(lp$save))
+    save_plot(lp,p,"-pca-")
+
   p
 }
 
