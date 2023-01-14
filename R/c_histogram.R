@@ -93,22 +93,7 @@ c_histogram <- function(lp){
   p <- eval(parse(text = p))
 
   if (!is.null(lp$save))
-      save_plot(lp,p)
-
-  now <- Sys.time()
-  if (!is.null(lp$save) && lp$save$save == TRUE){
-    outputfile <- file.path(paste0(lp$filename,"-hist-",format(now, "%Y%m%d_%H%M%S"),".",lp$save$device))
-    ggplot2::ggsave(outputfile,plot=p, device= lp$save$device,  width = lp$save$width,
-                    height =lp$save$height, units = "cm")
-    cat(paste("Histogram saved in: ",outputfile),"\n")
-    if (!is.null(lp$save$interactive) && lp$save$interactive == TRUE) {
-      cat("Creating interactive plot ...\n")
-      outputfile <- file.path(paste0(lp$filename,"-hist-",format(now, "%Y%m%d_%H%M%S"),".html"))
-      ip <- plotly::ggplotly(p)
-      htmlwidgets::saveWidget(ip, outputfile)
-      print(paste("Interactive plot created:",outputfile))
-    }
-  }
+      save_plot(lp,p,"-hist-")
   p
 }
 

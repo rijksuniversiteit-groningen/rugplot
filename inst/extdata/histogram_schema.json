@@ -99,6 +99,7 @@
 	      },
 	      "outputfilename": {
 	        "title": "Output filename",
+	        "description": "Filename including path (optional)",
 	        "type": ["string", "null"],
 	        "default": null,
 	        "required": false

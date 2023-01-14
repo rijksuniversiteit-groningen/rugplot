@@ -38,60 +38,31 @@ add_facets <- function(splot,lpars,factornames){
 
 
 add_attributes <- function(lparams){
-  need_comma <- FALSE
-  paste(
+  atts <- paste(
     if (!is.null(lparams$fill) && iscolor(lparams$fill)){
-      need_comma <- TRUE
-      "fill = 'lp$fill'"
+      "fill = 'lp$fill',"
     },
     if (!is.null(lparams$colour) && iscolor(lparams$colour)){
-      if (need_comma)
-        ", colour = 'lp$colour'"
-      else{
-        need_comma <- TRUE
-        "colour = 'lp$colour'"
-      }
+        " colour = 'lp$colour',"
     },
     if (!is.null(lparams$position)){
-      if (need_comma)
-        ", position = 'lp$position'"
-      else{
-        need_comma <- TRUE
-        "position = 'lp$position'"
-      }
+        " position = 'lp$position',"
     },
     if (!is.null(lparams$alpha)){
-      if (need_comma)
-        ", alpha = lp$alpha"
-      else{
-        need_comma <- TRUE
-        "alpha = lp$alpha"
-      }
+        " alpha = lp$alpha,"
     },
     if (!is.null(lparams$linetype)){
-      if (need_comma)
-        ", linetype = 'lp$linetype'"
-      else{
-        need_comma <- TRUE
-        "linetype = 'lp$linetype'"
-      }
+        " linetype = 'lp$linetype',"
     },
     if (!is.null(lparams$size)){
-      if (need_comma)
-        ", size = lp$size"
-      else{
-        need_comma <- TRUE
-        "size = lp$size"
-      }
+        " size = lp$size,"
     },
     if (!is.null(lparams$weight)){
-      if (need_comma)
-       ", width = lp$weight"
-      else
-        "width = lp$weight"
+       " width = lp$weight,"
     },
     sep = ""
   )
+  atts <- gsub('.{1}$', '', atts)
 }
 
 # Replace name of variables by values
@@ -133,7 +104,7 @@ json_defaults <- function(jsonl){
   }
 }
 
-save_plot <- function(lparams,myplot){
+save_plot <- function(lparams,myplot,suffix = ""){
   ldevice = lparams$save$device
   if (lparams$save$save == TRUE){
     if (!is.null(lparams$save$outputfilename)){
@@ -142,10 +113,13 @@ save_plot <- function(lparams,myplot){
           outputfile <- substr(outputfile,1,nchar(outputfile)- nchar(ldevice) - 1)
     }
     else
-      outputfile <- file.path(paste0(lparams$filename,"-hist-"))
+      outputfile <- file.path(paste0(lparams$filename,suffix,
+                                     format(Sys.time(), "%Y%m%d_%H%M%OS3")))
 
     if (file.exists(paste0(outputfile,".",ldevice)) && !lparams$save$overwrite)
-      outputfile <- file.path(paste0(outputfile, format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+      outputfile <- file.path(paste0(outputfile,
+                                     suffix,
+                                     format(Sys.time(), "%Y%m%d_%H%M%OS3")))
 
     outputfile <- paste0(outputfile,".",ldevice)
     if (ldevice == "html"){
@@ -163,6 +137,6 @@ save_plot <- function(lparams,myplot){
                     dpi = lparams$save$dpi,
                     units = "cm")
     }
-    cat(paste("Histogram saved in: ",outputfile),"\n")
+    cat(paste("Plot saved in: ",outputfile),"\n")
   }
 }

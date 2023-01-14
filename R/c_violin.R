@@ -150,21 +150,9 @@ c_violin <- function(lp) {
       p <- p + ggplot2::geom_boxplot(colour="#636363", width = 0.1,alpha=0.2)
     }
   }
-  now <- Sys.time()
-  if (!is.null(lp$save) && lp$save$save == TRUE){
-    cat("Creating plot ...","\n")
-    outputfile <- file.path(paste0(lp$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".",lp$save$device))
-    ggplot2::ggsave(outputfile,plot=p, device= lp$save$device,  width = lp$save$width,
-                    height =lp$save$height, units = "cm")
-    cat(paste("Plot saved in: ",outputfile),"\n")
-  }
-  if (!is.null(lp$interactive) && lp$interactive == TRUE) {
-    cat("Creating interactive plot ...","\n")
-    outputfile <- file.path(paste0(lp$filename,"-violin-",format(now, "%Y%m%d_%H%M%S"),".html"))
-    ip <- plotly::ggplotly(p,width=800,height=600)
-    htmlwidgets::saveWidget(ip, outputfile)
-    cat(paste("Interactive plot in: ",outputfile),"\n")
-  }
-  cat(paste0("Object '",class(p)[2],"' successfully created"),"\n")
+
+  if (!is.null(lp$save))
+    save_plot(lp,p,"-violin-")
+
   return(p)
 }
