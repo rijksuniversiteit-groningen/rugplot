@@ -5,23 +5,25 @@
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",
       "type": "string",
+      "default": "<filename path>",
       "required": true
     },
     "variables": {
       "title": "Column/Variable names",
-      "description": "Columns to be loaded from the datafile",
-      "type": "array",
+      "description": "List of column names to be loaded from the datafile",
+      "type": ["array", "null"],
       "items": {
         "type": "string"
       },
       "uniqueItems": true,
-      "default":[]
+      "default": null
     },
     "y_variable": {
       "title": "Y variable",
       "description": "Variable for the vertical axis",
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "<Y required column name>"
     },
     "x_variable": {
       "title": "X variable",
@@ -99,6 +101,60 @@
 	    "minimum":0,
 	    "maximum":1
     },
+    "labels": {
+      "title" : "Plot labels",
+      "description": "Plot labels",
+      "type": "object",
+      "properties": {
+  	    "title":{
+  	      "title": "Title",
+  	      "description": "Title of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "subtitle":{
+  	      "title": "Subtitle",
+  	      "description": "Subtitle of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "tag":{
+  	      "title": "Tag",
+  	      "description": "typically used for labelling a subplot with a letter",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+	      "x": {
+	        "title": "x label",
+	        "description": "x label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "y": {
+	        "title": "y label",
+	        "description": "y label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "colour": {
+	        "title": "Colour label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "fill": {
+	        "title": "Fill label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "caption":{
+	        "title": "Caption",
+	        "type": ["string", "null"],
+	        "default": null
+	      }
+      }
+    },
     "color_manual":{
       "title": "Color manual",
       "description": "Assign categorical colors manually",
@@ -152,14 +208,6 @@
         }
       }
     },
-	  "title":{
-	    "title": "Title",
-	    "type": "string"
-	  },
-	  "caption":{
-	    "title": "Caption",
-	    "type": "string"
-	  },
 	  "rotxlabs": {
 	    "title": "Rotate x labels",
 	    "type": "number",

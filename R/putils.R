@@ -130,19 +130,62 @@ json_defaults <- function(jsonl){
   else {
     property <-""
     for (name in names(jsonl)){
-      print(paste(name,":",class(jsonl[[name]]$default)))
+      # print(paste(name,":",class(jsonl[[name]]$default)))
       if (!is.null(jsonl[[name]]$properties))
-        property <- paste(property,toJSON(name,auto_unbox = TRUE),":",
+        property <- paste(property,jsonlite::toJSON(name,auto_unbox = TRUE),":",
                           json_defaults(jsonl[[name]]),",")
       else
-        property <- paste(property,toJSON(name,auto_unbox = TRUE),":",
-                          toJSON(jsonl[[name]]$default,auto_unbox = TRUE,null = "null"),",")
+        property <- paste(property,jsonlite::toJSON(name,auto_unbox = TRUE),":",
+                          jsonlite::toJSON(jsonl[[name]]$default,auto_unbox = TRUE,null = "null"),",")
     }
     return(paste("{",gsub('.{1}$', '', property),"}"))
   }
 }
 
-save_plot <- function(lparams,myplot,suffix = ""){
+#' JSON schema filenames
+#'
+#' @return vector of JSON schema filenames available in the package
+#' @export
+#'
+# #' @examples
+vschemas <- function(){
+  list.files(system.file("extdata",package="rvispack"))
+}
+
+#' Create JSON file parameters
+#'
+#' @param jsonschema a JSON schema filename. Run the 'vschemas()' function to get a list of
+#' available JSON schemas.
+#' @param jsonfile string JSON filename to store the JSON structure and default parameters.
+#' @param overwrite boolean flag to overwrite the 'jsonfile'.
+#' @param package R package to which the 'jsonschema' belongs.
+#'
+#' @return boolean
+#' @export
+#'
+# #' @examples
+create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package = 'rvispack'){
+  jsfile <- system.file("extdata", jsonschema, package = package)
+  jsonlist <- jsonlite::fromJSON(jsfile)
+
+  djs <- json_defaults(jsonlist)
+  cat(jsonlite::prettify(djs))
+  if (is.null(jsonfile))
+    jsonfile <- gsub('schema', 'params', jsonschema, fixed=TRUE)
+
+  if (!file.exists(jsonfile) || overwrite)
+  {
+    write(jsonlite::prettify(djs),jsonfile)
+    cat(paste("\n",jsonfile,"created\n"))
+  }
+  else {
+    cat(paste0("\nThe file '",jsonfile,"' already exists.",
+              "Set the 'overwrite' parameter to TRUE or provide a different filename\n"))
+  }
+  is.null(jsonlist$properties$filename)
+}
+
+save_plot <- function(lparams, myplot, suffix = ""){
   ldevice = lparams$save$device
   if (lparams$save$save == TRUE){
     if (!is.null(lparams$save$outputfilename)){
@@ -175,6 +218,7 @@ save_plot <- function(lparams,myplot,suffix = ""){
                     dpi = lparams$save$dpi,
                     units = "cm")
     }
+    # TODO: consider the tikz case
     cat(paste("Plot saved in: ",outputfile),"\n")
   }
 }

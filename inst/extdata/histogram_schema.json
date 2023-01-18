@@ -10,7 +10,7 @@
     },
     "variables": {
       "title": "Column/Variable names",
-      "description": "Columns to be loaded from the datafile",
+      "description": "List of column names to be loaded from the datafile",
       "type": ["array", "null"],
       "items": {
         "type": "string"

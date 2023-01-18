@@ -1,5 +1,6 @@
 {
   "filename" : "./data/iris.csv",
+  "variables" : null,
   "colour" : "species",
   "scale": true,
 	"biplot": true,

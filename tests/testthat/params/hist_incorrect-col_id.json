@@ -22,12 +22,12 @@
 	  "title": "Test histogram",
 	  "caption":"Caption",
     "save": {
-      "save": true,
-      "outputfilename": "iris_hist",
+      "save": false,
+      "outputfilename": null,
       "overwrite": false,
   	  "height": 10,
 	    "width": 15,
 	    "dpi": 72,
-      "device":"tex"
+      "device":"pdf"
     }
 }

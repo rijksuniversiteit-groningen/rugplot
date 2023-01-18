@@ -17,8 +17,10 @@
 	  "addboxplot": true,
 	  "width": 0.1
 	},
-	"title": "Iris plot",
-	"caption": "This is my caption",
+	"labels": {
+  	"title": "Iris plot",
+	  "caption": "This is my caption"
+	},
 	"rotxlabs" : 45,
   "save":{
     "save": false,
@@ -27,6 +29,5 @@
     "height": 10,
     "dpi" : 72,
     "device": "pdf"
-  },
-	"interactive": false
+  }
 }
