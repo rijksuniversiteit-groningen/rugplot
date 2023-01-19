@@ -105,6 +105,7 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$x_variable" = as.character(lparams$x_variable),
       "lp\\$colour" = as.character(lparams$colour),
       "lp\\$fill" = as.character(lparams$fill),
+      "lp\\$biplot" = as.character(lparams$biplot),
       "lp\\$alpha" = as.character(lparams$alpha),
       "lp\\$linetype" = as.character(lparams$linetype),
       "lp\\$rotxlabs" = as.character(lparams$rotxlabs),

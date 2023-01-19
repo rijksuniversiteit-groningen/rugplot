@@ -19,7 +19,7 @@
 #'
 #' @param lp a list of parameters created from a JSON file
 #'
-#' @return A ggplot object and might save the violin plot in a file.
+#' @return A ggplot object and if requested it will save the violin plot in a file.
 #' @export
 #'
 #' @examples

@@ -10,7 +10,7 @@ rug_violin(lp)
 \item{lp}{a list of parameters created from a JSON file}
 }
 \value{
-A ggplot object and might save the violin plot in a file.
+A ggplot object and if requested it will save the violin plot in a file.
 }
 \description{
 \code{rug_violin} is a reusable function that saves violin plots in different file formats (image, pdf, interactive html).

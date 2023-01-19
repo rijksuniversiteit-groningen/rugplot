@@ -10,7 +10,7 @@ rug_pcaproj(lp)
 \item{lp}{a list of parameters created from a JSON file}
 }
 \value{
-A ggplot object and might save a projection plot in a file.
+A ggplot object and if requested it will save the projection plot in a file.
 }
 \description{
 \code{rug_pcaproj} is a function that creates a projection based on Principal Component Analysis
@@ -42,7 +42,7 @@ create_json("pca_projection_schema.json")
 # Step 2
 # Open "pca_projection_params.json" in your favorite editor, replace and save the following
 # "<filename path>" by "iris.csv" and the name/pair
-# '"colour": null' by '"colour": "species"', make sure the column name is correct.
+# '"colour": null' by '"colour": "species"', make sure the column name 'species' is correct.
 
 # Step 3
 lp <- rutils::validate_json_file("pca_projection_params.json")
@@ -51,7 +51,7 @@ lp <- rutils::validate_json_file("pca_projection_params.json")
 rutils::validate_parameters("pca_projection_params.json","pca_projection_schema.json")
 
 # Step 5
-rug_violin(lp)
+rug_pcaproj(lp)
 # As a result, a similar 'iris.csv-pca-220118_121703.213.pdf' file will be created.
 }
 

@@ -4,7 +4,10 @@
   "colour" : "species",
   "scale": true,
 	"biplot": true,
-	"title": "Iris PCA projection",
+	"labels" : {
+	 "title": "Iris PCA projection",
+	 "colour": "Species"
+	},
     "save": {
         "save": false,
         "outputfilename": null,

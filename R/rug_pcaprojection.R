@@ -19,7 +19,7 @@
 #'
 #' @param lp a list of parameters created from a JSON file
 #'
-#' @return A ggplot object and might save a projection plot in a file.
+#' @return A ggplot object and if requested it will save the projection plot in a file.
 #' @export
 #'
 #' @examples
@@ -33,7 +33,7 @@
 #' # Step 2
 #' # Open "pca_projection_params.json" in your favorite editor, replace and save the following
 #' # "<filename path>" by "iris.csv" and the name/pair
-#' # '"colour": null' by '"colour": "species"', make sure the column name is correct.
+#' # '"colour": null' by '"colour": "species"', make sure the column name 'species' is correct.
 #'
 #' # Step 3
 #' lp <- rutils::validate_json_file("pca_projection_params.json")
@@ -42,7 +42,7 @@
 #' rutils::validate_parameters("pca_projection_params.json","pca_projection_schema.json")
 #'
 #' # Step 5
-#' rug_violin(lp)
+#' rug_pcaproj(lp)
 #' # As a result, a similar 'iris.csv-pca-220118_121703.213.pdf' file will be created.
 #' }
 #'
@@ -69,13 +69,24 @@ rug_pcaproj <- function(lp){
   print(summary(tpca))
   # load `.__T__[:base` to fix `! Objects of type prcomp not supported by autoplot.`
   ggfortify::`.__T__[:base`
-  p <- ggplot2::autoplot(tpca, data = cols, colour = lp$colour,
+
+  p <- paste("ggplot2::autoplot(tpca, data = cols, colour = 'lp$colour',
                          loadings = lp$biplot, loadings.colour = 'black',
                          loadings.label = lp$biplot,
                          loadings.label.colour = 'black',
-                         loadings.label.size = 4) + ggplot2::theme_bw()
-  p <- p + ggplot2::labs(title = lp$title,caption = lp$caption)
-  p <- p + ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))
+                         loadings.label.size = 4) +\n  ",
+                         "ggplot2::theme_bw() +\n  ",
+                         "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
+             sep = "")
+
+  if (!is.null(lp$labels))
+    p <- add_labels(p,lp$labels)
+
+  p <- replace_vars(p,lp)
+
+  cat(p,"\n")
+
+  p <- eval(parse(text = p))
 
   if (!is.null(lp$save))
     save_plot(lp,p,"-pca-")
