@@ -17,7 +17,9 @@
 #' \item Run the \code{rug_violin} function.
 #' }
 #'
-#' @param lp a list of parameters created from a JSON file
+#' @param lp a list of parameters created from a JSON file.
+#'
+#' @param verbose Boolean to print extended information.
 #'
 #' @return A ggplot object and if requested it will save the violin plot in a file.
 #' @export
@@ -47,7 +49,9 @@
 #' }
 #'
 
-rug_violin <- function(lp) {
+rug_violin <- function(lp, verbose = TRUE) {
+
+  message("Creating the visualization ...")
 
   dt <- rutils::read_data(lp$filename,lp$variables)
   # factor variables
@@ -97,14 +101,16 @@ rug_violin <- function(lp) {
   p <- stringr::str_replace_all(p,c("lp\\$x_variable" = as.character(xvar)))
   p <- replace_vars(p,lp)
 
-  cat(p,"\n")
+  if (verbose)
+    message(p)
   # p <- stringr::str_replace_all(p, ",\n    \\)", "  \\)")
   p <- eval(parse(text = p))
 
   # manual color
   if (!is.null(lp$color_manual)) {
     vals <- lp$color_manual$values
-    cat("colors:",vals,"\n")
+    if (verbose)
+      message(paste("colors:",vals))
     p <- p + ggplot2::scale_color_manual(values = vals,
                                         breaks = NULL)
     p <- p + ggplot2::scale_fill_manual(values = vals,
@@ -114,7 +120,8 @@ rug_violin <- function(lp) {
 
   if (!is.null(lp$boxplot) && lp$boxplot$addboxplot == TRUE){
     if (!is.null(lp$boxplot$width)){
-      cat(paste("Adding boxplots: \n width:",lp$boxplot$width),"\n")
+      if (verbose)
+        message(paste("Adding boxplots: \n width:",lp$boxplot$width),"\n")
       p <- p + ggplot2::geom_boxplot(colour="#636363", width = lp$boxplot$width,alpha=0.2)
     } else {
       p <- p + ggplot2::geom_boxplot(colour="#636363", width = 0.1,alpha=0.2)
@@ -124,5 +131,6 @@ rug_violin <- function(lp) {
   if (!is.null(lp$save))
     save_plot(lp,p,"-violin-")
 
+  message("Violin plot visualization done.")
   return(p)
 }

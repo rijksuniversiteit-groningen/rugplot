@@ -16,7 +16,8 @@ object
 \code{rug_parallel} is a reusable function that saves histograms in different file formats (image, pdf, interactive html).
 }
 \examples{
+\dontrun{
 create_json("parallel_schema.json")
-
+}
 
 }

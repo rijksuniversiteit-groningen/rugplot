@@ -163,29 +163,29 @@
         "values" : {
           "title": "Color values",
           "description": "Hexadecimal colors",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         },
         "breaks": {
           "title": "Breaks",
           "description": "Variable categories to be colored",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         },
         "labels": {
           "title": "Labels",
           "description": "A character vector giving labels",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         }
       }
     },

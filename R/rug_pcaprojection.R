@@ -1,6 +1,6 @@
 #' PCA projection
 #'
-#' \code{rug_pcaproj} is a function that creates a projection based on Principal Component Analysis
+#' \code{rug_pca} is a function that creates a projection based on Principal Component Analysis
 #'
 #' One of the best ways to run \code{rug_pcaproj} is as follows:
 #' \enumerate{
@@ -17,7 +17,9 @@
 #' \item Run the \code{rug_pca_proj} function.
 #' }
 #'
-#' @param lp a list of parameters created from a JSON file
+#' @param lp A list of parameters created from a JSON file.
+#'
+#' @param verbose Boolean to print extended information.
 #'
 #' @return A ggplot object and if requested it will save the projection plot in a file.
 #' @export
@@ -42,13 +44,13 @@
 #' rutils::validate_parameters("pca_projection_params.json","pca_projection_schema.json")
 #'
 #' # Step 5
-#' rug_pcaproj(lp)
+#' rug_pca(lp)
 #' # As a result, a similar 'iris.csv-pca-220118_121703.213.pdf' file will be created.
 #' }
 #'
-rug_pcaproj <- function(lp){
+rug_pca <- function(lp, verbose = TRUE){
 
-  cat("\nCreating the PCA projection ...")
+  message("Creating the PCA projection ...")
 
   cols <- rutils::read_data(lp$filename,lp$variables)
 
@@ -59,14 +61,18 @@ rug_pcaproj <- function(lp){
     lp$colour <- NULL
   }
 
-  cat(str(cols))
+  if (verbose)
+    message(str(cols))
+
   pcacols <- pcacols[! pcacols %in% append(c(),lp$colour)]
 
-  cat(paste0(pcacols),"\n")
+  if (verbose)
+    message(pcacols)
   # PCA
   tpca <- stats::prcomp(Filter(is.numeric,dplyr::select(cols,all_of(pcacols))),scale=lp$scale)
 
-  print(summary(tpca))
+  if (verbose)
+    message(summary(tpca))
   # load `.__T__[:base` to fix `! Objects of type prcomp not supported by autoplot.`
   ggfortify::`.__T__[:base`
 
@@ -84,13 +90,15 @@ rug_pcaproj <- function(lp){
 
   p <- replace_vars(p,lp)
 
-  cat(p,"\n")
+  if (verbose)
+    message(p)
 
   p <- eval(parse(text = p))
 
   if (!is.null(lp$save))
     save_plot(lp,p,"-pca-")
 
+  message("PCA projection done.")
   p
 }
 

@@ -7,7 +7,7 @@
 rug_scatterm(lp)
 }
 \arguments{
-\item{lp}{}
+\item{lp}{A list of parameters derived from a JSON object}
 }
 \value{
 object

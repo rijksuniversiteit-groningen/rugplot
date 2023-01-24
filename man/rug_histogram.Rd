@@ -4,10 +4,12 @@
 \alias{rug_histogram}
 \title{Histogram}
 \usage{
-rug_histogram(lp)
+rug_histogram(lp, verbose = TRUE)
 }
 \arguments{
 \item{lp}{a list of parameters created from a JSON file.}
+
+\item{verbose}{Boolean to print extended information.}
 }
 \value{
 A ggplot object and could save the histogram in a file.

@@ -8,8 +8,9 @@
 #' @export
 #'
 #' @examples
+#' \dontrun{
 #' create_json("parallel_schema.json")
-#'
+#'}
 #'
 rug_parallel <- function(lp){
   cat("\nThe parallel coordinates plot function is still under implementation")

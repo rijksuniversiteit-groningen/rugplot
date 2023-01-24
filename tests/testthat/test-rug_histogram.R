@@ -7,7 +7,7 @@ test_that("Histogram is created", {
   resv <- validate_parameters(js,pschema="histogram_schema.json")
   expect_equal(resv,TRUE)
 
-  w <- capture_warnings(p <- rug_histogram(lp))
+  w <- capture_warnings(p <- rug_histogram(lp,FALSE))
   # print(length(w))
   print(w[1])
   print(w[2])

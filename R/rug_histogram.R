@@ -19,6 +19,8 @@
 #'
 #' @param lp a list of parameters created from a JSON file.
 #'
+#' @param verbose Boolean to print extended information.
+#'
 #' @return A ggplot object and could save the histogram in a file.
 #' @export
 #'
@@ -46,17 +48,20 @@
 #' # As a result, a similar 'iris.csv-hist-220118_121703.213.pdf' file will be created
 #' }
 #'
-rug_histogram <- function(lp){
+rug_histogram <- function(lp, verbose = TRUE){
 
   cat("\nCreating the histogram ...\n")
 
   cols <- rutils::read_data(lp$filename,lp$variables)
 
   list_factors <- select_factors(cols)
-  cat("Categorical columns:",list_factors,"\n")
+  if (verbose)
+    message(paste("Categorical columns:",list_factors))
 
   list_numeric <- select_numeric(cols)
-  cat("Numeric columns:",list_numeric,"\n")
+
+  if (verbose)
+    message(paste("Numeric columns:",list_numeric,"\n"))
 
   if (! lp$y_variable %in% colnames(cols) ) {
     stop(paste("'",lp$y_variable,"' must be a column in",lp$filename))
@@ -84,11 +89,15 @@ rug_histogram <- function(lp){
 
   p <- replace_vars(p,lp)
   p <- stringr::str_replace_all(p, ",\n    \\)", "\n  \\)")
-  cat(p,"\n")
+
+  if (verbose)
+    message(p)
   p <- eval(parse(text = p))
 
   if (!is.null(lp$save))
       save_plot(lp,p,"-hist-")
+
+  message("Visualization histogram done.")
   p
 }
 

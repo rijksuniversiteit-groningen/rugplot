@@ -4,10 +4,12 @@
 \alias{rug_violin}
 \title{Violin plots}
 \usage{
-rug_violin(lp)
+rug_violin(lp, verbose = TRUE)
 }
 \arguments{
-\item{lp}{a list of parameters created from a JSON file}
+\item{lp}{a list of parameters created from a JSON file.}
+
+\item{verbose}{Boolean to print extended information.}
 }
 \value{
 A ggplot object and if requested it will save the violin plot in a file.

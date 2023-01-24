@@ -3,7 +3,7 @@
 #' \code{rug_scatterm} is a reusable function that saves scatter plot matrices in different file formats
 #' (image, pdf, interactive html).
 #'
-#' @param lp
+#' @param lp A list of parameters derived from a JSON object
 #'
 #' @return object
 #' @export

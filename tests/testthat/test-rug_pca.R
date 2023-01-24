@@ -5,7 +5,7 @@ test_that("Validating columns", {
 
   print(iscolor('red'))
 
-  p <- rug_pcaproj(lp)
+  p <- rug_pca(lp,verbose=FALSE)
   print(p)
   expect_s3_class(p,"ggplot")
 }
