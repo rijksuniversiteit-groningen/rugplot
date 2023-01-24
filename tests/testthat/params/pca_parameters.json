@@ -1,7 +1,20 @@
 {
   "filename" : "./data/iris.csv",
+  "variables" : null,
   "colour" : "species",
   "scale": true,
 	"biplot": true,
-	"title": "Iris PCA projection"
+	"labels" : {
+	 "title": "Iris PCA projection",
+	 "colour": "Species"
+	},
+    "save": {
+        "save": false,
+        "outputfilename": null,
+        "overwrite": false,
+        "width": 15,
+        "height": 10,
+        "dpi": 72,
+        "device": "pdf"
+    }
 }

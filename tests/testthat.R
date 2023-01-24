@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/reference/test_package.html#special-files
 
 library(testthat)
-library(rvispack)
+library(rugplot)
 
-test_check("rvispack")
+test_check("rugplot")

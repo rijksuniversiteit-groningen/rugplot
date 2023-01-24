@@ -5,28 +5,31 @@
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",
       "type": "string",
+      "default": "<filename path>",
       "required": true
     },
     "variables": {
       "title": "Column/Variable names",
-      "description": "Columns to be loaded from the datafile",
-      "type": "array",
+      "description": "List of column names to be loaded from the datafile",
+      "type": ["array", "null"],
       "items": {
         "type": "string"
       },
       "uniqueItems": true,
-      "default":[]
+      "default": null
     },
     "y_variable": {
       "title": "Y variable",
       "description": "Variable for the vertical axis",
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "<Y required column name>"
     },
     "x_variable": {
       "title": "X variable",
       "description": "Variable for the horizontal axis",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "factorx": {
       "title":"Convert to factor",
@@ -43,54 +46,114 @@
     "group": {
       "title": "Group",
       "description": "Columns/variable name to create groups",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "colour": {
       "title": "Colour",
       "description": "Line color",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "fill": {
       "title": "Fill",
       "description": "Color to fill the violin plots",
-      "type": "string"
+      "type": ["string","null"],
+      "default": null
     },
     "linetype": {
       "title": "Line type",
       "description": "Line type",
       "type": "string",
       "enum" : ["blank", "solid", "dashed", "dotted", "dotdash",
-      "longdash", "twodash"]
+      "longdash", "twodash"],
+      "default": "solid"
     },
     "size":{
       "title": "Size",
       "description": "Size",
-      "type": "number"
+      "type": ["number","null"],
+      "default": null
     },
     "weight":{
       "title": "Weight",
       "description": "Weight",
-      "type": "number"
+      "type": ["number","null"],
+      "default": null
     },
     "facet_row":{
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string","null"],
+      "default": null
     },
     "facet_column":{
       "title": "Facet row",
       "description": "Variable to create facets in vertical direction",
-      "type": "string",
-      "default": "None"
+      "type": ["string","null"],
+      "default": null
     },
     "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
-	    "type": "number",
+	    "type": ["number", "null"],
 	    "default":0.5,
 	    "minimum":0,
 	    "maximum":1
+    },
+    "labels": {
+      "title" : "Plot labels",
+      "description": "Plot labels",
+      "type": "object",
+      "properties": {
+  	    "title":{
+  	      "title": "Title",
+  	      "description": "Title of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "subtitle":{
+  	      "title": "Subtitle",
+  	      "description": "Subtitle of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "tag":{
+  	      "title": "Tag",
+  	      "description": "typically used for labelling a subplot with a letter",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+	      "x": {
+	        "title": "x label",
+	        "description": "x label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "y": {
+	        "title": "y label",
+	        "description": "y label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "colour": {
+	        "title": "Colour label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "fill": {
+	        "title": "Fill label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "caption":{
+	        "title": "Caption",
+	        "type": ["string", "null"],
+	        "default": null
+	      }
+      }
     },
     "color_manual":{
       "title": "Color manual",
@@ -100,29 +163,29 @@
         "values" : {
           "title": "Color values",
           "description": "Hexadecimal colors",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         },
         "breaks": {
           "title": "Breaks",
           "description": "Variable categories to be colored",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         },
         "labels": {
           "title": "Labels",
           "description": "A character vector giving labels",
-          "type": "array",
+          "type": ["array", "null"],
           "items": {
             "type": "string"
           },
-          "default": []
+          "default": null
         }
       }
     },
@@ -145,14 +208,6 @@
         }
       }
     },
-	  "title":{
-	    "title": "Title",
-	    "type": "string"
-	  },
-	  "caption":{
-	    "title": "Caption",
-	    "type": "string"
-	  },
 	  "rotxlabs": {
 	    "title": "Rotate x labels",
 	    "type": "number",
@@ -171,12 +226,26 @@
 	        "default": false,
 	        "required": true
 	      },
+	      "outputfilename": {
+	        "title": "Output filename",
+	        "description": "Filename including path (optional)",
+	        "type": ["string", "null"],
+	        "default": null,
+	        "required": false
+	      },
+	      "overwrite": {
+	        "title": "Overwrite file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
 	      "width" : {
 	        "title": "Width",
 	        "description": "Output width in centimeters",
 	        "type": "number",
 	        "default":15,
 	        "minimum":1,
+	        "maximum":2000,
 	        "required": true
 	      },
 	      "height":{
@@ -185,20 +254,24 @@
 	        "type": "number",
 	        "default":10,
 	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+	      "dpi":{
+	        "title": "dpi",
+	        "description": "Dots per inch",
+	        "type": "number",
+	        "default":72,
 	        "required": true
 	      },
     	  "device": {
 	        "title": "Device",
 	        "type": "string",
-	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
+	        "png", "bmp", "svg", "html"],
 	        "default": "pdf"
 	      }
 	    }
-    },
-    "interactive": {
-	    "title": "Save interactive version",
-	    "type": "boolean",
-	    "default": false
-	  }
+    }
   }
 }

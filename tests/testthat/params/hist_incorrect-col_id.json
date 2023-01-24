@@ -1,21 +1,33 @@
 {
     "filename": "data/iris.csv",
     "variables": [],
-    "y_variable": "length",
+    "y_variable": "sepal_length",
     "group": "species",
     "colour": "black",
-    "fill": "",
-    "facet_row": "None",
-    "facet_column": "None",
+    "fill": "turquoise2",
+    "facet_row": null,
+    "facet_column": null,
     "bin_width": 1,
     "alpha": 0.5,
-	  "title": "Title",
+    "labels": {
+        "title": "My new histogram title",
+        "subtitle": null,
+        "tag": null,
+        "x": "Sepal length",
+        "y": null,
+        "colour": null,
+        "fill": null,
+        "caption": null
+    },
+	  "title": "Test histogram",
 	  "caption":"Caption",
     "save": {
       "save": false,
+      "outputfilename": null,
+      "overwrite": false,
   	  "height": 10,
 	    "width": 15,
+	    "dpi": 72,
       "device":"pdf"
-    },
-    "interactive":true
+    }
 }

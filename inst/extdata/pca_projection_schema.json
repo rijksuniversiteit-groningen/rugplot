@@ -5,17 +5,19 @@
       "title": "Filename",
       "description": "Csv file including more than 3 columns",
       "type": "string",
-      "required": true
+      "required": true,
+      "default": "<filename path>"
     },
     "variables": {
       "title": "Column names",
-      "description": "Numeric columns to be used to apply PCA",
-      "type": "array",
+      "description": "List of numeric column names to be used to apply PCA",
+      "type": ["array","null"],
       "items": {
         "type": "string"
       },
       "minItems": 3,
-      "uniqueItems": true
+      "uniqueItems": true,
+      "default": null
     },
 	  "scale":{
 	    "title": "Scale",
@@ -27,8 +29,8 @@
 	  "colour": {
 	    "title":"colour",
 	    "description": "Categorical variable to colour the projected points",
-	    "type": "string",
-	    "default": ""
+	    "type": ["string", "null"],
+	    "default": null
 	  },
 	  "biplot":{
 	    "title": "Biplot",
@@ -36,14 +38,48 @@
 	    "type": "boolean",
 	    "default":true
 	  },
-	  "title":{
-	    "title": "Title",
-	    "type": "string"
-	  },
-	  "caption":{
-	    "title": "Caption",
-	    "type": "string"
-	  },
+	      "labels": {
+      "title" : "Plot labels",
+      "description": "Plot labels",
+      "type": "object",
+      "properties": {
+  	    "title":{
+  	      "title": "Title",
+  	      "description": "Title of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "subtitle":{
+  	      "title": "Subtitle",
+  	      "description": "Subtitle of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "tag":{
+  	      "title": "Tag",
+  	      "description": "typically used for labelling a subplot with a letter",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+	      "colour": {
+	        "title": "Colour label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "fill": {
+	        "title": "Fill label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "caption":{
+	        "title": "Caption",
+	        "type": ["string", "null"],
+	        "default": null
+	      }
+      }
+    },
     "save": {
 	    "title": "Save",
 	    "type": "object",
@@ -54,12 +90,26 @@
 	        "default": false,
 	        "required": true
 	      },
+	      "outputfilename": {
+	        "title": "Output filename",
+	        "description": "Filename including path (optional)",
+	        "type": ["string", "null"],
+	        "default": null,
+	        "required": false
+	      },
+	      "overwrite": {
+	        "title": "Overwrite file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
 	      "width" : {
 	        "title": "Width",
 	        "description": "Output width in centimeters",
 	        "type": "number",
 	        "default":15,
 	        "minimum":1,
+	        "maximum":2000,
 	        "required": true
 	      },
 	      "height":{
@@ -68,20 +118,24 @@
 	        "type": "number",
 	        "default":10,
 	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+	      "dpi":{
+	        "title": "dpi",
+	        "description": "Dots per inch",
+	        "type": "number",
+	        "default":72,
 	        "required": true
 	      },
     	  "device": {
 	        "title": "Device",
 	        "type": "string",
-	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff", "png", "bmp", "svg"],
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
+	        "png", "bmp", "svg", "html"],
 	        "default": "pdf"
 	      }
 	    }
-    },
-    "interactive": {
-	    "title": "Interactive version",
-	    "type": "boolean",
-	    "default": false
-	  }
+    }
 	}
 }
