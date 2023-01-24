@@ -1,6 +1,6 @@
 Package: rvispack
 Type: Package
-Title: Data Visualization Techniques Implemented in R
+Title: Reusable Graphics
 Version: 0.1.0
 Author: Venustiano Soancatl Aguilar
 Maintainer: Venustiano Soancatl Aguilar <v.soancatl.aguilar@rug.nl>
