@@ -150,7 +150,7 @@ json_defaults <- function(jsonl){
 #'
 # #' @examples
 vschemas <- function(){
-  list.files(system.file("extdata",package="rvispack"))
+  list.files(system.file("extdata",package="rugplot"))
 }
 
 #' Create JSON file parameters
@@ -165,7 +165,7 @@ vschemas <- function(){
 #' @export
 #'
 # #' @examples
-create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package = 'rvispack'){
+create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
   jsfile <- system.file("extdata", jsonschema, package = package)
   jsonlist <- jsonlite::fromJSON(jsfile)
 

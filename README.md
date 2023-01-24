@@ -1,6 +1,6 @@
 
 
-# rvispack
+# rugplot
 
 <!-- badges: start -->
 <!-- badges: end -->
@@ -14,24 +14,24 @@ a result of applying Principal Component Analysis.
 
 ## Docker containers
 
-The visualizations implemented in the `rvispack` package are designed
+The visualizations implemented in the `rugplot` package are designed
 to be containerized and executed from the command line.
 
 - The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/using/visualization/rvispack.html).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/using/visualization/rugplot.html).
 
 ## Installation in R
 
-You can install the development version of `rvispack` from
+You can install the development version of `rugplot` from
 [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("devtools")
 devtools::install_github("rijksuniversiteit-groningen/cds-utils",subdir="rutils")
-devtools::install_github("rijksuniversiteit-groningen/rvispack")
+devtools::install_github("rijksuniversiteit-groningen/rugplot")
 ```
 
-The main visualization functions implemented in `rvispack` receive an
+The main visualization functions implemented in `rugplot` receive an
 `R list` object including information such as data file name,
 variables and output format. However, a
 [JSON](https://www.json.org/json-en.html) object stored in a file can
@@ -111,7 +111,7 @@ and `tests/testhat/params`.
 ### List the implemented visualizations
 
 ```
-help(package=rvispack)
+help(package=rugplot)
 ```
 
 ### List required parameters

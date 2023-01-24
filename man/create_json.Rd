@@ -8,7 +8,7 @@ create_json(
   jsonschema,
   jsonfile = NULL,
   overwrite = FALSE,
-  package = "rvispack"
+  package = "rugplot"
 )
 }
 \arguments{

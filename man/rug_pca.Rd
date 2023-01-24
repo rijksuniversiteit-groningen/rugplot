@@ -30,7 +30,7 @@ One of the best ways to run \code{rug_pcaproj} is as follows:
       }
 \item Create and validate the list \code{lp} using  \code{validate_json_file} function.
 \item Just in case, validate your JSON parameters file against the violin schema using the \code{validate_parameters} function.
-\item Run the \code{rug_pca_proj} function.
+\item Run the \code{rug_pca} function.
 }
 }
 \examples{

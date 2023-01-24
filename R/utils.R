@@ -6,7 +6,7 @@
 #' @export
 #' @keywords internal
 validate_parameters <- function(params,pschema="pca_projection_schema.json"){
-  schemafile <- system.file("extdata", pschema, package = "rvispack")
+  schemafile <- system.file("extdata", pschema, package = "rugplot")
   jsonvalidate::json_validate(params,schemafile,verbose=TRUE,error=TRUE)
 }
 
