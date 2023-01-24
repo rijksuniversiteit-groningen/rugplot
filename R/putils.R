@@ -150,7 +150,7 @@ json_defaults <- function(jsonl){
 #'
 # #' @examples
 vschemas <- function(){
-  list.files(system.file("extdata",package="rugplot"))
+  list.files(system.file("extdata",package="rugplot"),pattern = ".*_")
 }
 
 #' Create JSON file parameters

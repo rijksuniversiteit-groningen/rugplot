@@ -1,16 +1,11 @@
 
 
-# rugplot
+# rugplot: Reusable graphics
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-This [ggplot](https://ggplot2.tidyverse.org/) powered package is still
-in development and includes several data visualization
-techniques. Currently, the most complete function is to create
-`violin` plots. However, other techniques are being implemented such
-as `histograms` and `projections`. The later technique is generated as
-a result of applying Principal Component Analysis.
+The aim of the `rugplot` package is to provide a way to quickly create high quality and customizable visualization plots. Visualizations can be created in three steps. First, create a template. Second, fill in the template and third, run the visualization function. This package has been built on top of [ggplot](https://ggplot2.tidyverse.org/).
 
 ## Docker containers
 
