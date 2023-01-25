@@ -153,19 +153,29 @@ vschemas <- function(){
   list.files(system.file("extdata",package="rugplot"),pattern = ".*_")
 }
 
-#' Create JSON file parameters
+#' Create a \code{rug} JSON template file
 #'
-#' @param jsonschema a JSON schema filename. Run the 'vschemas()' function to get a list of
+#' @param visplot character, a \code{rug} plot. Run the `vschemas()` function to get a list of
 #' available JSON schemas.
-#' @param jsonfile string JSON filename to store the JSON structure and default parameters.
-#' @param overwrite boolean flag to overwrite the 'jsonfile'.
-#' @param package R package to which the 'jsonschema' belongs.
+#' @param jsonfile character, a JSON filename to store the JSON structure and default parameters.
+#' @param overwrite boolean, a flag to overwrite the 'JSON file'.
+#' @param package R package to which `visplot` belongs.
 #'
-#' @return boolean
+#' @return character, name of the created JSON file
 #' @export
 #'
 # #' @examples
-create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
+create_json <- function(visplot, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
+
+  # rug_plots_list <- rug_plotsdic()
+  #
+  # if (!visplot %in% names(rug_plots_list) )
+  #   stop("Type error: '", visplot, "' is not a rugplot!")
+  # else
+  #   jsonschema <- rug_plots_list[visplot]
+
+  jsonschema <- jschema(visplot = visplot)
+
   jsfile <- system.file("extdata", jsonschema, package = package)
   jsonlist <- jsonlite::fromJSON(jsfile)
 
@@ -177,13 +187,49 @@ create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package =
   if (!file.exists(jsonfile) || overwrite)
   {
     write(jsonlite::prettify(djs),jsonfile)
-    cat(paste("\n",jsonfile,"created\n"))
+    message("'",jsonfile,"' template successfully created.\nFill in the template to continue.")
   }
   else {
-    cat(paste0("\nThe file '",jsonfile,"' already exists.",
-              "Set the 'overwrite' parameter to TRUE or provide a different filename\n"))
+    warning("The file '",jsonfile,"' already exists.\n",
+              "Set the 'overwrite' parameter to TRUE or provide a different filename\n")
   }
-  is.null(jsonlist$properties$filename)
+  jsonfile
+  # is.null(jsonlist$properties$filename)
+}
+
+jschema <- function(visplot){
+  rug_plots_list <- dic_rugplots()
+
+  if (!visplot %in% names(rug_plots_list) )
+    stop("Type error: '", visplot, "' is not a rugplot!")
+  else
+    jsonschema <- rug_plots_list[visplot]
+}
+
+#' List the available \code{rug} plots
+#'
+#' @return Character vector including the available plots
+#' @export
+#'
+# #' @examples
+list_rugplots <- function(){
+  names(dic_rugplots())
+}
+
+
+#' Get a list of available \code{rug}/JSONschema pairs
+#'
+#' @return vector
+#' @export
+# #' @examples
+dic_rugplots <- function(){
+  listschemas <- rugplot::vschemas()
+  plots_dic <- c()
+  for (jsonschema in listschemas) {
+    key <- regmatches(jsonschema, regexpr("^[^_]*", jsonschema))
+    plots_dic[key] <- jsonschema
+  }
+  plots_dic
 }
 
 save_plot <- function(lparams, myplot, suffix = ""){

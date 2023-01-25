@@ -13,7 +13,7 @@ wide2long <- function(parametersfile){
 
   print(lp)
 
-  res <- validate_parameters(parametersfile,pschema = "wide2long_schema.json")
+  res <- validate_parameters(parametersfile,"wide2long_schema.json")
 
   if (res==FALSE) {
     stop("The json parameters file does not meet the schema")

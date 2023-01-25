@@ -2,28 +2,23 @@
 % Please edit documentation in R/putils.R
 \name{create_json}
 \alias{create_json}
-\title{Create JSON file parameters}
+\title{Create a \code{rug} JSON template file}
 \usage{
-create_json(
-  jsonschema,
-  jsonfile = NULL,
-  overwrite = FALSE,
-  package = "rugplot"
-)
+create_json(visplot, jsonfile = NULL, overwrite = FALSE, package = "rugplot")
 }
 \arguments{
-\item{jsonschema}{a JSON schema filename. Run the 'vschemas()' function to get a list of
+\item{visplot}{character, a \code{rug} plot. Run the \code{vschemas()} function to get a list of
 available JSON schemas.}
 
-\item{jsonfile}{string JSON filename to store the JSON structure and default parameters.}
+\item{jsonfile}{character, a JSON filename to store the JSON structure and default parameters.}
 
-\item{overwrite}{boolean flag to overwrite the 'jsonfile'.}
+\item{overwrite}{boolean, a flag to overwrite the 'JSON file'.}
 
-\item{package}{R package to which the 'jsonschema' belongs.}
+\item{package}{R package to which \code{visplot} belongs.}
 }
 \value{
-boolean
+character, name of the created JSON file
 }
 \description{
-Create JSON file parameters
+Create a \code{rug} JSON template file
 }

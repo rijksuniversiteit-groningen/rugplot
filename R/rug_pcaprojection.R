@@ -52,7 +52,7 @@ rug_pca <- function(lp, verbose = TRUE){
 
   message("Creating the PCA projection ...")
 
-  cols <- rutils::read_data(lp$filename,lp$variables)
+  cols <- rugutils::read_data(lp$filename,lp$variables)
 
   pcacols <- colnames(cols)
 

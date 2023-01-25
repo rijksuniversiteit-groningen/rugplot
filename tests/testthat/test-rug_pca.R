@@ -1,9 +1,7 @@
 test_that("Validating columns", {
-  lp <- rutils::validate_json_file("params/pca_parameters.json")
-  expect_type(lp,"list")
-  validate_parameters("params/pca_parameters.json")
 
-  print(iscolor('red'))
+  lp <- read_rug_json("params/pca_parameters.json","pca")
+  expect_type(lp,"list")
 
   p <- rug_pca(lp,verbose=FALSE)
   print(p)

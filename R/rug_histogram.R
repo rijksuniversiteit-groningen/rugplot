@@ -52,7 +52,7 @@ rug_histogram <- function(lp, verbose = TRUE){
 
   cat("\nCreating the histogram ...\n")
 
-  cols <- rutils::read_data(lp$filename,lp$variables)
+  cols <- rugutils::read_data(lp$filename,lp$variables)
 
   list_factors <- select_factors(cols)
   if (verbose)

@@ -53,7 +53,7 @@ rug_violin <- function(lp, verbose = TRUE) {
 
   message("Creating the visualization ...")
 
-  dt <- rutils::read_data(lp$filename,lp$variables)
+  dt <- rugutils::read_data(lp$filename,lp$variables)
   # factor variables
   fnames <- select_factors(dt)
   # numeric variables
