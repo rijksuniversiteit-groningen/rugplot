@@ -1,19 +1,22 @@
-
-
-# rugplot: Reusable graphics
+# rugplot: ReUsable Graphics
 
 <!-- badges: start -->
 <!-- badges: end -->
 
-The aim of the `rugplot` package is to provide a way to quickly create high quality and customizable visualization plots. Visualizations can be created in three steps. First, create a template. Second, fill in the template and third, run the visualization function. This package has been built on top of [ggplot](https://ggplot2.tidyverse.org/).
+The aim of the `rugplot` package is to provide a tool to quickly create
+high quality and customizable visualization plots. Visualizations can
+be created in three steps. First, create a ``rug`` plot
+template. Second, fill in the ``rug``template and third, run the
+visualization function. This package has been built on top of
+[ggplot](https://ggplot2.tidyverse.org/).
 
-## Docker containers
+## `rugplot` docker container
 
-The visualizations implemented in the `rugplot` package are designed
-to be containerized and executed from the command line.
+The visualizations implemented in the `rugplot` R package can be
+created using a command line interface.
 
 - The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/using/visualization/rugplot.html).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack.html).
 
 ## Installation in R
 
@@ -22,7 +25,7 @@ You can install the development version of `rugplot` from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("rijksuniversiteit-groningen/cds-utils",subdir="rutils")
+devtools::install_github("rijksuniversiteit-groningen/cds-utils",subdir="rugutils")
 devtools::install_github("rijksuniversiteit-groningen/rugplot")
 ```
 
