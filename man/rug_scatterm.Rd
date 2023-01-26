@@ -16,3 +16,4 @@ object
 \code{rug_scatterm} is a reusable function that saves scatter plot matrices in different file formats
 (image, pdf, interactive html).
 }
+\keyword{internal}

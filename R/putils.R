@@ -24,13 +24,13 @@ add_facets <- function(splot,lpars,factornames){
       facets <- paste(facets,lpars$facet_column)
   else {
     facets <- paste(facets,".")
-    warning(paste("Facet column: column", lpars$facet_column,
-                  "not in the list of factors",factornames))
+    warning("Facet column: column", lpars$facet_column,
+                  "not in the list of factors",factornames)
   }
   else
     facets <- paste(facets,".")
 
-  cat(paste("Facets:",facets),"\n")
+  message("Facets: ",facets)
   if (facets != ". ~ .")
     splot <- paste(splot, "+ ggplot2::facet_grid(", facets, ")")
   splot
@@ -145,8 +145,10 @@ json_defaults <- function(jsonl){
 
 #' JSON schema filenames
 #'
-#' @return vector of JSON schema filenames available in the package
+#' @return vector of the available \code{rug} JSON schema file names
 #' @export
+#'
+#' @keywords internal
 #'
 # #' @examples
 vschemas <- function(){
@@ -155,8 +157,8 @@ vschemas <- function(){
 
 #' Create a \code{rug} JSON template file
 #'
-#' @param visplot character, a \code{rug} plot. Run the `vschemas()` function to get a list of
-#' available JSON schemas.
+#' @param visplot character, a \code{rug} plot. Run the \code{list_rugplots()} function to get a list of
+#' \code{rug} plots.
 #' @param jsonfile character, a JSON filename to store the JSON structure and default parameters.
 #' @param overwrite boolean, a flag to overwrite the 'JSON file'.
 #' @param package R package to which `visplot` belongs.
@@ -165,14 +167,7 @@ vschemas <- function(){
 #' @export
 #'
 # #' @examples
-create_json <- function(visplot, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
-
-  # rug_plots_list <- rug_plotsdic()
-  #
-  # if (!visplot %in% names(rug_plots_list) )
-  #   stop("Type error: '", visplot, "' is not a rugplot!")
-  # else
-  #   jsonschema <- rug_plots_list[visplot]
+create_rugjson <- function(visplot, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
 
   jsonschema <- jschema(visplot = visplot)
 
@@ -194,9 +189,20 @@ create_json <- function(visplot, jsonfile= NULL, overwrite = FALSE, package = 'r
               "Set the 'overwrite' parameter to TRUE or provide a different filename\n")
   }
   jsonfile
-  # is.null(jsonlist$properties$filename)
 }
 
+#' Valid `rug` plot
+#'
+#' @param visplot  A `rug` plot.
+#'
+#' Verify that `visplot` is a valid `rug` plot. Run \code{list_rugplots()} to see valid `rug` plots.
+#'
+#' @return Character, a JSON schema file name
+#' @export
+#'
+#' @keywords internal
+#'
+# #' @examples
 jschema <- function(visplot){
   rug_plots_list <- dic_rugplots()
 
@@ -208,7 +214,7 @@ jschema <- function(visplot){
 
 #' List the available \code{rug} plots
 #'
-#' @return Character vector including the available plots
+#' @return Character vector including the available `rug` plots
 #' @export
 #'
 # #' @examples
@@ -221,6 +227,7 @@ list_rugplots <- function(){
 #'
 #' @return vector
 #' @export
+#' @keywords internal
 # #' @examples
 dic_rugplots <- function(){
   listschemas <- rugplot::vschemas()
@@ -266,6 +273,6 @@ save_plot <- function(lparams, myplot, suffix = ""){
                     units = "cm")
     }
     # TODO: consider the tikz case
-    cat(paste("Plot saved in: ",outputfile),"\n")
+    message("Plot saved in: ",outputfile,"\n")
   }
 }

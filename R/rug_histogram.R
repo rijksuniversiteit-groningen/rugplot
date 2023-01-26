@@ -23,7 +23,7 @@
 #'
 #' @return A ggplot object and could save the histogram in a file.
 #' @export
-#'
+#' @keywords internal
 #' @examples
 #' # Assuming that your data file is 'iris.csv'
 #' \dontrun{

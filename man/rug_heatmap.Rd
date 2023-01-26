@@ -15,3 +15,4 @@ object
 \description{
 \code{rug_heatmap} is a reusable function that saves histograms in different file formats (image, pdf, interactive html).
 }
+\keyword{internal}

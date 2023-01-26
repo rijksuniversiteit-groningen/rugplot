@@ -1,5 +1,5 @@
 test_that("use", {
-  lp <- read_rug_json("params/violinparams_test.json","violin")
+  lp <- read_rugjson("params/violinparams_test.json","violin")
   expect_type(lp,"list")
   expect_warning(p <- rug_violin(lp,verbose=FALSE))
   expect_s3_class(p,"ggplot")

@@ -58,3 +58,4 @@ rug_histogram(lp)
 }
 
 }
+\keyword{internal}

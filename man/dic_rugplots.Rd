@@ -12,3 +12,4 @@ vector
 \description{
 Get a list of available \code{rug}/JSONschema pairs
 }
+\keyword{internal}

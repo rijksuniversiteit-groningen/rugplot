@@ -7,6 +7,8 @@
 #' @return object
 #' @export
 #'
+#' @keywords internal
+#'
 #' @examples
 #' \dontrun{
 #' create_json("parallel_schema.json")

@@ -7,10 +7,10 @@
 validate_json_file(jsonparams)
 }
 \arguments{
-\item{jsonparams}{a json structure stored in a file name to be validated}
+\item{jsonparams}{Character, a JSON object file name to be validated}
 }
 \value{
-an R list of parameters extracted from the json structure
+An R list of parameters extracted from the JSON object
 }
 \description{
 This function validates a json structure

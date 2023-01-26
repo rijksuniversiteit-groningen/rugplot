@@ -1,6 +1,12 @@
 {
   "type":"object",
   "properties": {
+    "description": {
+      "title": "Description",
+      "description": "Description of the template",
+      "type": "string",
+      "default": "Parameters a for Principal Component Analysis rug plot"
+    },
     "filename": {
       "title": "Filename",
       "description": "Csv file including more than 3 columns",

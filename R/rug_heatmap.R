@@ -7,6 +7,8 @@
 #' @return object
 #' @export
 #'
+#' @keywords internal
+#'
 # # ' @examples
 rug_heatmap <- function(lp){
   cat("\nThe heatmap plot function is still under implementation")

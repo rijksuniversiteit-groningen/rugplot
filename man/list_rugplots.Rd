@@ -7,7 +7,7 @@
 list_rugplots()
 }
 \value{
-Character vector including the available plots
+Character vector including the available \code{rug} plots
 }
 \description{
 List the available \code{rug} plots

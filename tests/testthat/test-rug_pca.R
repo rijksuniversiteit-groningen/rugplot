@@ -1,6 +1,6 @@
 test_that("Validating columns", {
 
-  lp <- read_rug_json("params/pca_parameters.json","pca")
+  lp <- read_rugjson("params/pca_parameters.json","pca")
   expect_type(lp,"list")
 
   p <- rug_pca(lp,verbose=FALSE)

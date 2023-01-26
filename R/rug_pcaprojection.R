@@ -24,6 +24,8 @@
 #' @return A ggplot object and if requested it will save the projection plot in a file.
 #' @export
 #'
+#' @keywords internal
+#'
 #' @examples
 #'
 #' # Assuming that your data file is 'iris.csv'

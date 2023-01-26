@@ -8,7 +8,7 @@
 #' @export
 #'
 # #' @examples
-create_rug_plot <- function(lp, visplot, verbose=TRUE) {
+create_rugplot <- function(lp, visplot, verbose=TRUE) {
   funcs <- ls("package:rugplot")
   functie <- funcs[endsWith(funcs,visplot)]
   source_rug_plot <- paste0(functie,"(lp, verbose = ",as.character(verbose),")")
@@ -16,12 +16,12 @@ create_rug_plot <- function(lp, visplot, verbose=TRUE) {
 }
 
 # Get the available visualization plots in the rugplot package
-rug_plotsdic <- function(){
-  listschemas <- rugplot::vschemas()
-  plots_dic <- c()
-  for (jsonschema in listschemas) {
-    key <- regmatches(jsonschema, regexpr("^[^_]*", jsonschema))
-    plots_dic[key] <- jsonschema
-  }
-  plots_dic
-}
+# rug_plotsdic <- function(){
+#   listschemas <- rugplot::vschemas()
+#   plots_dic <- c()
+#   for (jsonschema in listschemas) {
+#     key <- regmatches(jsonschema, regexpr("^[^_]*", jsonschema))
+#     plots_dic[key] <- jsonschema
+#   }
+#   plots_dic
+# }

@@ -7,6 +7,8 @@
 #' @return object
 #' @export
 #'
+#' @keywords internal
+#'
 # # ' @examples
 rug_scatter <- function(lp){
   cat("\nThe boxplot function is still under implementation")
