@@ -6,9 +6,11 @@
 The aim of the `rugplot` package is to provide a tool to quickly
 create high quality and customizable visualization
 plots. Visualizations can be created in three steps. First, create a
-``rug`` JSON parameters file. Second, read the ``rug`` parameters
-file and third, run the visualization function. <!-- This package has
-been built on top of [ggplot](https://ggplot2.tidyverse.org/). -->
+``rug`` JSON parameters file. Second, read the ``rug`` parameters file
+and third, run the visualization function. It is possible to easily
+create different plots including labels, colors and save them in
+different file formats, dimentions and resolutions. <!-- This package
+has been built on top of [ggplot](https://ggplot2.tidyverse.org/). -->
 
 ## `rugplot` docker container
 
@@ -33,7 +35,7 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ### Create a PCA plot
 
-```
+```r
 	library(rugplot)
 
 	# Step 1, create a JSON file and edit the required parameters
