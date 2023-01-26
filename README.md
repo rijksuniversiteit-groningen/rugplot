@@ -31,7 +31,23 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ## Quickstart
 
-### Create a visualization plot
+### Create a PCA plot
+
+```
+	library(rugplot)
+
+	# Step 1, create a JSON file and edit the required parameters
+	jsonfile <- create_rugjson('pca')
+	
+	# Step 2, read the PCA parameters
+	rugparams <- read_rugjson(jsonfile, 'pca')
+	
+	# Step 3, create and display the visualization plot
+	p <- create_rugplot(rugparams, 'pca')
+	p
+```
+
+### Detailed explanation
 
 - First step, create the `rug` JSON parameters template. The following
   code will create by default a JSON file called
