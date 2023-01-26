@@ -16,7 +16,7 @@ The visualizations implemented in the `rugplot` R package can be
 created using a command line interface.
 
 - The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack.html).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
 
 ## Installation in R
 
