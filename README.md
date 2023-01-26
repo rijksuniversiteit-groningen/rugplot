@@ -3,12 +3,12 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The aim of the `rugplot` package is to provide a tool to quickly create
-high quality and customizable visualization plots. Visualizations can
-be created in three steps. First, create a ``rug`` plot
-template. Second, fill in the ``rug``template and third, run the
-visualization function. This package has been built on top of
-[ggplot](https://ggplot2.tidyverse.org/).
+The aim of the `rugplot` package is to provide a tool to quickly
+create high quality and customizable visualization
+plots. Visualizations can be created in three steps. First, create a
+``rug`` JSON parameters file. Second, read the ``rug`` parameters
+file and third, run the visualization function. <!-- This package has
+been built on top of [ggplot](https://ggplot2.tidyverse.org/). -->
 
 ## `rugplot` docker container
 
@@ -28,6 +28,42 @@ You can install the development version of `rugplot` from
 devtools::install_github("rijksuniversiteit-groningen/cds-utils",subdir="rugutils")
 devtools::install_github("rijksuniversiteit-groningen/rugplot")
 ```
+
+## Quickstart
+
+### Create a visualization plot
+
+- First step, create the `rug` JSON parameters template. The following
+  code will create by default a JSON file called
+  `pca_projection_params.json` in the current working directory. The
+  filename will be returned in `jsonfile` variable.
+
+	```r
+	library(rugplot)
+
+	jsonfile <- create_rugjson('pca')
+	```
+	
+	Open the file and fill in the required parameters between angle
+    brackets `<>`. Assuming that you have the `iris.csv` file, the
+    JSON file can be updated as follows:
+	
+	```json
+	{
+	...
+    "filename": "iris.csv",
+    "colour": "species",
+	...
+	}
+	```
+
+	Run `?create_rugjson` to see other possible parameters. Run
+    `list_rugplots()` to see the available `rug` plots.
+
+- Second step, read the JSON parameters. The following line will read the parameters and store the result in the `rugparams` variable.
+  ```r
+  rugparams <- read_rugjson(jsonfile, 'pca')
+  ```
 
 The main visualization functions implemented in `rugplot` receive an
 `R list` object including information such as data file name,
