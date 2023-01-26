@@ -36,18 +36,20 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 ### Create a PCA plot
 
 ```r
-	library(rugplot)
+  library(rugplot)
 
-	# Step 1, create a JSON file and edit the required parameters
-	jsonfile <- create_rugjson('pca')
+  # Step 1, create a JSON file and edit the required parameters
+  jsonfile <- create_rugjson('pca')
 	
-	# Step 2, read the PCA parameters
-	rugparams <- read_rugjson(jsonfile, 'pca')
+  # Step 2, read the PCA parameters
+  rugparams <- read_rugjson(jsonfile, 'pca')
 	
-	# Step 3, create and display the visualization plot
-	p <- create_rugplot(rugparams, 'pca')
-	p
+  # Step 3, create and display the visualization plot
+  p <- create_rugplot(rugparams, 'pca')
+  p
 ```
+
+![alt violin plot](./tests/testthat/results/Rplots.pdf.png)
 
 ### Detailed explanation
 
@@ -101,39 +103,10 @@ However, a
 also be used. The JSON object is validated against a predefined [JSON
 schema](https://www.json.org/json-en.html).
 
-### A simple example
-
-Given the following `violin_parameters_iris.json` file
-
-```json
-{
-	"filename": "iris.csv",
-	"y_variable": "sepal.length"
-}
-```
-
-and `iris.csv` data file, the following source code can be used to
-generate a violin plot.
-
-```r
-  # list of parameters lp
-  lp <- rutils::validate_json_file("violin_parameters_iris.json")
-
-  # Validating the JSON object against the violin schema
-  validate_parameters("violin_parameters_iris.json","violin_schema.json")
-
-  # creating the plot
-  p <- c_violin(lp)
-  p
-```
-
-![alt violin plot](./tests/testthat/results/Rplots.pdf.png)
-
 
 ## A more elaborated example
 
 Given the following `mpg_params.json` and `ggplotmpg.csv` files. 
-
 ```json
 {
     "filename": "ggplotmpg.csv",
@@ -144,7 +117,6 @@ Given the following `mpg_params.json` and `ggplotmpg.csv` files.
     "rotxlabs": 45,
     "boxplot": {
         "addboxplot": true,
-    	"width": 0.1
     },
     "save":{
 	  "save": true,
@@ -158,11 +130,16 @@ Given the following `mpg_params.json` and `ggplotmpg.csv` files.
 We can run
 
 ```r
-  lp <- rutils::validate_json_file("mpg_params.json")
-
-  validate_parameters("`mpg_params.json","violin_schema.json")
-
-  p <- c_violin(lp)
+  library(rugplot)
+  
+  # rugplot type
+  vplot <- 'violin'
+  
+  
+  jsonfile <- create_rugjson(visplot=vplot,jsonfil="mpg_params.json")
+  rugparams <- read_rugjson(jsonfile, vplot)
+  p <- create_rugplot(rugparams,vplot,verbose=TRUE)
+  p
 ```
 
 ![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)

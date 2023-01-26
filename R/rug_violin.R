@@ -113,11 +113,14 @@ rug_violin <- function(lp, verbose = TRUE) {
     vals <- lp$color_manual$values
     if (verbose)
       message(paste("colors:",vals))
-    p <- p + ggplot2::scale_color_manual(values = vals,
+    if (!is.null(vals)) {
+      p <- p + ggplot2::scale_color_manual(values = vals,
                                         breaks = NULL)
-    p <- p + ggplot2::scale_fill_manual(values = vals,
+
+      p <- p + ggplot2::scale_fill_manual(values = vals,
                                          breaks = lp$color_manual$breaks,
                                         labels = lp$color_manual$labels)
+    }
   }
 
   if (!is.null(lp$boxplot) && lp$boxplot$addboxplot == TRUE){

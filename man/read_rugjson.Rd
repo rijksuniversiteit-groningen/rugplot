@@ -13,6 +13,9 @@ read_rugjson(jsonparams, visplot, cds_package = "rugplot")
 
 \item{cds_package}{The package that contains the JSON schema}
 }
+\value{
+A list of \code{rug} parameters
+}
 \description{
 Read the \code{rug} plot parameters from a JSON file
 }

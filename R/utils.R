@@ -4,6 +4,8 @@
 #' @param visplot character, run \code{list_rugplots()} to see the available \code{rug} plots
 #' @param cds_package The package that contains the JSON schema
 #'
+#' @return A list of \code{rug} parameters
+#'
 #' @export
 read_rugjson <- function(jsonparams, visplot, cds_package = "rugplot"){
 

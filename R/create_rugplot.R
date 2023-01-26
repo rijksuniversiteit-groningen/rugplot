@@ -1,7 +1,9 @@
 #' Create a \code{rug} visualization plot
 #'
+#' Create visualization plot using a list of parameters created by the function \code{read_rugjson()}
+#'
 #' @param lp List of \code{rug} parameters containing information to create the plot
-#' @param visplot A \code{rug} plot
+#' @param visplot character, run \code{list_rugplots()} to see the available \code{rug} plots
 #' @param verbose Additional information
 #'
 #' @return A ggplot object
@@ -14,14 +16,3 @@ create_rugplot <- function(lp, visplot, verbose=TRUE) {
   source_rug_plot <- paste0(functie,"(lp, verbose = ",as.character(verbose),")")
   eval(parse(text = source_rug_plot))
 }
-
-# Get the available visualization plots in the rugplot package
-# rug_plotsdic <- function(){
-#   listschemas <- rugplot::vschemas()
-#   plots_dic <- c()
-#   for (jsonschema in listschemas) {
-#     key <- regmatches(jsonschema, regexpr("^[^_]*", jsonschema))
-#     plots_dic[key] <- jsonschema
-#   }
-#   plots_dic
-# }

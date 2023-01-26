@@ -9,7 +9,7 @@ create_rugplot(lp, visplot, verbose = TRUE)
 \arguments{
 \item{lp}{List of \code{rug} parameters containing information to create the plot}
 
-\item{visplot}{A \code{rug} plot}
+\item{visplot}{character, run \code{list_rugplots()} to see the available \code{rug} plots}
 
 \item{verbose}{Additional information}
 }
@@ -17,5 +17,5 @@ create_rugplot(lp, visplot, verbose = TRUE)
 A ggplot object
 }
 \description{
-Create a \code{rug} visualization plot
+Create visualization plot using a list of parameters created by the function \code{read_rugjson()}
 }
