@@ -50,10 +50,10 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	
 	```json
 	{
-	...
+	"...": "...",
     "filename": "iris.csv",
     "colour": "species",
-	...
+	"...": "..."
 	}
 	```
 
