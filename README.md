@@ -70,7 +70,7 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	
 	```json
 	{
-		"description": "Parameters a for Principal Component Analysis rug plot",
+		"description": "Parameters for a PCA projection using the `rugplot` R package",
 		"filename": "iris.csv",
 		"colour": "species",
 		"...": "..."
@@ -144,8 +144,8 @@ We can run
 
 ![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
 
-The files in the above example can be found in `tests/testhat/data`
-and `tests/testhat/params`.
+The files in the examples can be found in this repository in the
+folder `tests/testhat/data`.
 
 ## Information about JSON and JSON schemas
 

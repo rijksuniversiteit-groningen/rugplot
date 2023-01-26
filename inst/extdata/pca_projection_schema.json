@@ -5,7 +5,7 @@
       "title": "Description",
       "description": "Description of the template",
       "type": "string",
-      "default": "Parameters a for Principal Component Analysis rug plot"
+      "default": "Parameters for a PCA projection using the 'rugplot' R package"
     },
     "filename": {
       "title": "Filename",

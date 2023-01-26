@@ -1,6 +1,12 @@
 {
   "type":"object",
   "properties": {
+    "description": {
+      "title": "Description",
+      "description": "Description of the template",
+      "type": "string",
+      "default": "Parameters to create a histogram(s) using the 'rugplot' R package"
+    },
     "filename": {
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",

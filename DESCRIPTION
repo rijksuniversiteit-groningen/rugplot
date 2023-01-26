@@ -2,8 +2,8 @@ Package: rugplot
 Type: Package
 Title: ReUsable Graphics
 Version: 0.1.0
-Author: Venustiano Soancatl Aguilar
-Maintainer: Venustiano Soancatl Aguilar <v.soancatl.aguilar@rug.nl>
+Author: Venustiano Soancatl-Aguilar
+Maintainer: Venustiano Soancatl-Aguilar <v.soancatl.aguilar@rug.nl>
 Description: Current implemented techniques are histograms, violin plots and projections.
 License: Apache License (>= 2)
 Encoding: UTF-8
