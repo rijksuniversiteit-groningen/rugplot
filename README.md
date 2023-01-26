@@ -50,28 +50,38 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	
 	```json
 	{
-	"...": "...",
-    "filename": "iris.csv",
-    "colour": "species",
-	"...": "..."
+		"description": "Parameters a for Principal Component Analysis rug plot",
+		"filename": "iris.csv",
+		"colour": "species",
+		"...": "..."
 	}
 	```
 
 	Run `?create_rugjson` to see other possible parameters. Run
     `list_rugplots()` to see the available `rug` plots.
 
-- Second step, read the JSON parameters. The following line will read the parameters and store the result in the `rugparams` variable.
+- Second step, read the JSON parameters. The following line will read
+  the parameters and store the result in the `rugparams` variable.
+
   ```r
   rugparams <- read_rugjson(jsonfile, 'pca')
   ```
+- Third step, run the visualization function. The following code will
+  create and display the visualization. Run `?create_rugplot` for help.
+  
+  ```r
+  p <- create_rugplot(rugparams, 'pca')
+  p
+  ```
+  
+  Because `p` is just a
+  [ggplot](https://ggplot2.tidyverse.org/reference/index.html) object,
+  additional layers can be easily added.
 
-The main visualization functions implemented in `rugplot` receive an
-`R list` object including information such as data file name,
-variables and output format. However, a
+However, a
 [JSON](https://www.json.org/json-en.html) object stored in a file can
 also be used. The JSON object is validated against a predefined [JSON
-schema](https://www.json.org/json-en.html). In fact, the containerized
-version works with JSON objects.
+schema](https://www.json.org/json-en.html).
 
 ### A simple example
 
