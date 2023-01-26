@@ -98,15 +98,11 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
   [ggplot](https://ggplot2.tidyverse.org/reference/index.html) object,
   additional layers can be easily added.
 
-However, a
-[JSON](https://www.json.org/json-en.html) object stored in a file can
-also be used. The JSON object is validated against a predefined [JSON
-schema](https://www.json.org/json-en.html).
 
-
-## A more elaborated example
+## A violin plot example
 
 Given the following `mpg_params.json` and `ggplotmpg.csv` files. 
+
 ```json
 {
     "filename": "ggplotmpg.csv",
@@ -135,9 +131,13 @@ We can run
   # rugplot type
   vplot <- 'violin'
   
+  # create the JSON file and update parameters as shown above
+  jsonfile <- create_rugjson(visplot = vplot,jsonfile = "mpg_params.json")
   
-  jsonfile <- create_rugjson(visplot=vplot,jsonfil="mpg_params.json")
+  # read the parameters
   rugparams <- read_rugjson(jsonfile, vplot)
+  
+  # create and display the plot
   p <- create_rugplot(rugparams,vplot,verbose=TRUE)
   p
 ```
@@ -147,18 +147,7 @@ We can run
 The files in the above example can be found in `tests/testhat/data`
 and `tests/testhat/params`.
 
-### List the implemented visualizations
+## Information about JSON and JSON schemas
 
-```
-help(package=rugplot)
-```
-
-### List required parameters
-```
-?<function name>
-```
-
-For example
-```
-?c_violin
-```
+- [JSON](https://www.json.org/json-en.html) 
+- [JSONschema](https://www.json.org/json-en.html)
