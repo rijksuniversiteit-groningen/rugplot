@@ -4,13 +4,13 @@
 <!-- badges: end -->
 
 The aim of the `rugplot` R package is to provide a tool to quickly
-create high quality and customizable visualization
-plots. Visualizations can be created in three steps. First, create a
-``rug`` JSON file including the parameters for the
+create high quality and customizable visualization plots. The
+implemented visualizations can be created in three simple steps. First,
+create a ``rug`` JSON file including the parameters for the
 visualization. Second, read the ``rug`` parameters file and third, run
 a visualization function. It is possible to easily create different
 plots including labels, colors and save them in different file
-formats, dimentions and resolutions. <!-- This package has been built
+formats, dimensions and resolutions. <!-- This package has been built
 on top of [ggplot](https://ggplot2.tidyverse.org/). -->
 
 ## `rugplot` docker container
@@ -42,13 +42,13 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
   # Step 1, create a JSON file and edit the next two parameters
   # "filename": "iris.csv",
   # "colour": "species",
-  jsonfile <- create_rugjson('pca')
+  jsonfile <- create_rugjson(visplot = 'pca')
 	
   # Step 2, read the PCA parameters
-  rugparams <- read_rugjson(jsonfile, 'pca')
+  rugparams <- read_rugjson(jsonfile, visplot = 'pca')
 	
   # Step 3, create and display the visualization plot
-  p <- create_rugplot(rugparams, 'pca')
+  p <- create_rugplot(rugparams, visplot = 'pca')
   p
 ```
 
@@ -59,12 +59,12 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 - First step, create the `rug` JSON parameters template. The following
   code will create by default a JSON file called
   `pca_projection_params.json` in the current working directory. The
-  filename will be returned in `jsonfile` variable.
+  filename will be returned in the `jsonfile` variable.
 
 	```r
 	library(rugplot)
 
-	jsonfile <- create_rugjson('pca')
+	jsonfile <- create_rugjson(visplot = 'pca')
 	```
 	
 	Open the file and fill in the required parameters between angle
@@ -81,19 +81,19 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	```
 
 	Run `?create_rugjson` to see other possible parameters. Run
-    `list_rugplots()` to see the available `rug` plots.
+    `list_rugplots()` to find the available `rug` plots.
 
 - Second step, read the JSON parameters. The following line will read
   the parameters and store the result in the `rugparams` variable.
 
   ```r
-  rugparams <- read_rugjson(jsonfile, 'pca')
+  rugparams <- read_rugjson(jsonfile, visplot = 'pca')
   ```
 - Third step, run the visualization function. The following code will
   create and display the visualization. Run `?create_rugplot` for help.
   
   ```r
-  p <- create_rugplot(rugparams, 'pca')
+  p <- create_rugplot(rugparams, visplot = 'pca')
   p
   ```
   
@@ -140,7 +140,7 @@ We can run
   # read the parameters
   rugparams <- read_rugjson(jsonfile, vplot)
   
-  # create and display the plot
+  # create, save and display the plot
   p <- create_rugplot(rugparams,vplot,verbose=TRUE)
   p
 ```
