@@ -157,8 +157,8 @@ options. Probably you will only need the following option.
 options(tikzLatex = '/path/to/pdflatex')
 ```
 
-See the [tikzDevice documentation]
-(https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
+See the [tikzDevice
+documentation](https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
 for further details. If LaTeX is not installed in the system,
 [tinyTeX](https://yihui.org/tinytex/#for-r-users) could be a good
 option.
