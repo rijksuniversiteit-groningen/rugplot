@@ -272,9 +272,10 @@
 	      },
     	  "device": {
 	        "title": "Device",
+	        "description": "File format, note: 'tikz' latex to produce a pdf file",
 	        "type": "string",
 	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
-	        "png", "bmp", "svg", "html"],
+	        "png", "bmp", "svg", "html","tikz"],
 	        "default": "pdf"
 	      }
 	    }

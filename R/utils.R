@@ -75,4 +75,10 @@ select_numeric <- function (dt){
     dt))
 }
 
+# "@stephenhay"' regex from
+# <https://mathiasbynens.be/demo/url-regex>
+is_url <- function(string) {
+  any(grepl("(https?|ftp)://[^\\s/$.?#].[^\\s]*", string))
+}
+
 

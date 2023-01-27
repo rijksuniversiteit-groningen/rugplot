@@ -23,11 +23,11 @@
 	},
 	"rotxlabs" : 45,
   "save":{
-    "save": false,
+    "save": true,
     "overwrite": false,
     "width": 15,
     "height": 10,
     "dpi" : 72,
-    "device": "pdf"
+    "device": "tikz"
   }
 }

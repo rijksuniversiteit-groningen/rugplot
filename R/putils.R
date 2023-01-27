@@ -241,15 +241,25 @@ dic_rugplots <- function(){
 
 save_plot <- function(lparams, myplot, suffix = ""){
   ldevice = lparams$save$device
+  tk <- FALSE
+  if (ldevice == 'tikz') {
+    ldevice <- 'pdf'
+    tk <- TRUE
+  }
   if (lparams$save$save == TRUE){
     if (!is.null(lparams$save$outputfilename)){
         outputfile <- lparams$save$outputfilename
         if(endsWith(outputfile, paste0(".",ldevice)))
           outputfile <- substr(outputfile,1,nchar(outputfile)- nchar(ldevice) - 1)
     }
-    else
-      outputfile <- file.path(paste0(lparams$filename,suffix,
+    else {
+      if (is_url(lparams$filename))
+        outputfile <- file.path(paste0(sub('.*/', '', lparams$filename),
+                                       suffix,format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+      else
+        outputfile <- file.path(paste0(lparams$filename,suffix,
                                      format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+    }
 
     if (file.exists(paste0(outputfile,".",ldevice)) && !lparams$save$overwrite)
       outputfile <- file.path(paste0(outputfile,
@@ -263,7 +273,25 @@ save_plot <- function(lparams, myplot, suffix = ""){
                                height = lparams$save$height * 37.8 )
       htmlwidgets::saveWidget(ip, outputfile)
     }
-    else {
+    else if (tk) {
+      # options(tikzLatex = "/home/rstudio/bin/pdflatex")
+      td <- tempdir()
+      oldwd <- getwd()
+      tempfile <- file.path(td,'tmpplot.tex')
+
+      cmwidth <- lparams$save$width/2.54
+      cmheight <- lparams$save$height/2.54
+      tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = TRUE,width = cmwidth,
+                       height = cmheight, verbose = TRUE)
+      print(myplot)
+      dev.off()
+      ofile <- tinytex::pdflatex(tempfile)
+      if (file.exists(ofile)){
+        message("pdf file created", ofile)
+        file.copy(from = ofile, to = file.path(oldwd,outputfile))
+      }
+      setwd(oldwd)
+    } else{
       ggplot2::ggsave(outputfile,
                     plot=myplot,
                     device= ldevice,
