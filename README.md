@@ -13,14 +13,6 @@ plots including labels, colors and save them in different file
 formats, dimensions and resolutions. <!-- This package has been built
 on top of [ggplot](https://ggplot2.tidyverse.org/). -->
 
-## `rugplot` docker container
-
-The visualizations implemented in the `rugplot` R package can be
-created using a command line interface.
-
-- The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
-
 ## Installation in R
 
 You can install the development version of `rugplot` from
@@ -149,6 +141,35 @@ We can run
 
 The files in the examples can be found in this repository in the
 folder `tests/testhat/data`.
+
+## `Special` file formats
+
+The `rugplot` R package can generate interactive plots, using
+`ggplotly`, by setting "device": "html". Another device option is
+`tikz` which generates high quality LaTeX graphics using the
+`tikzDevice` R package. Naturally, a LaTeX installation is needed to
+generate this high quality visualization plots. If a LaTex intallation
+is already in the system, big chances are that `tikzDevice` will find
+the LaTeX compiler. If that is not the case you will have to set some
+options. Probably you will only need the following option.
+
+```r
+options(tikzLatex = '/path/to/pdflatex')
+```
+
+See the [tikzDevice documentation]
+(https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
+for further details. If LaTeX is not installed in the system,
+[tinyTeX](https://yihui.org/tinytex/#for-r-users) could be a good
+option.
+
+## `rugplot` Docker container
+
+The visualizations implemented in the `rugplot` R package can be
+created using a command line interface.
+
+- The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
 
 ## Information about JSON and JSON schemas
 
