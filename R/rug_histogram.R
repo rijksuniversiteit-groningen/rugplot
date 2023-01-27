@@ -23,7 +23,7 @@
 #'
 #' @return A ggplot object and could save the histogram in a file.
 #' @export
-#'
+#' @keywords internal
 #' @examples
 #' # Assuming that your data file is 'iris.csv'
 #' \dontrun{
@@ -52,7 +52,7 @@ rug_histogram <- function(lp, verbose = TRUE){
 
   cat("\nCreating the histogram ...\n")
 
-  cols <- rutils::read_data(lp$filename,lp$variables)
+  cols <- rugutils::read_data(lp$filename,lp$variables)
 
   list_factors <- select_factors(cols)
   if (verbose)

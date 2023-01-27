@@ -1,6 +1,12 @@
 {
   "type":"object",
   "properties": {
+    "description": {
+      "title": "Description",
+      "description": "Description of the template",
+      "type": "string",
+      "default": "Parameters for a PCA projection using the 'rugplot' R package"
+    },
     "filename": {
       "title": "Filename",
       "description": "Csv file including more than 3 columns",
@@ -132,7 +138,7 @@
 	        "title": "Device",
 	        "type": "string",
 	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
-	        "png", "bmp", "svg", "html"],
+	        "png", "bmp", "svg", "html", "tikz"],
 	        "default": "pdf"
 	      }
 	    }

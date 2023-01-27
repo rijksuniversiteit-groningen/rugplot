@@ -1,11 +1,9 @@
 test_that("Histogram is created", {
+
   js <- "params/hist_incorrect-col_id.json"
 
-  lp <- rutils::validate_json_file(js)
+  lp <- read_rugjson(js,"histogram")
   expect_type(lp,"list")
-
-  resv <- validate_parameters(js,pschema="histogram_schema.json")
-  expect_equal(resv,TRUE)
 
   w <- capture_warnings(p <- rug_histogram(lp,FALSE))
   # print(length(w))

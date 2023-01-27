@@ -22,12 +22,12 @@ One of the best ways to run \code{rug_pcaproj} is as follows:
 \enumerate{
 \item Create a JSON parameters file using the \code{create_json} function.
 \item Open the JSON file and fill in the required parameters.
-      \itemize{
-          \item Required parameters are in angle brackets.
-          \item For details of the parameters run \code{rutils::display_schema("pca_projection_schema.json")}.
-          \item Customize the rest of the pairs as needed.
-          \item A file name is automatically generated, If no output file name is provided.
-      }
+\itemize{
+\item Required parameters are in angle brackets.
+\item For details of the parameters run \code{rutils::display_schema("pca_projection_schema.json")}.
+\item Customize the rest of the pairs as needed.
+\item A file name is automatically generated, If no output file name is provided.
+}
 \item Create and validate the list \code{lp} using  \code{validate_json_file} function.
 \item Just in case, validate your JSON parameters file against the violin schema using the \code{validate_parameters} function.
 \item Run the \code{rug_pca} function.
@@ -58,3 +58,4 @@ rug_pca(lp)
 }
 
 }
+\keyword{internal}

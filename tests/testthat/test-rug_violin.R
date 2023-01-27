@@ -1,6 +1,5 @@
 test_that("use", {
-  lp <- rutils::validate_json_file("params/violinparams_test.json")
-  validate_parameters("params/violinparams_test.json","violin_schema.json")
+  lp <- read_rugjson("params/violinparams_test.json","violin")
   expect_type(lp,"list")
   expect_warning(p <- rug_violin(lp,verbose=FALSE))
   expect_s3_class(p,"ggplot")

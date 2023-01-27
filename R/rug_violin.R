@@ -24,6 +24,8 @@
 #' @return A ggplot object and if requested it will save the violin plot in a file.
 #' @export
 #'
+#' @keywords internal
+#'
 #' @examples
 #' # Assuming that your data file is 'iris.csv'
 #' \dontrun{
@@ -53,7 +55,7 @@ rug_violin <- function(lp, verbose = TRUE) {
 
   message("Creating the visualization ...")
 
-  dt <- rutils::read_data(lp$filename,lp$variables)
+  dt <- rugutils::read_data(lp$filename,lp$variables)
   # factor variables
   fnames <- select_factors(dt)
   # numeric variables
@@ -111,11 +113,14 @@ rug_violin <- function(lp, verbose = TRUE) {
     vals <- lp$color_manual$values
     if (verbose)
       message(paste("colors:",vals))
-    p <- p + ggplot2::scale_color_manual(values = vals,
+    if (!is.null(vals)) {
+      p <- p + ggplot2::scale_color_manual(values = vals,
                                         breaks = NULL)
-    p <- p + ggplot2::scale_fill_manual(values = vals,
+
+      p <- p + ggplot2::scale_fill_manual(values = vals,
                                          breaks = lp$color_manual$breaks,
                                         labels = lp$color_manual$labels)
+    }
   }
 
   if (!is.null(lp$boxplot) && lp$boxplot$addboxplot == TRUE){

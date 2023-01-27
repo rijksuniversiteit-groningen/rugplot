@@ -7,8 +7,9 @@
 vschemas()
 }
 \value{
-vector of JSON schema filenames available in the package
+vector of the available \code{rug} JSON schema file names
 }
 \description{
 JSON schema filenames
 }
+\keyword{internal}

@@ -15,3 +15,4 @@ object
 \description{
 \code{rug_scatter} is a reusable function that saves scatter plots in different file formats (image, pdf, interactive html).
 }
+\keyword{internal}

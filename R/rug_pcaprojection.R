@@ -24,6 +24,8 @@
 #' @return A ggplot object and if requested it will save the projection plot in a file.
 #' @export
 #'
+#' @keywords internal
+#'
 #' @examples
 #'
 #' # Assuming that your data file is 'iris.csv'
@@ -52,7 +54,7 @@ rug_pca <- function(lp, verbose = TRUE){
 
   message("Creating the PCA projection ...")
 
-  cols <- rutils::read_data(lp$filename,lp$variables)
+  cols <- rugutils::read_data(lp$filename,lp$variables)
 
   pcacols <- colnames(cols)
 

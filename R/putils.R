@@ -24,13 +24,13 @@ add_facets <- function(splot,lpars,factornames){
       facets <- paste(facets,lpars$facet_column)
   else {
     facets <- paste(facets,".")
-    warning(paste("Facet column: column", lpars$facet_column,
-                  "not in the list of factors",factornames))
+    warning("Facet column: column", lpars$facet_column,
+                  "not in the list of factors",factornames)
   }
   else
     facets <- paste(facets,".")
 
-  cat(paste("Facets:",facets),"\n")
+  message("Facets: ",facets)
   if (facets != ". ~ .")
     splot <- paste(splot, "+ ggplot2::facet_grid(", facets, ")")
   splot
@@ -145,27 +145,32 @@ json_defaults <- function(jsonl){
 
 #' JSON schema filenames
 #'
-#' @return vector of JSON schema filenames available in the package
+#' @return vector of the available \code{rug} JSON schema file names
 #' @export
+#'
+#' @keywords internal
 #'
 # #' @examples
 vschemas <- function(){
-  list.files(system.file("extdata",package="rugplot"))
+  list.files(system.file("extdata",package="rugplot"),pattern = ".*_")
 }
 
-#' Create JSON file parameters
+#' Create a \code{rug} JSON template file
 #'
-#' @param jsonschema a JSON schema filename. Run the 'vschemas()' function to get a list of
-#' available JSON schemas.
-#' @param jsonfile string JSON filename to store the JSON structure and default parameters.
-#' @param overwrite boolean flag to overwrite the 'jsonfile'.
-#' @param package R package to which the 'jsonschema' belongs.
+#' @param visplot character, a \code{rug} plot. Run the \code{list_rugplots()} function to get a list of
+#' \code{rug} plots.
+#' @param jsonfile character, a JSON filename to store the JSON structure and default parameters.
+#' @param overwrite boolean, a flag to overwrite the 'JSON file'.
+#' @param package R package to which `visplot` belongs.
 #'
-#' @return boolean
+#' @return character, name of the created JSON file
 #' @export
 #'
 # #' @examples
-create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
+create_rugjson <- function(visplot, jsonfile= NULL, overwrite = FALSE, package = 'rugplot'){
+
+  jsonschema <- jschema(visplot = visplot)
+
   jsfile <- system.file("extdata", jsonschema, package = package)
   jsonlist <- jsonlite::fromJSON(jsfile)
 
@@ -177,26 +182,84 @@ create_json <- function(jsonschema, jsonfile= NULL, overwrite = FALSE, package =
   if (!file.exists(jsonfile) || overwrite)
   {
     write(jsonlite::prettify(djs),jsonfile)
-    cat(paste("\n",jsonfile,"created\n"))
+    message("'",jsonfile,"' template successfully created.\nFill in the template to continue.")
   }
   else {
-    cat(paste0("\nThe file '",jsonfile,"' already exists.",
-              "Set the 'overwrite' parameter to TRUE or provide a different filename\n"))
+    warning("The file '",jsonfile,"' already exists.\n",
+              "Set the 'overwrite' parameter to TRUE or provide a different filename\n")
   }
-  is.null(jsonlist$properties$filename)
+  jsonfile
+}
+
+#' Valid `rug` plot
+#'
+#' @param visplot  A `rug` plot.
+#'
+#' Verify that `visplot` is a valid `rug` plot. Run \code{list_rugplots()} to see valid `rug` plots.
+#'
+#' @return Character, a JSON schema file name
+#' @export
+#'
+#' @keywords internal
+#'
+# #' @examples
+jschema <- function(visplot){
+  rug_plots_list <- dic_rugplots()
+
+  if (!visplot %in% names(rug_plots_list) )
+    stop("Type error: '", visplot, "' is not a rugplot!")
+  else
+    jsonschema <- rug_plots_list[visplot]
+}
+
+#' List the available \code{rug} plots
+#'
+#' @return Character vector including the available `rug` plots
+#' @export
+#'
+# #' @examples
+list_rugplots <- function(){
+  names(dic_rugplots())
+}
+
+
+#' Get a list of available \code{rug}/JSONschema pairs
+#'
+#' @return vector
+#' @export
+#' @keywords internal
+# #' @examples
+dic_rugplots <- function(){
+  listschemas <- rugplot::vschemas()
+  plots_dic <- c()
+  for (jsonschema in listschemas) {
+    key <- regmatches(jsonschema, regexpr("^[^_]*", jsonschema))
+    plots_dic[key] <- jsonschema
+  }
+  plots_dic
 }
 
 save_plot <- function(lparams, myplot, suffix = ""){
   ldevice = lparams$save$device
+  tk <- FALSE
+  if (ldevice == 'tikz') {
+    ldevice <- 'pdf'
+    tk <- TRUE
+  }
   if (lparams$save$save == TRUE){
     if (!is.null(lparams$save$outputfilename)){
         outputfile <- lparams$save$outputfilename
         if(endsWith(outputfile, paste0(".",ldevice)))
           outputfile <- substr(outputfile,1,nchar(outputfile)- nchar(ldevice) - 1)
     }
-    else
-      outputfile <- file.path(paste0(lparams$filename,suffix,
+    else {
+      if (is_url(lparams$filename))
+        outputfile <- file.path(paste0(sub('.*/', '', lparams$filename),
+                                       suffix,format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+      else
+        outputfile <- file.path(paste0(lparams$filename,suffix,
                                      format(Sys.time(), "%Y%m%d_%H%M%OS3")))
+    }
 
     if (file.exists(paste0(outputfile,".",ldevice)) && !lparams$save$overwrite)
       outputfile <- file.path(paste0(outputfile,
@@ -210,7 +273,25 @@ save_plot <- function(lparams, myplot, suffix = ""){
                                height = lparams$save$height * 37.8 )
       htmlwidgets::saveWidget(ip, outputfile)
     }
-    else {
+    else if (tk) {
+      # options(tikzLatex = "/home/rstudio/bin/pdflatex")
+      td <- tempdir()
+      oldwd <- getwd()
+      tempfile <- file.path(td,'tmpplot.tex')
+
+      cmwidth <- lparams$save$width/2.54
+      cmheight <- lparams$save$height/2.54
+      tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = TRUE,width = cmwidth,
+                       height = cmheight, verbose = TRUE)
+      print(myplot)
+      dev.off()
+      ofile <- tinytex::pdflatex(tempfile)
+      if (file.exists(ofile)){
+        message("pdf file created", ofile)
+        file.copy(from = ofile, to = file.path(oldwd,outputfile))
+      }
+      setwd(oldwd)
+    } else{
       ggplot2::ggsave(outputfile,
                     plot=myplot,
                     device= ldevice,
@@ -220,6 +301,6 @@ save_plot <- function(lparams, myplot, suffix = ""){
                     units = "cm")
     }
     # TODO: consider the tikz case
-    cat(paste("Plot saved in: ",outputfile),"\n")
+    message("Plot saved in: ",outputfile,"\n")
   }
 }

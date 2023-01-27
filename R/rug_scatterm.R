@@ -8,6 +8,8 @@
 #' @return object
 #' @export
 #'
+#' @keywords internal
+#'
 # # ' @examples
 rug_scatterm <- function(lp){
   cat("\nThe scatter plot matrix function is still under implementation")
