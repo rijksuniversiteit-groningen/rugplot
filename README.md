@@ -100,7 +100,7 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ## A violin plot example
 
-The following code will generate violin plots as swhon in the figure below.
+The following code will generate violin plots as shown in the figure below.
 
 ```r
   library(rugplot)
@@ -185,7 +185,7 @@ to produce a tikz LaTeX visualization.
 ```
 
 In addition, if you want to add LaTeX formulae to your `tikz`
-graphics, it is necessary to se the `sanitize` parameter to
+graphics, it is necessary to set the `sanitize` parameter to
 `false`. Then, it is needed to escape the LaTeX commands twice. This
 means that `eight` backslash symbols must be added to each
 command. For example, to generate a `tikz` visualization plot using
@@ -204,9 +204,17 @@ should be modified as follows:
 	}
 ```
 
-As a result, we get the following plot
+As a result, we get the following plot.
 
 ![alt tikz](tests/testthat/results/mpg-tikzformula.png)
+
+NOTE: Only for the `tikz` option, setting `sanitize` to `true` it may
+break a LaTeX formula. However, `sanitize` in `rugplot` is by default
+`true` because it is expected that some special LaTeX symbols to be
+found in variable/column names such as `_`. If LaTeX formulae are
+needed, special LaTeX characters (`%`, `_`, `$`, see the [tikz
+documentation](https://search.r-project.org/CRAN/refmans/tikzDevice/html/sanitizeTexString.html)
+for further details) should be removed or escaped.
 
 
 ## `rugplot` Docker container
