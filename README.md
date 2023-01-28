@@ -153,18 +153,20 @@ command.
 wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/ggplotmpg.csv
 ```
 
-The files in the examples can be found in 
-
 ## `Special` file formats
 
 The `rugplot` R package can generate interactive plots, using
-`ggplotly`, by setting "device": "html". Another device option is
-`tikz` which generates high quality LaTeX graphics using the
-`tikzDevice` R package. Naturally, a LaTeX installation is needed to
-generate this high quality visualization plots. If a LaTex intallation
-is already in the system, big chances are that `tikzDevice` will find
-the LaTeX compiler. If that is not the case you will have to set some
-options. Probably you will only need the following option.
+`ggplotly`, by setting "device": "html". An example of an interactive
+plot produced with `rugplot` can be found
+[here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html). 
+
+The `tikz` device option can generate high quality LaTeX graphics
+using the `tikzDevice` R package. Naturally, a LaTeX installation is
+needed to generate this high quality visualization plots. If a LaTex
+intallation is already in the system, big chances are that
+`tikzDevice` will find the LaTeX compiler. If that is not the case you
+will have to set some options. Probably you will only need the
+following option.
 
 ```r
 options(tikzLatex = '/path/to/pdflatex')
@@ -180,10 +182,31 @@ to produce a tikz LaTeX visualization.
 
 ```r
   "device": "tikz",
-
 ```
 
-If you want to produce `tikz` graphics and the text in your plot contain 
+In addition, if you want to add LaTeX formulae to your `tikz`
+graphics, it is necessary to se the `sanitize` parameter to
+`false`. Then, it is needed to escape the LaTeX commands twice. This
+means that `eight` backslash symbols must be added to each
+command. For example, to generate a `tikz` visualization plot using
+the ``mpg_params.json`` file and include a formula, the parameters
+should be modified as follows:
+
+```json
+    "labels": {
+        "title": "A \\\\\\\\LaTeX formula in the $x$ axis label",
+        "x": "$p(x)=\\\\\\\\frac{1}{\\\\\\\\sqrt{2\\\\\\\\pi}}e^{-\\\\\\\\frac{x^2}{2}}$",
+	},
+	"save" : {
+		"save": true,
+		"device": "tikz",
+		"sanitize": false
+	}
+```
+
+As a result, we get the following plot
+
+![alt tikz](tests/testthat/results/mpg-tikzformula.png)
 
 
 ## `rugplot` Docker container
