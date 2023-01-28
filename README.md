@@ -100,7 +100,30 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ## A violin plot example
 
-Given the following `mpg_params.json` and `ggplotmpg.csv` files. 
+The following code will generate violin plots as swhon in the figure below.
+
+```r
+  library(rugplot)
+  
+  # rugplot type
+  vplot <- 'violin'
+  
+  # create the JSON file and update parameters as shown above
+  jsonfile <- create_rugjson(visplot = vplot,jsonfile = "mpg_params.json")
+  
+  # read the parameters
+  rugparams <- read_rugjson(jsonfile, vplot)
+  
+  # create, save and display the plot
+  p <- create_rugplot(rugparams,vplot,verbose=TRUE)
+  p
+```
+
+![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
+
+The line after the second comment in the above code generates
+`mpg_params.json`. The values of the parameters are as in the
+following JSON structure.
 
 ```json
 {
@@ -122,29 +145,15 @@ Given the following `mpg_params.json` and `ggplotmpg.csv` files.
 }
 ```
 
-We can run
+The `ggplotmpg.csv` file can be found in this repository in the folder
+`tests/testhat/data` or can be downloaded by running the following
+command.
 
-```r
-  library(rugplot)
-  
-  # rugplot type
-  vplot <- 'violin'
-  
-  # create the JSON file and update parameters as shown above
-  jsonfile <- create_rugjson(visplot = vplot,jsonfile = "mpg_params.json")
-  
-  # read the parameters
-  rugparams <- read_rugjson(jsonfile, vplot)
-  
-  # create, save and display the plot
-  p <- create_rugplot(rugparams,vplot,verbose=TRUE)
-  p
+```bash
+wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/ggplotmpg.csv
 ```
 
-![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
-
-The files in the examples can be found in this repository in the
-folder `tests/testhat/data`.
+The files in the examples can be found in 
 
 ## `Special` file formats
 
