@@ -277,6 +277,12 @@
 	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
 	        "png", "bmp", "svg", "html","tikz"],
 	        "default": "pdf"
+	      },
+	      "sanitize":{
+	        "title": "Sanitize",
+	        "description": "Should special LaTeX characters be replaced, required for 'tikz'",
+	        "type": "boolean",
+	        "default": true
 	      }
 	    }
     }

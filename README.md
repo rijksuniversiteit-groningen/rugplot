@@ -59,7 +59,8 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	jsonfile <- create_rugjson(visplot = 'pca')
 	```
 	
-	Open the file and fill in the required parameters between angle
+	The JSON file will have many parameters, most of them will have
+    default values, fill in the required parameters between angle
     brackets `<>`. Assuming that you have the `iris.csv` file, the
     JSON file can be updated as follows:
 	
@@ -73,7 +74,10 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	```
 
 	Run `?create_rugjson` to see other possible parameters. Run
-    `list_rugplots()` to find the available `rug` plots.
+    `list_rugplots()` to find the available `rug` plots. To get
+    additional information about the parameters such as description,
+    type and default values run the function `display_rughelp(visplot
+    = 'pca')`.
 
 - Second step, read the JSON parameters. The following line will read
   the parameters and store the result in the `rugparams` variable.
@@ -161,7 +165,17 @@ See the [tikzDevice
 documentation](https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
 for further details. If LaTeX is not installed in the system,
 [tinyTeX](https://yihui.org/tinytex/#for-r-users) could be a good
-option.
+option. Once `tikzDevice` and `LaTeX` are installed, setting the
+`device` option in the JSON parameters file as follows will be enough
+to produce a tikz LaTeX visualization.
+
+```r
+  "device": "tikz",
+
+```
+
+If you want to produce `tikz` graphics and the text in your plot contain 
+
 
 ## `rugplot` Docker container
 

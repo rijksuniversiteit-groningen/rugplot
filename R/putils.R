@@ -64,6 +64,7 @@ add_labels <- function(ggsourceplot,labels){
     }
   )
   labs <- gsub('.{1}$', '', labs)
+
   if (length(labs) > 0)
       ggsourceplot <- paste(ggsourceplot, " +\n  ggplot2::labs(", labs, ")")
   ggsourceplot
@@ -113,7 +114,7 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$size" = as.character(lparams$size),
       "lp\\$weight" = as.character(lparams$weight),
       "lp\\$alpha" = as.character(lparams$alpha),
-      "lp\\$labels\\$title" = as.character(lparams$labels$title),
+      "lp\\$labels\\$title" = lparams$labels$title,
       "lp\\$labels\\$subtitle" = as.character(lparams$labels$subtitle),
       "lp\\$labels\\$tag" = as.character(lparams$labels$tag),
       "lp\\$labels\\$x" = as.character(lparams$labels$x),
@@ -274,14 +275,14 @@ save_plot <- function(lparams, myplot, suffix = ""){
       htmlwidgets::saveWidget(ip, outputfile)
     }
     else if (tk) {
-      # options(tikzLatex = "/home/rstudio/bin/pdflatex")
       td <- tempdir()
       oldwd <- getwd()
       tempfile <- file.path(td,'tmpplot.tex')
 
       cmwidth <- lparams$save$width/2.54
       cmheight <- lparams$save$height/2.54
-      tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = TRUE,width = cmwidth,
+      setwd(td)
+      tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = lparams$save$sanitize,width = cmwidth,
                        height = cmheight, verbose = TRUE)
       print(myplot)
       dev.off()
