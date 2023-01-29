@@ -6,8 +6,8 @@
 The aim of the `rugplot` R package is to provide a tool to quickly
 create high quality and customizable visualization plots. The
 implemented visualizations can be created in three simple steps. First,
-create a ``rug`` JSON file including the parameters for the
-visualization. Second, read the ``rug`` parameters file and third, run
+create a ``rugplot`` JSON file including the parameters for the
+visualization. Second, read the ``rugplot`` parameters file and third, run
 a visualization function. It is possible to easily create different
 plots including labels, colors and save them in different file
 formats, dimensions and resolutions. <!-- This package has been built
@@ -61,8 +61,13 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	
 	The JSON file will have many parameters, most of them will have
     default values, fill in the required parameters between angle
-    brackets `<>`. Assuming that you have the `iris.csv` file, the
-    JSON file can be updated as follows:
+    brackets `<>`. The `iris.csv` file can be downloaded running
+	
+	```bash
+	wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/iris.csv
+	```
+	
+	and the JSON file can be updated as follows:
 	
 	```json
 	{
@@ -77,7 +82,7 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
     `list_rugplots()` to find the available `rug` plots. To get
     additional information about the parameters such as description,
     type and default values run the function `display_rughelp(visplot
-    = 'pca')`.
+    = 'pca')`. 
 
 - Second step, read the JSON parameters. The following line will read
   the parameters and store the result in the `rugparams` variable.
@@ -162,7 +167,7 @@ plot produced with `rugplot` can be found
 
 The `tikz` device option can generate high quality LaTeX graphics
 using the `tikzDevice` R package. Naturally, a LaTeX installation is
-needed to generate this high quality visualization plots. If a LaTex
+needed to generate these∑ high quality visualization plots. If a LaTex
 intallation is already in the system, big chances are that
 `tikzDevice` will find the LaTeX compiler. If that is not the case you
 will have to set some options. Probably you will only need the
