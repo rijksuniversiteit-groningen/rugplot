@@ -6,20 +6,12 @@
 The aim of the `rugplot` R package is to provide a tool to quickly
 create high quality and customizable visualization plots. The
 implemented visualizations can be created in three simple steps. First,
-create a ``rug`` JSON file including the parameters for the
-visualization. Second, read the ``rug`` parameters file and third, run
+create a ``rugplot`` JSON file including the parameters for the
+visualization. Second, read the ``rugplot`` parameters file and third, run
 a visualization function. It is possible to easily create different
 plots including labels, colors and save them in different file
 formats, dimensions and resolutions. <!-- This package has been built
 on top of [ggplot](https://ggplot2.tidyverse.org/). -->
-
-## `rugplot` docker container
-
-The visualizations implemented in the `rugplot` R package can be
-created using a command line interface.
-
-- The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
 
 ## Installation in R
 
@@ -67,9 +59,15 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	jsonfile <- create_rugjson(visplot = 'pca')
 	```
 	
-	Open the file and fill in the required parameters between angle
-    brackets `<>`. Assuming that you have the `iris.csv` file, the
-    JSON file can be updated as follows:
+	The JSON file will have many parameters, most of them will have
+    default values, fill in the required parameters between angle
+    brackets `<>`. The `iris.csv` file can be downloaded running
+	
+	```bash
+	wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/iris.csv
+	```
+	
+	and the JSON file can be updated as follows:
 	
 	```json
 	{
@@ -81,7 +79,10 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	```
 
 	Run `?create_rugjson` to see other possible parameters. Run
-    `list_rugplots()` to find the available `rug` plots.
+    `list_rugplots()` to find the available `rug` plots. To get
+    additional information about the parameters such as description,
+    type and default values run the function `display_rughelp(visplot
+    = 'pca')`. 
 
 - Second step, read the JSON parameters. The following line will read
   the parameters and store the result in the `rugparams` variable.
@@ -104,7 +105,30 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ## A violin plot example
 
-Given the following `mpg_params.json` and `ggplotmpg.csv` files. 
+The following code will generate violin plots as shown in the figure below.
+
+```r
+  library(rugplot)
+  
+  # rugplot type
+  vplot <- 'violin'
+  
+  # create the JSON file and update parameters as shown above
+  jsonfile <- create_rugjson(visplot = vplot,jsonfile = "mpg_params.json")
+  
+  # read the parameters
+  rugparams <- read_rugjson(jsonfile, vplot)
+  
+  # create, save and display the plot
+  p <- create_rugplot(rugparams,vplot,verbose=TRUE)
+  p
+```
+
+![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
+
+The line after the second comment in the above code generates
+`mpg_params.json`. The values of the parameters are as in the
+following JSON structure.
 
 ```json
 {
@@ -126,29 +150,87 @@ Given the following `mpg_params.json` and `ggplotmpg.csv` files.
 }
 ```
 
-We can run
+The `ggplotmpg.csv` file can be found in this repository in the folder
+`tests/testhat/data` or can be downloaded by running the following
+command.
 
-```r
-  library(rugplot)
-  
-  # rugplot type
-  vplot <- 'violin'
-  
-  # create the JSON file and update parameters as shown above
-  jsonfile <- create_rugjson(visplot = vplot,jsonfile = "mpg_params.json")
-  
-  # read the parameters
-  rugparams <- read_rugjson(jsonfile, vplot)
-  
-  # create, save and display the plot
-  p <- create_rugplot(rugparams,vplot,verbose=TRUE)
-  p
+```bash
+wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/ggplotmpg.csv
 ```
 
-![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
+## `Special` file formats
 
-The files in the examples can be found in this repository in the
-folder `tests/testhat/data`.
+The `rugplot` R package can generate interactive plots, using
+`ggplotly`, by setting "device": "html". An example of an interactive
+plot produced with `rugplot` can be found
+[here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html). 
+
+The `tikz` device option can generate high quality LaTeX graphics
+using the `tikzDevice` R package. Naturally, a LaTeX installation is
+needed to generate these∑ high quality visualization plots. If a LaTex
+intallation is already in the system, big chances are that
+`tikzDevice` will find the LaTeX compiler. If that is not the case you
+will have to set some options. Probably you will only need the
+following option.
+
+```r
+options(tikzLatex = '/path/to/pdflatex')
+```
+
+See the [tikzDevice
+documentation](https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
+for further details. If LaTeX is not installed in the system,
+[tinyTeX](https://yihui.org/tinytex/#for-r-users) could be a good
+option. Once `tikzDevice` and `LaTeX` are installed, setting the
+`device` option in the JSON parameters file as follows will be enough
+to produce a tikz LaTeX visualization.
+
+```r
+  "device": "tikz",
+```
+
+In addition, if you want to add LaTeX formulae to your `tikz`
+graphics, it is necessary to set the `sanitize` parameter to
+`false`. Then, it is needed to escape the LaTeX commands twice. This
+means that `eight` backslash symbols must be added to each
+command. For example, to generate a `tikz` visualization plot using
+the ``mpg_params.json`` file and include a formula, the parameters
+should be modified as follows:
+
+```json
+    "labels": {
+        "title": "A \\\\\\\\LaTeX formula in the $x$ axis label",
+        "x": "$p(x)=\\\\\\\\frac{1}{\\\\\\\\sqrt{2\\\\\\\\pi}}e^{-\\\\\\\\frac{x^2}{2}}$",
+	},
+	"save" : {
+		"save": true,
+		"device": "tikz",
+		"sanitize": false
+	}
+```
+
+As a result, we get the following plot.
+
+![alt tikz](tests/testthat/results/mpg-tikzformula.png)
+
+NOTE: Only for the `tikz` option, setting `sanitize` to `true` it may
+break a LaTeX formula. However, `sanitize` in the `rugplot` R package
+is by default `true` because it is expected that some special LaTeX
+characters to be found in variable/column names such as `_`. If LaTeX
+formulae are needed, special LaTeX characters (`%`, `_`, `$`, see the
+[tikz
+documentation](https://search.r-project.org/CRAN/refmans/tikzDevice/html/sanitizeTexString.html)
+for further details) should be removed or escaped.
+
+A more direct way to use the `rugplot` R package without the need for the installantion of the R environment is by means of containers.
+
+## `rugplot` Docker container (comming soon)
+
+The visualizations implemented in the `rugplot` R package can be
+created using a command line interface.
+
+- The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
 
 ## Information about JSON and JSON schemas
 
