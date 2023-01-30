@@ -126,13 +126,11 @@ The following code will generate violin plots as shown in the figure below.
 
 ![alt mpgviolin](tests/testthat/results/ggplotmpg.csv-violin-20221009_203930.png)
 
-The line after the second comment in the above code generates
-`mpg_params.json`. The values of the parameters are as in the
-following JSON structure.
+After creating `mpg_params.json`, change the following parameters as follows:
 
 ```json
 {
-    "filename": "ggplotmpg.csv",
+    "filename": "https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/ggplotmpg.csv",
     "y_variable": "hwy",
     "x_variable": "class",
     "colour": "class",
@@ -145,17 +143,9 @@ following JSON structure.
 	  "save": true,
 	  "width": 15,
 	  "height": 10,
-	  "device": "png"
+	  "device": "png",
 	  }
 }
-```
-
-The `ggplotmpg.csv` file can be found in this repository in the folder
-`tests/testhat/data` or can be downloaded by running the following
-command.
-
-```bash
-wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/ggplotmpg.csv
 ```
 
 ## `Special` file formats
@@ -191,11 +181,10 @@ to produce a tikz LaTeX visualization.
 
 In addition, if you want to add LaTeX formulae to your `tikz`
 graphics, it is necessary to set the `sanitize` parameter to
-`false`. Then, it is needed to escape the LaTeX commands twice. This
-means that `eight` backslash symbols must be added to each
-command. For example, to generate a `tikz` visualization plot using
-the ``mpg_params.json`` file and include a formula, the parameters
-should be modified as follows:
+`false`. Then, it is needed to escape the LaTeX commands by adding
+`eight` backslash symbols. For example, to generate a `tikz`
+visualization plot using the ``mpg_params.json`` file and include a
+formula, the parameters should be modified as follows:
 
 ```json
     "labels": {
