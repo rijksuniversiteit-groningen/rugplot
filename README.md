@@ -167,7 +167,7 @@ plot produced with `rugplot` can be found
 
 The `tikz` device option can generate high quality LaTeX graphics
 using the `tikzDevice` R package. Naturally, a LaTeX installation is
-needed to generate these∑ high quality visualization plots. If a LaTex
+needed to generate these high quality visualization plots. If a LaTex
 intallation is already in the system, big chances are that
 `tikzDevice` will find the LaTeX compiler. If that is not the case you
 will have to set some options. Probably you will only need the
@@ -216,13 +216,14 @@ As a result, we get the following plot.
 NOTE: Only for the `tikz` option, setting `sanitize` to `true` it may
 break a LaTeX formula. However, `sanitize` in the `rugplot` R package
 is by default `true` because it is expected that some special LaTeX
-characters to be found in variable/column names such as `_`. If LaTeX
-formulae are needed, special LaTeX characters (`%`, `_`, `$`, see the
-[tikz
+characters to be found in variable/column names such as underscores
+(`_`). If LaTeX formulae are needed, special LaTeX characters (`%`, `_`,
+`$`, see the [tikz
 documentation](https://search.r-project.org/CRAN/refmans/tikzDevice/html/sanitizeTexString.html)
 for further details) should be removed or escaped.
 
-A more direct way to use the `rugplot` R package without the need for the installantion of the R environment is by means of containers.
+A more direct way to use the `rugplot` R package without the need for
+the installation of an R environment is by means of containers.
 
 ## `rugplot` Docker container (comming soon)
 

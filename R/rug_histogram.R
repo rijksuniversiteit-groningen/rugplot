@@ -95,7 +95,7 @@ rug_histogram <- function(lp, verbose = TRUE){
   p <- eval(parse(text = p))
 
   if (!is.null(lp$save))
-      save_plot(lp,p,"-hist-")
+      save_plot(lp,p,"-hist-",verbose=verbose)
 
   message("Visualization histogram done.")
   p

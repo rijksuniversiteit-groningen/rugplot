@@ -240,7 +240,7 @@ dic_rugplots <- function(){
   plots_dic
 }
 
-save_plot <- function(lparams, myplot, suffix = ""){
+save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
   ldevice = lparams$save$device
   tk <- FALSE
   if (ldevice == 'tikz') {
@@ -281,17 +281,28 @@ save_plot <- function(lparams, myplot, suffix = ""){
 
       cmwidth <- lparams$save$width/2.54
       cmheight <- lparams$save$height/2.54
+
       setwd(td)
-      tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = lparams$save$sanitize,width = cmwidth,
-                       height = cmheight, verbose = TRUE)
-      print(myplot)
-      dev.off()
-      ofile <- tinytex::pdflatex(tempfile)
-      if (file.exists(ofile)){
-        message("pdf file created", ofile)
-        file.copy(from = ofile, to = file.path(oldwd,outputfile))
+      tryCatch({
+        tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = lparams$save$sanitize,width = cmwidth,
+                       height = cmheight, verbose = verbose)
+          print(myplot)
+        dev.off()
+        ofile <- tinytex::pdflatex(tempfile)
+        if (file.exists(ofile)){
+          message(ofile, " created using pdflatex.")
+          file.copy(from = ofile, to = file.path(oldwd,outputfile))
+        }
+        setwd(oldwd)
+      },
+      error = function(c) {
+        c$message <- paste0(c$message, "\nTikZ plot not created. Returning to working directory '",
+                            oldwd,"'")
+        setwd(oldwd)
+        stop(c)
       }
-      setwd(oldwd)
+      )
+
     } else{
       ggplot2::ggsave(outputfile,
                     plot=myplot,
