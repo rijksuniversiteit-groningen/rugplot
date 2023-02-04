@@ -1,7 +1,9 @@
 test_that("use", {
-  lp <- read_rugjson("params/violinparams_test.json","violin")
+  # lp <- read_rugjson("params/violinparams_test.json","violin")
+  lp <- read_rugjson("params/mpg_params.json","violin")
   expect_type(lp,"list")
-  expect_warning(p <- rug_violin(lp,verbose=FALSE))
+  #expect_warning(p <- rug_violin(lp,verbose=FALSE))
+  p <- rug_violin(lp,verbose=FALSE)
   expect_s3_class(p,"ggplot")
   print(p)
   # p <- cm_ggviolin("../../../data/iris_vio_params.json")

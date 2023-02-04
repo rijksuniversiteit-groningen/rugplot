@@ -189,7 +189,7 @@ create_rugjson <- function(visplot, jsonfile= NULL, overwrite = FALSE, package =
     warning("The file '",jsonfile,"' already exists.\n",
               "Set the 'overwrite' parameter to TRUE or provide a different filename\n")
   }
-  jsonfile
+  return(jsonfile)
 }
 
 #' Valid `rug` plot

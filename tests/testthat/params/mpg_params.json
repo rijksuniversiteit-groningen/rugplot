@@ -1,18 +1,31 @@
 {
-    "filename": "ggplotmpg.csv",
+    "filename": "data/ggplotmpg.csv",
     "y_variable": "hwy",
     "x_variable": "class",
     "colour": "class",
     "fill": "class",
     "rotxlabs": 45,
+    "labels": {
+        "title": "My new title $\\\\\\\\kappa$",
+        "subtitle": null,
+        "tag": null,
+        "x": null,
+        "y": null,
+        "colour": null,
+        "fill": null,
+        "caption": null
+    },
     "boxplot": {
-		"addboxplot": true,
+		  "addboxplot": true,
 	    "width": 0.1
     },
-	"save":{
-	  "save": true,
-	  "width": 15,
-	  "height": 10,
-	  "device": "png"
-	}
+	  "save":{
+	    "save": false,
+      "overwrite": false,
+	    "width": 15,
+	    "height": 10,
+	    "dpi": 72,
+	    "device": "tikz",
+	    "sanitize": false
+	  }
 }

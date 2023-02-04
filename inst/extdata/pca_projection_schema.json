@@ -136,6 +136,7 @@
 	      },
     	  "device": {
 	        "title": "Device",
+	        "description": "File format, note: 'tikz' produce a LaTeX-pdf file",
 	        "type": "string",
 	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
 	        "png", "bmp", "svg", "html", "tikz"],

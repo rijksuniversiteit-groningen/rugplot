@@ -137,5 +137,5 @@ rug_violin <- function(lp, verbose = TRUE) {
     save_plot(lp,p,"-violin-",verbose=verbose)
 
   message("Violin plot visualization done.")
-  return(p)
+  p
 }
