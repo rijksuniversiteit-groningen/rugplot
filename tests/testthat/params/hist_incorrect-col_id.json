@@ -10,7 +10,7 @@
     "bin_width": 1,
     "alpha": 0.5,
     "labels": {
-        "title": "My new histogram title",
+        "title": "My new histogram title $\\kappa$",
         "subtitle": null,
         "tag": null,
         "x": "Sepal length",
@@ -19,8 +19,6 @@
         "fill": null,
         "caption": null
     },
-	  "title": "Test histogram",
-	  "caption":"Caption",
     "save": {
       "save": false,
       "outputfilename": null,
@@ -28,6 +26,7 @@
   	  "height": 10,
 	    "width": 15,
 	    "dpi": 72,
-      "device":"pdf"
+      "device":"pdf",
+      "sanitize": true
     }
 }

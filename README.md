@@ -3,15 +3,15 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-The aim of the `rugplot` R package is to provide a tool to quickly
-create high quality and customizable visualization plots. The
-implemented visualizations can be created in three simple steps. First,
-create a ``rugplot`` JSON file including the parameters for the
-visualization. Second, read the ``rugplot`` parameters file and third, run
-a visualization function. It is possible to easily create different
-plots including labels, colors and save them in different file
-formats, dimensions and resolutions. <!-- This package has been built
-on top of [ggplot](https://ggplot2.tidyverse.org/). -->
+The aim of the `rugplot`, R package based on
+[ggplot](https://ggplot2.tidyverse.org/), is to provide a tool to
+quickly create high quality and customizable visualization plots.
+Visualizations can be created in three simple steps. First, create a
+``rugplot`` JSON file including the parameters for the
+visualization. Second, read the ``rugplot`` parameters file and third,
+run a visualization function. It is possible to easily create
+different plots including labels, colors and save them in different
+file formats, dimensions and resolutions. 
 
 ## Installation in R
 
@@ -48,6 +48,17 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
 ### Detailed explanation
 
+The famous `iris dataset`, (`Fisher, 1936`) can be downloaded
+directly from [DataHub iris](https://datahub.io/machine-learning/iris),
+by running the following command
+
+```bash
+   wget https://datahub.io/machine-learning/iris/r/iris.csv
+```
+
+or by adding the link in the previous command to the JSON template
+that is created in the first step to create the PCA plot.
+
 - First step, create the `rug` JSON parameters template. The following
   code will create by default a JSON file called
   `pca_projection_params.json` in the current working directory. The
@@ -61,20 +72,13 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 	
 	The JSON file will have many parameters, most of them will have
     default values, fill in the required parameters between angle
-    brackets `<>`. The `iris.csv` file can be downloaded running
-	
-	```bash
-	wget https://raw.githubusercontent.com/rijksuniversiteit-groningen/rugplot/master/tests/testthat/data/iris.csv
-	```
-	
-	and the JSON file can be updated as follows:
+    brackets `<>` and the JSON file can be updated as follows:
 	
 	```json
 	{
 		"description": "Parameters for a PCA projection using the `rugplot` R package",
 		"filename": "iris.csv",
-		"colour": "species",
-		"...": "..."
+		"colour": "class",
 	}
 	```
 
@@ -153,7 +157,7 @@ After creating `mpg_params.json`, change the following parameters as follows:
 The `rugplot` R package can generate interactive plots, using
 `ggplotly`, by setting "device": "html". An example of an interactive
 plot produced with `rugplot` can be found
-[here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html). 
+[here](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/rugplot.html). 
 
 The `tikz` device option can generate high quality LaTeX graphics
 using the `tikzDevice` R package. Naturally, a LaTeX installation is
@@ -220,7 +224,7 @@ The visualizations implemented in the `rugplot` R package can be
 created using a command line interface.
 
 - The GitHub repository can be found [here](https://github.com/rijksuniversiteit-groningen/docker-cds/tree/venus/feature/readme).
-- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rvispack/rvispack.html).
+- The ReadTheDocs documentation can be found [here](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/rugplot.html).
 
 ## Information about JSON and JSON schemas
 
