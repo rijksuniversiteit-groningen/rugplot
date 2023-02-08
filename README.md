@@ -157,7 +157,7 @@ After creating `mpg_params.json`, change the following parameters as follows:
 The `rugplot` R package can generate interactive plots, using
 `ggplotly`, by setting "device": "html". An example of an interactive
 plot produced with `rugplot` can be found
-[here](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/rugplot.html). 
+[here](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/pcaprojections.html). 
 
 The `tikz` device option can generate high quality LaTeX graphics
 using the `tikzDevice` R package. Naturally, a LaTeX installation is
