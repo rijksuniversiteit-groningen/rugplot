@@ -1,0 +1,48 @@
+{
+    "description": "Parameters to create a scatter plot using the 'rugplot' R package",
+    "filename": "data/Building_Permits.csv",
+    "variables": null,
+    "y_variable": "Latitude",
+    "x_variable": "Longitude",
+    "position": "identity",
+    "group": null,
+    "colour": "PermitClass",
+    "fill": null,
+    "size": 0.1,
+    "stroke": null,
+    "shape": 19,
+    "facet_row": "PermitClass",
+    "facet_column": null,
+    "alpha": 0.5,
+    "labels": {
+        "title": null,
+        "subtitle": null,
+        "tag": null,
+        "x": null,
+        "y": null,
+        "colour": "Species",
+        "fill": null,
+        "caption": null
+    },
+    "color_manual": {
+        "values": null,
+        "breaks": null,
+        "labels": null
+    },
+    "boxplot": {
+        "addboxplot": true,
+        "width": 0.1
+    },
+    "rotxlabs": 0,
+    "save": {
+        "save": false,
+        "outputfilename": null,
+        "overwrite": false,
+        "width": 15,
+        "height": 10,
+        "dpi": 72,
+        "device": "pdf",
+        "sanitize": true
+    }
+}
+

@@ -1,0 +1,346 @@
+{
+  "type":"object",
+  "properties": {
+    "description": {
+      "title": "Description",
+      "description": "Description of the template",
+      "type": "string",
+      "default": "Parameters to create a scatter plot using the 'rugplot' R package"
+    },
+    "filename": {
+      "title": "Filename",
+      "description": "File in table format, see the data.table::fread function for more details",
+      "type": "string",
+      "default": "<filename path>",
+      "required": true
+    },
+    "variables": {
+      "title": "Column/Variable names",
+      "description": "List of column names to be loaded from the datafile",
+      "type": ["array", "null"],
+      "items": {
+        "type": "string"
+      },
+      "uniqueItems": true,
+      "default": null
+    },
+    "y_variable": {
+      "title": "Y variable",
+      "description": "Variable for the vertical axis",
+      "type": "string",
+      "required": true,
+      "default": "<Y required column name>"
+    },
+    "x_variable": {
+      "title": "X variable",
+      "description": "Variable for the horizontal axis",
+      "type": "string",
+      "default": "<X required column name>",
+      "required": true
+    },
+    "position" : {
+      "title" : "Position",
+      "description": "Dodge or identity position",
+      "type": "string",
+      "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"],
+	    "default": "identity"
+    },
+    "group": {
+      "title": "Group",
+      "description": "Columns/variable name to create groups",
+      "type": ["string","null"],
+      "default": null
+    },
+    "colour": {
+      "title": "Colour",
+      "description": "Line color",
+      "type": ["string","null"],
+      "default": null
+    },
+    "fill": {
+      "title": "Fill",
+      "description": "Color to fill",
+      "type": ["string","null"],
+      "default": null
+    },
+    "size":{
+      "title": "Size",
+      "description": "Size",
+      "type": ["number","string","null"],
+      "default": null
+    },
+    "stroke": {
+      "title": "Stroke in mm",
+      "description": "For shapes 21-24, The size of the filled part is controlled by size, the size of the stroke is controlled by stroke. The total size of the point is the sum of the two.",
+      "type": ["number","string","null"],
+      "minimum": 0,
+      "default": null
+    },
+    "shape": {
+      "title": "Shape",
+      "description": "Shape of the data points",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 25
+        },
+        {
+          "type": "string"
+        },
+        {
+          "type": "string",
+          "enum": ["circle", "circle open", "circle filled", "circle cross",
+                     "circle plus", "circle small", "bullet", "square", "square open",
+                     "square filled", "square cross", "square plus", "square triangle",
+                     "diamond", "diamond open", "diamond filled", "diamond plus",
+                     "triangle", "triangle open", "triangle filled", "triangle square",
+                     "triangle down open", "triangle down filled", "plus", "cross",
+                     "asterisk"]
+        }
+      ],
+      "default": 19
+    },
+    "facet_row":{
+      "title": "Facet row",
+      "description": "Variable to create facets in horizontal direction",
+      "type": ["string","null"],
+      "default": null
+    },
+    "facet_column":{
+      "title": "Facet row",
+      "description": "Variable to create facets in vertical direction",
+      "type": ["string","null"],
+      "default": null
+    },
+    "alpha": {
+      "title": "Opacity",
+      "description": "Transparency level",
+	    "type": ["number", "null"],
+	    "default":0.5,
+	    "minimum":0,
+	    "maximum":1
+    },
+    "labels": {
+      "title" : "Plot labels",
+      "description": "Plot labels",
+      "type": "object",
+      "properties": {
+  	    "title":{
+  	      "title": "Title",
+  	      "description": "Title of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "subtitle":{
+  	      "title": "Subtitle",
+  	      "description": "Subtitle of the plot",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+  	    "tag":{
+  	      "title": "Tag",
+  	      "description": "typically used for labelling a subplot with a letter",
+	        "type": ["string","null"],
+	        "default": null
+	      },
+	      "x": {
+	        "title": "x label",
+	        "description": "x label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "y": {
+	        "title": "y label",
+	        "description": "y label",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "colour": {
+	        "title": "Colour label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "fill": {
+	        "title": "Fill label",
+	        "description": "Colour label legend",
+	        "type": ["string", "null"],
+	        "default": null
+	      },
+	      "caption":{
+	        "title": "Caption",
+	        "type": ["string", "null"],
+	        "default": null
+	      }
+      }
+    },
+    "theme": {
+      "title": "theme",
+      "description": "ggplot theme arguments",
+      "type": "object",
+      "properties": {
+        "legend": {
+          "title": "Legend",
+          "description": "Legend properties",
+          "type": "object",
+          "properties": {
+            "key":{
+              "title": "Key",
+              "description": "Key properties",
+              "type": "object",
+              "properties": {
+                "size": {
+                  "title": "Size",
+                  "description": "Size of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                },
+                "width": {
+                  "title": "Width",
+                  "description": "Width of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                },
+                "height": {
+                  "title": "Height",
+                  "description": "Height of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "color_manual":{
+      "title": "Color manual",
+      "description": "Assign categorical colors manually",
+      "type": "object",
+      "properties" : {
+        "values" : {
+          "title": "Color values",
+          "description": "Hexadecimal colors",
+          "type": ["array", "null"],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "breaks": {
+          "title": "Breaks",
+          "description": "Variable categories to be colored",
+          "type": ["array", "null"],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        },
+        "labels": {
+          "title": "Labels",
+          "description": "A character vector giving labels",
+          "type": ["array", "null"],
+          "items": {
+            "type": "string"
+          },
+          "default": null
+        }
+      }
+    },
+    "boxplot":{
+      "title": "Boxplot",
+      "description": "Add a boxplot",
+      "type": "object",
+      "properties": {
+	      "addboxplot": {
+	        "title": "Add boxplot",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+        "width":{
+          "title": "Width",
+          "description": "width of boxplot",
+          "type": "number",
+          "default":0.1
+        }
+      }
+    },
+	  "rotxlabs": {
+	    "title": "Rotate x labels",
+	    "type": "number",
+      "default": 0,
+      "minimum": -360,
+      "exclusiveMinimum": true,
+      "maximum": 360
+	  },
+    "save": {
+	    "title": "Save",
+	    "type": "object",
+	    "properties" : {
+	      "save": {
+	        "title": "Save file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+	      "outputfilename": {
+	        "title": "Output filename",
+	        "description": "Filename including path (optional)",
+	        "type": ["string", "null"],
+	        "default": null,
+	        "required": false
+	      },
+	      "overwrite": {
+	        "title": "Overwrite file?",
+	        "type": "boolean",
+	        "default": false,
+	        "required": true
+	      },
+	      "width" : {
+	        "title": "Width",
+	        "description": "Output width in centimeters",
+	        "type": "number",
+	        "default":15,
+	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+	      "height":{
+	        "title": "Height",
+	        "description": "Output height in centimeters",
+	        "type": "number",
+	        "default":10,
+	        "minimum":1,
+	        "maximum":2000,
+	        "required": true
+	      },
+	      "dpi":{
+	        "title": "dpi",
+	        "description": "Dots per inch",
+	        "type": "number",
+	        "default":72,
+	        "required": true
+	      },
+    	  "device": {
+	        "title": "Device",
+	        "description": "File format, note: 'tikz' produce a LaTeX-pdf file",
+	        "type": "string",
+	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
+	        "png", "bmp", "svg", "html","tikz"],
+	        "default": "pdf"
+	      },
+	      "sanitize":{
+	        "title": "Sanitize",
+	        "description": "Should special LaTeX characters be replaced, required for 'tikz'",
+	        "type": "boolean",
+	        "default": true
+	      }
+	    }
+    }
+  }
+}

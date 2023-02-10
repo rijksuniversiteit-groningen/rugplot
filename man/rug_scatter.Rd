@@ -4,15 +4,17 @@
 \alias{rug_scatter}
 \title{Scatter plot}
 \usage{
-rug_scatter(lp)
+rug_scatter(lp, verbose = TRUE)
 }
 \arguments{
-\item{lp}{a list of parameters derived from a JSON object}
+\item{lp}{List of parameters including information to create a scatterplot}
+
+\item{verbose}{Additional information}
 }
 \value{
-object
+A ggplot object
 }
 \description{
-\code{rug_scatter} is a reusable function that saves scatter plots in different file formats (image, pdf, interactive html).
+Scatter plot
 }
 \keyword{internal}

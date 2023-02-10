@@ -87,8 +87,19 @@ add_attributes <- function(lparams){
     if (!is.null(lparams$linetype)){
         " linetype = 'lp$linetype',"
     },
+    if (!is.null(lparams$shape))
+        if (lparams$shape %in% shape_names)
+            " shape = 'lp$shape',"
+        else if (is.numeric(lparams$shape)){
+            " shape = lp$shape,"
+        } else if (length(lparams$shape)==1)
+          " shape = 'lp$shape',"
+    ,
     if (!is.null(lparams$size)){
         " size = lp$size,"
+    },
+    if (!is.null(lparams$stroke)){
+      " stroke = lp$stroke,"
     },
     if (!is.null(lparams$weight)){
        " width = lp$weight,"
@@ -114,6 +125,8 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$size" = as.character(lparams$size),
       "lp\\$weight" = as.character(lparams$weight),
       "lp\\$alpha" = as.character(lparams$alpha),
+      "lp\\$stroke" = as.character(lparams$stroke),
+      "lp\\$shape" = as.character(lparams$shape),
       "lp\\$labels\\$title" = lparams$labels$title,
       "lp\\$labels\\$subtitle" = as.character(lparams$labels$subtitle),
       "lp\\$labels\\$tag" = as.character(lparams$labels$tag),
@@ -121,7 +134,8 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$labels\\$y" = as.character(lparams$labels$y),
       "lp\\$labels\\$colour" = as.character(lparams$labels$colour),
       "lp\\$labels\\$fill" = as.character(lparams$labels$fill),
-      "lp\\$labels\\$caption" = as.character(lparams$labels$caption)
+      "lp\\$labels\\$caption" = as.character(lparams$labels$caption),
+      "lp\\$theme\\$legend\\$key\\$size" = as.character(lparams$theme$legend$key$size)
     )
   )
 }
@@ -312,7 +326,15 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
                     dpi = lparams$save$dpi,
                     units = "cm")
     }
-    # TODO: consider the tikz case
     message("Plot saved in: ",outputfile,"\n")
   }
 }
+
+shape_names <- c(
+  "circle", paste("circle", c("open", "filled", "cross", "plus", "small")), "bullet",
+  "square", paste("square", c("open", "filled", "cross", "plus", "triangle")),
+  "diamond", paste("diamond", c("open", "filled", "plus")),
+  "triangle", paste("triangle", c("open", "filled", "square")),
+  paste("triangle down", c("open", "filled")),
+  "plus", "cross", "asterisk"
+)
