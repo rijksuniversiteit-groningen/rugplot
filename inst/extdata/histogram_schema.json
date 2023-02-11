@@ -24,18 +24,62 @@
       "uniqueItems": true,
       "default":null
     },
-    "y_variable": {
-      "title": "Y variable",
-      "description": "Variable for vertical axis",
-      "type": "string",
-      "required": true,
-      "default": "<required column name>"
-    },
-    "group": {
-      "title": "Group",
-      "description": "Columns/variable name to create groups",
-      "type": ["string","null"],
-      "default": null
+    "aesthetics": {
+      "title": "Aesthetics",
+      "description": "The aesthetics (must be a column in the data) that heatmap plots understand",
+      "help_url": "https://cran.r-project.org/web/packages/ggplot2/vignettes/ggplot2-specs.html",
+      "type": "object",
+      "properties": {
+        "y_variable": {
+          "title": "Y variable",
+          "description": "Variable for the vertical axis",
+          "type": ["string","null"],
+          "default": null
+        },
+        "x_variable": {
+          "title": "X variable",
+          "description": "Variable for the horizontal axis",
+          "type": ["string","null"],
+          "default": "<X required column name>",
+          "required": true
+        },
+        "fill": {
+          "title": "Fill",
+          "description": "Column representing 'colour' to fill the plot",
+          "type": ["string", "null"],
+          "default": null
+        },
+        "alpha": {
+          "title": "Opacity",
+          "description": "Transparency level",
+	        "type": ["string", "null"],
+	        "default": null
+        },
+        "group": {
+          "title": "Group",
+          "description": "Columns/variable name to create groups",
+          "type": ["string","null"],
+          "default": null
+        },
+        "colour": {
+          "title": "Colour",
+          "description": "Line colour",
+          "type": ["string","null"],
+          "default": null
+        },
+        "size": {
+          "title": "Size",
+          "description": "Size of the data point",
+          "type": ["number","null"],
+          "default": null
+        },
+        "linetype": {
+          "title": "Line type",
+          "description": "Line type",
+          "type": ["string","null"],
+          "default": null
+        }
+      }
     },
     "colour": {
       "title": "Colour",
@@ -64,14 +108,14 @@
     "bin_width":{
       "title": "Bin width",
       "description": "Numeric integer representing bin size",
-      "type": "number",
-      "default" : 1
+      "type": ["number","null"],
+      "default" : null
     },
     "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
-	    "type": "number",
-	    "default":0.5,
+	    "type": ["number", "null"],
+	    "default":null,
 	    "minimum":0,
 	    "maximum":1
     },
@@ -131,8 +175,8 @@
     },
 	  "rotxlabs": {
 	    "title": "Rotate x labels",
-	    "type": "number",
-      "default": 0,
+	    "type": ["number","null"],
+      "default": null,
       "minimum": -360,
       "exclusiveMinimum": true,
       "maximum": 360

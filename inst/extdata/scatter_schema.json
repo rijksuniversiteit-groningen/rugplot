@@ -1,13 +1,13 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "Violin plots",
+  "title": "Scatterplot",
   "type":"object",
   "properties": {
     "description": {
       "title": "Description",
       "description": "Description of the template",
       "type": "string",
-      "default": "Parameters to create violin plots using the 'rugplot' R package"
+      "default": "Parameters to create a scatter plot using the 'rugplot' R package"
     },
     "filename": {
       "title": "Filename",
@@ -41,19 +41,14 @@
         },
         "x_variable": {
           "title": "X variable",
-          "description": "Required variable for the horizontal axis",
+          "description": "Variable for the horizontal axis",
           "type": "string",
-          "default": "''",
+          "default": "<X required column name>",
           "required": true
-        },
-        "factorx": {
-          "title":"Convert to factor",
-          "type" : "boolean",
-          "default" : false
         },
         "fill": {
           "title": "Fill",
-          "description": "Column representing 'colour' to fill the plot",
+          "description": "Column representing 'color' to fill the tiles",
           "type": ["string", "null"],
           "default": null
         },
@@ -69,6 +64,12 @@
           "type": ["string","null"],
           "default": null
         },
+        "shape": {
+          "title": "Shape",
+          "description": "Columns/variable name to encode shape",
+          "type": ["string","null"],
+          "default": null
+        },
         "colour": {
           "title": "Colour",
           "description": "Line colour",
@@ -81,10 +82,10 @@
           "type": ["number","null"],
           "default": null
         },
-        "linetype": {
-          "title": "Line type",
-          "description": "Line type",
-          "type": ["string","null"],
+        "stroke": {
+          "title": "stroke",
+          "description": "Size of the stroke",
+          "type": ["number","null"],
           "default": null
         }
       }
@@ -95,7 +96,7 @@
       "anyOf": [
         {
           "type": "string",
-          "enum": [ "identity", "dodge", "dodge2"]
+          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"],
         },
         {
           "type": "null"
@@ -111,75 +112,44 @@
     },
     "fill": {
       "title": "Fill",
-      "description": "Color to fill the violin plots",
+      "description": "Color to fill",
       "type": ["string","null"],
-      "default": null
-    },
-    "alpha": {
-      "title": "Opacity",
-      "description": "Transparency level",
-	    "type": ["number", "null"],
-	    "default":null,
-	    "minimum":0,
-	    "maximum":1
-    },
-    "linetype": {
-      "title": "Line type",
-      "description": "Appearance of the line type",
-      "anyOf": [
-        {
-          "type": "integer",
-          "minimum": 0,
-          "maximum": 6
-        },
-        {
-          "type": "string",
-          "minLength": 2,
-          "maxLength": 8
-        },
-        {
-          "type": "string",
-          "enum": ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"]
-        },
-        {
-          "type":"null"
-        }
-      ],
       "default": null
     },
     "size":{
       "title": "Size",
       "description": "Size",
-      "type": ["number","null"],
+      "type": ["number","string","null"],
       "default": null
     },
-    "trim":{
-      "title": "Trim",
-      "description": "If TRUE (default), trim the tails of the violins to the range of the data",
-      "type": ["boolean","null"],
+    "stroke": {
+      "title": "Stroke in mm",
+      "description": "For shapes 21-24, The size of the filled part is controlled by size, the size of the stroke is controlled by stroke. The total size of the point is the sum of the two.",
+      "type": ["number","string","null"],
+      "minimum": 0,
       "default": null
     },
-    "scale": {
-      "title": "Scale",
-      "description": "if 'area' (default), all violins have the same area (before trimming the tails). If 'count', areas are scaled proportionally to the number of observations. If 'width', all violins have the same maximum width",
+    "shape": {
+      "title": "Shape",
+      "description": "Shape of the data points",
       "anyOf": [
         {
-          "type": "string",
-          "enum": ["area","count", "width"]
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 25
         },
         {
-          "type": "null"
-        }
-      ],
-      "default": null
-    },
-    "orientation": {
-      "title": "Orientation",
-      "description": "The orientation of the layer",
-      "anyOf": [
+          "type": "string"
+        },
         {
           "type": "string",
-          "enum": ["x","y"]
+          "enum": ["circle", "circle open", "circle filled", "circle cross",
+                     "circle plus", "circle small", "bullet", "square", "square open",
+                     "square filled", "square cross", "square plus", "square triangle",
+                     "diamond", "diamond open", "diamond filled", "diamond plus",
+                     "triangle", "triangle open", "triangle filled", "triangle square",
+                     "triangle down open", "triangle down filled", "plus", "cross",
+                     "asterisk"]
         },
         {
           "type": "null"
@@ -198,6 +168,14 @@
       "description": "Variable to create facets in vertical direction",
       "type": ["string","null"],
       "default": null
+    },
+    "alpha": {
+      "title": "Opacity",
+      "description": "Transparency level",
+	    "type": ["number", "null"],
+	    "default":null,
+	    "minimum":0,
+	    "maximum":1
     },
     "labels": {
       "title" : "Plot labels",
@@ -253,6 +231,48 @@
 	      }
       }
     },
+    "theme": {
+      "title": "theme",
+      "description": "ggplot theme arguments",
+      "type": "object",
+      "properties": {
+        "legend": {
+          "title": "Legend",
+          "description": "Legend properties",
+          "type": "object",
+          "properties": {
+            "key":{
+              "title": "Key",
+              "description": "Key properties",
+              "type": "object",
+              "properties": {
+                "size": {
+                  "title": "Size",
+                  "description": "Size of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                },
+                "width": {
+                  "title": "Width (not used yet)",
+                  "description": "Width of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                },
+                "height": {
+                  "title": "Height (not used yet)",
+                  "description": "Height of the key in cm",
+                  "type": ["number", "null"],
+                  "exclusiveMinimum": 0,
+                  "default": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "color_manual":{
       "title": "Color manual",
       "description": "Assign categorical colors manually",
@@ -300,7 +320,7 @@
 	      },
         "width":{
           "title": "Width",
-          "description": "width of the boxplot",
+          "description": "width of boxplot",
           "type": "number",
           "default":0.1
         }

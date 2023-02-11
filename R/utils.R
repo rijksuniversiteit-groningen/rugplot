@@ -1,10 +1,14 @@
-#' Read the \code{rug} plot parameters from a JSON file
+#' Read a JSON file
 #'
-#' @param jsonparams A \code{rug} JSON file to be validated by a JSON schema
-#' @param visplot character, run \code{list_rugplots()} to see the available \code{rug} plots
-#' @param cds_package The package that contains the JSON schema
+#' This file has parameters to create a  \code{rug} visualization plot.
 #'
-#' @return A list of \code{rug} parameters
+#' @param jsonparams Character, a \code{rug} JSON file which can be created using the
+#' \code{create_rugjson(...)} function
+#' @param visplot Character, a kind of visualization plot. Run \code{list_rugplots()}
+#' to see the available plots in \code{rugplot}
+#' @param cds_package The package that contains a JSON schema used to validate the JSON file
+#'
+#' @return A list of parameters to create \code{rugplot} visualization
 #'
 #' @export
 read_rugjson <- function(jsonparams, visplot, cds_package = "rugplot"){

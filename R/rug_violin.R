@@ -63,24 +63,9 @@ rug_violin <- function(lp, verbose = TRUE) {
 
   varnames <- colnames(dt)
 
-  if (! lp$y_variable %in% varnames)
-    stop(paste("'",lp$y_variable,"' must be a column in the file",lp$filename))
-
-  xvar <- "''"
-  if (!is.null(lp$x_variable) && lp$x_variable %in% varnames)
-    if (lp$x_variable %in% fnames)
-      xvar <- lp$x_variable
-    else if (lp$factorx == TRUE)
-      xvar <- "as.factor(lp$x_variable)"
-
   p <- paste(
-    "ggplot2::ggplot(dt, ggplot2::aes(","x = lp$x_variable, y = lp$y_variable",
-    if (!is.null(lp$fill))
-      if (lp$fill %in% fnames)
-        ",fill = lp$fill",
-    if (!is.null(lp$colour))
-      if (lp$colour %in% fnames)
-        ", colour = lp$colour",
+    "ggplot2::ggplot(dt, ggplot2::aes(",
+    add_aesthetics(lp$aesthetics,varnames),
     ")) +\n  ggplot2::geom_violin(",
     add_attributes(lp),
     ") +\n",
@@ -99,8 +84,6 @@ rug_violin <- function(lp, verbose = TRUE) {
       " +\n  ggplot2::theme(\n    ",
         "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n",sep="")
 
-  # particular case for the x_variable
-  p <- stringr::str_replace_all(p,c("lp\\$x_variable" = as.character(xvar)))
   p <- replace_vars(p,lp)
 
   if (verbose)

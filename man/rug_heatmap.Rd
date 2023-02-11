@@ -4,15 +4,18 @@
 \alias{rug_heatmap}
 \title{Heatmap}
 \usage{
-rug_heatmap(lp)
+rug_heatmap(lp, verbose = TRUE)
 }
 \arguments{
-\item{lp}{a list of parameters derived from a JSON object}
+\item{lp}{List of parameters including information to create a scatter plot. The list
+is created using the function \code{read_rugjson()}}
+
+\item{verbose}{Additional information}
 }
 \value{
-object
+A ggplot object
 }
 \description{
-\code{rug_heatmap} is a reusable function that saves histograms in different file formats (image, pdf, interactive html).
+Heatmap
 }
 \keyword{internal}

@@ -4,7 +4,7 @@ Title: ReUsable Graphics
 Version: 0.1.0
 Author: Venustiano Soancatl-Aguilar
 Maintainer: Venustiano Soancatl-Aguilar <v.soancatl.aguilar@rug.nl>
-Description: Current implemented techniques are histograms, violin plots and projections.
+Description: The aim of the rugplot, R package based on ggplot, is to accelerate the creation of high quality visualization plots. Using 'rugplot', visualizations can be created in three simple steps. First, create a JSON parameters file. Second, read the rugplot parameters file and third, run a visualization function. It is possible to easily create different plots including labels, colors, dimensions, resolutions and save them in different file formats such as interactive and LaTeX pdf graphics.
 License: Apache License (>= 2)
 Encoding: UTF-8
 LazyData: true

@@ -60,17 +60,20 @@ rug_histogram <- function(lp, verbose = TRUE){
 
   list_numeric <- select_numeric(cols)
 
+  varnames <- colnames(cols)
+
   if (verbose)
     message(paste("Numeric columns:",list_numeric,"\n"))
 
-  if (! lp$y_variable %in% colnames(cols) ) {
-    stop(paste("'",lp$y_variable,"' must be a column in",lp$filename))
-  }
+  # if (! lp$y_variable %in% colnames(cols) ) {
+  #   stop(paste("'",lp$y_variable,"' must be a column in",lp$filename))
+  # }
 
   p <- paste("ggplot2::ggplot(cols, ggplot2::aes(",
-            "x = lp$y_variable",
-            if (!is.null(lp$colour) && lp$colour %in% list_factors)
-              ", color = lp$colour, fill = lp$colour",
+             add_aesthetics(lp$aesthetics,varnames),
+            # "x = lp$y_variable",
+            # if (!is.null(lp$colour) && lp$colour %in% list_factors)
+            #   ", color = lp$colour, fill = lp$colour",
             ")) +\n  ggplot2::geom_histogram(",
             add_attributes(lp),
             ") +\n  ggplot2::theme_bw() +\n  ",

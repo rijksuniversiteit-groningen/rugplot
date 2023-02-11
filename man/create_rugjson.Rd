@@ -2,7 +2,7 @@
 % Please edit documentation in R/putils.R
 \name{create_rugjson}
 \alias{create_rugjson}
-\title{Create a \code{rug} JSON template file}
+\title{Create a \code{rugplot} JSON template file}
 \usage{
 create_rugjson(
   visplot,
@@ -12,18 +12,19 @@ create_rugjson(
 )
 }
 \arguments{
-\item{visplot}{character, a \code{rug} plot. Run the \code{list_rugplots()} function to get a list of
-\code{rug} plots.}
+\item{visplot}{Character, a kind of visualization supported by \code{rug plot}. Run the
+\code{list_rugplots()} function to get a list of available visualizations.}
 
-\item{jsonfile}{character, a JSON filename to store the JSON structure and default parameters.}
+\item{jsonfile}{Character, a JSON filename to store the JSON structure and default parameters.}
 
-\item{overwrite}{boolean, a flag to overwrite the 'JSON file'.}
+\item{overwrite}{Boolean, a flag to overwrite the 'JSON file'.}
 
-\item{package}{R package to which \code{visplot} belongs.}
+\item{package}{R package that contains the JSON schema to validate the JSON file.}
 }
 \value{
-character, name of the created JSON file
+Character, name of the created JSON file
 }
 \description{
-Create a \code{rug} JSON template file
+This file contains the default and required parameters to create a visualization plot
+using the \code{rugplot} package. The required parameters must be provided by the user.
 }

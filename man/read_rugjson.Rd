@@ -2,20 +2,22 @@
 % Please edit documentation in R/utils.R
 \name{read_rugjson}
 \alias{read_rugjson}
-\title{Read the \code{rug} plot parameters from a JSON file}
+\title{Read a JSON file}
 \usage{
 read_rugjson(jsonparams, visplot, cds_package = "rugplot")
 }
 \arguments{
-\item{jsonparams}{A \code{rug} JSON file to be validated by a JSON schema}
+\item{jsonparams}{Character, a \code{rug} JSON file which can be created using the
+\code{create_rugjson(...)} function}
 
-\item{visplot}{character, run \code{list_rugplots()} to see the available \code{rug} plots}
+\item{visplot}{Character, a kind of visualization plot. Run \code{list_rugplots()}
+to see the available plots in \code{rugplot}}
 
-\item{cds_package}{The package that contains the JSON schema}
+\item{cds_package}{The package that contains a JSON schema used to validate the JSON file}
 }
 \value{
-A list of \code{rug} parameters
+A list of parameters to create \code{rugplot} visualization
 }
 \description{
-Read the \code{rug} plot parameters from a JSON file
+This file has parameters to create a  \code{rug} visualization plot.
 }

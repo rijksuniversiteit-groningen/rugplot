@@ -1,28 +1,27 @@
 {
-    "description": "Parameters to create violin plots using the 'rugplot' R package",
-    "filename": "data/ggplotmpg.csv",
+    "description": "Parameters to create a scatter plot using the 'rugplot' R package",
+    "filename": "data/Building_Permits.csv",
     "variables": null,
     "aesthetics": {
-        "y_variable": "hwy",
-        "x_variable": "''",
-        "factorx": false,
+        "y_variable": "Latitude",
+        "x_variable": "Longitude",
         "fill": null,
         "alpha": null,
         "group": null,
-        "colour": null,
-        "size": null
+        "shape": null,
+        "colour": "PermitClass",
+        "size": null,
+        "stroke": null
     },
-    "position": null,
+    "position": "identity",
     "colour": null,
     "fill": null,
-    "alpha": null,
-    "linetype": null,
-    "size": null,
-    "trim": null,
-    "scale": null,
-    "orientation": null,
+    "size": 0.1,
+    "stroke": null,
+    "shape": 21,
     "facet_row": null,
     "facet_column": null,
+    "alpha": 0.5,
     "labels": {
         "title": null,
         "subtitle": null,
@@ -33,6 +32,15 @@
         "fill": null,
         "caption": null
     },
+    "theme": {
+        "legend": {
+            "key": {
+                "size": 2,
+                "width": null,
+                "height": null
+            }
+        }
+    },
     "color_manual": {
         "values": null,
         "breaks": null,
@@ -42,7 +50,7 @@
         "addboxplot": false,
         "width": 0.1
     },
-    "rotxlabs": 45,
+    "rotxlabs": 0,
     "save": {
         "save": false,
         "outputfilename": null,
