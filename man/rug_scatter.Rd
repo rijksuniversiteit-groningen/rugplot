@@ -7,7 +7,8 @@
 rug_scatter(lp, verbose = TRUE)
 }
 \arguments{
-\item{lp}{List of parameters including information to create a scatterplot}
+\item{lp}{List of parameters including information to create a scatter plot. The list
+is created using the function \code{read_rugjson()}}
 
 \item{verbose}{Additional information}
 }

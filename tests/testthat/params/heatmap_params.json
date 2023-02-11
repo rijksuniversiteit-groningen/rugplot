@@ -1,26 +1,27 @@
 {
-    "description": "Parameters to create violin plots using the 'rugplot' R package",
-    "filename": "data/ggplotmpg.csv",
+    "description": "Parameters to create a heatmap plot using the 'rugplot' R package",
+    "filename": "./data/exergamelf.csv",
     "variables": null,
+    "method": "raster",
     "aesthetics": {
-        "y_variable": "hwy",
-        "x_variable": "''",
-        "factorx": false,
-        "fill": null,
+        "y_variable": "myVars",
+        "x_variable": "idrow",
+        "fill": "value",
         "alpha": null,
         "group": null,
         "colour": null,
-        "size": null
+        "height": null,
+        "linetype": null,
+        "linewidth": null,
+        "width": null
     },
-    "position": null,
-    "colour": null,
-    "fill": null,
-    "alpha": null,
-    "linetype": null,
+    "position": "identity",
     "size": null,
-    "trim": null,
-    "scale": null,
-    "orientation": null,
+    "interpolate": false,
+    "alpha": null,
+    "colour": null,
+    "linetype": null,
+    "linewidth": null,
     "facet_row": null,
     "facet_column": null,
     "labels": {
@@ -33,16 +34,21 @@
         "fill": null,
         "caption": null
     },
+    "theme": {
+        "legend": {
+            "key": {
+                "size": null,
+                "width": null,
+                "height": null
+            }
+        }
+    },
     "color_manual": {
         "values": null,
         "breaks": null,
         "labels": null
     },
-    "boxplot": {
-        "addboxplot": false,
-        "width": 0.1
-    },
-    "rotxlabs": 45,
+    "rotxlabs": 0,
     "save": {
         "save": false,
         "outputfilename": null,

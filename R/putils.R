@@ -70,6 +70,86 @@ add_labels <- function(ggsourceplot,labels){
   ggsourceplot
 }
 
+add_aesthetics <- function(aesvars, columnnames){
+  aesstr <- paste(
+    if (! aesvars$x_variable %in% columnnames && !aesvars$x_variable == "''")
+      stop(paste("'",aesvars$x_variable,"' must be a column in the data file"))
+    else if (!is.null(aesvars$factorx) && aesvars$factorx == TRUE){
+      "x = as.factor(lp$aesthetics$x_variable),"
+    } else {
+      "x = lp$aesthetics$x_variable,"
+    },
+    if (!is.null(aesvars$y_variable))
+    if (! aesvars$y_variable %in% columnnames)
+      stop(paste("'",aesvars$y_variable,"' must be a column in the data file"))
+    else
+      "y = lp$aesthetics$y_variable,"
+    ,
+    if (!is.null(aesvars$fill))
+      if (!aesvars$fill %in% columnnames)
+        stop(paste("'",aesvars$fill,"' must be a column in the data file"))
+      else
+        "fill = lp$aesthetics$fill,"
+    ,
+    if (!is.null(aesvars$alpha))
+        if (! aesvars$alpha %in% columnnames)
+          warning("Aesthetics alpha'", aesvars$alpha,"' ignored because column name not found")
+        else
+          " alpha = lp$aesthetics$alpha,"
+    ,
+    if (!is.null(aesvars$colour))
+        if (! aesvars$colour %in% columnnames)
+          warning("Aesthetics colour'", aesvars$colour,"' ignored because column name not found")
+        else
+          " colour = lp$aesthetics$colour,"
+    ,
+    if (!is.null(aesvars$linetype))
+      if (! aesvars$linetype %in% columnnames)
+        warning("Aesthetics linetype'", aesvars$linetype,"' ignored because column name not found")
+      else
+        " linetype = lp$aesthetics$linetype,"
+    ,
+    if (!is.null(aesvars$shape))
+      if (! aesvars$shape %in% columnnames)
+        warning("Aesthetics shape '", aesvars$shape,"' ignored because column name not found")
+      else {
+        " shape = lp$aesthetics$shape,"
+      },
+    if (!is.null(aesvars$size))
+      if (! aesvars$size %in% columnnames)
+        warning("Aesthetics size '", aesvars$size,"' ignored because column name not found")
+      else {
+        " size = lp$aesthetics$size,"
+      },
+    if (!is.null(aesvars$width))
+      if (! aesvars$width %in% columnnames)
+        warning("Aesthetics width '", aesvars$width,"' ignored because column name not found")
+      else {
+        " width = lp$aesthetics$width,"
+      },
+    if (!is.null(aesvars$stroke))
+      if (! aesvars$stroke %in% columnnames)
+        warning("Aesthetics stroke '", aesvars$stroke,"' ignored because column name not found")
+      else {
+        " stroke = lp$aesthetics$stroke,"
+      },
+    if (!is.null(aesvars$weight))
+      if (! aesvars$weight %in% columnnames)
+        warning("Aesthetics weight '", aesvars$weight,"' ignored because column name not found")
+      else {
+        " weight = lp$aesthetics$weight,"
+      },
+    if (!is.null(aesvars$group))
+      if (! aesvars$group %in% columnnames)
+        warning("Aesthetics group '", aesvars$group,"' ignored because column name not found")
+      else {
+        " group = lp$aesthetics$group,"
+      },
+    sep = ""
+  )
+  aesstr <- gsub('.{1}$', '', aesstr)
+}
+
 add_attributes <- function(lparams){
   atts <- paste(
     if (!is.null(lparams$fill) && iscolor(lparams$fill)){
@@ -86,6 +166,9 @@ add_attributes <- function(lparams){
     },
     if (!is.null(lparams$linetype)){
         " linetype = 'lp$linetype',"
+    },
+    if (!is.null(lparams$width)){
+      " linewidth = 'lp$width',"
     },
     if (!is.null(lparams$shape))
         if (lparams$shape %in% shape_names)
@@ -104,6 +187,18 @@ add_attributes <- function(lparams){
     if (!is.null(lparams$weight)){
        " width = lp$weight,"
     },
+    if (!is.null(lparams$trim)){
+      " trim = lp$trim,"
+    },
+    if (!is.null(lparams$scale)){
+      " scale = lp$scale,"
+    },
+    if (!is.null(lparams$interpolate)){
+      " interpolate = lp$interpolate,"
+    },
+    if (!is.null(lparams$orientation)){
+      " orientation = lp$orientation,"
+    },
     sep = ""
   )
   atts <- gsub('.{1}$', '', atts)
@@ -113,8 +208,18 @@ add_attributes <- function(lparams){
 replace_vars <- function(ggcode_plot, lparams){
   ggcode_plot <- stringr::str_replace_all(
     ggcode_plot,
-    c("lp\\$y_variable" = lparams$y_variable,
-      "lp\\$x_variable" = as.character(lparams$x_variable),
+    c("lp\\$aesthetics\\$y_variable" = lparams$aesthetics$y_variable,
+      "lp\\$aesthetics\\$x_variable" = as.character(lparams$aesthetics$x_variable),
+      "lp\\$aesthetics\\$fill" = as.character(lparams$aesthetics$fill),
+      "lp\\$aesthetics\\$colour" = as.character(lparams$aesthetics$colour),
+      "lp\\$aesthetics\\$alpha" = as.character(lparams$aesthetics$alpha),
+      "lp\\$aesthetics\\$linetype" = as.character(lparams$aesthetics$linetype),
+      "lp\\$aesthetics\\$linewidth" = as.character(lparams$aesthetics$linewidth),
+      "lp\\$aesthetics\\$shape" = as.character(lparams$aesthetics$shape),
+      "lp\\$aesthetics\\$stroke" = as.character(lparams$aesthetics$stroke),
+      "lp\\$aesthetics\\$width" = as.character(lparams$aesthetics$width),
+      "lp\\$aesthetics\\$group" = as.character(lparams$aesthetics$group),
+      "lp\\$aesthetics\\$weight" = as.character(lparams$aesthetics$weight),
       "lp\\$colour" = as.character(lparams$colour),
       "lp\\$fill" = as.character(lparams$fill),
       "lp\\$biplot" = as.character(lparams$biplot),
@@ -127,6 +232,10 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$alpha" = as.character(lparams$alpha),
       "lp\\$stroke" = as.character(lparams$stroke),
       "lp\\$shape" = as.character(lparams$shape),
+      "lp\\$trim" = as.character(lparams$trim),
+      "lp\\$scale" = as.character(lparams$scale),
+      "lp\\$interpolate" = as.character(lparams$interpolate),
+      "lp\\$orientation" = as.character(lparams$orientation),
       "lp\\$labels\\$title" = lparams$labels$title,
       "lp\\$labels\\$subtitle" = as.character(lparams$labels$subtitle),
       "lp\\$labels\\$tag" = as.character(lparams$labels$tag),
@@ -170,15 +279,18 @@ vschemas <- function(){
   list.files(system.file("extdata",package="rugplot"),pattern = ".*_")
 }
 
-#' Create a \code{rug} JSON template file
+#' Create a \code{rugplot} JSON template file
 #'
-#' @param visplot character, a \code{rug} plot. Run the \code{list_rugplots()} function to get a list of
-#' \code{rug} plots.
-#' @param jsonfile character, a JSON filename to store the JSON structure and default parameters.
-#' @param overwrite boolean, a flag to overwrite the 'JSON file'.
-#' @param package R package to which `visplot` belongs.
+#' This file contains the default and required parameters to create a visualization plot
+#' using the \code{rugplot} package. The required parameters must be provided by the user.
 #'
-#' @return character, name of the created JSON file
+#' @param visplot Character, a kind of visualization supported by \code{rug plot}. Run the
+#' \code{list_rugplots()} function to get a list of available visualizations.
+#' @param jsonfile Character, a JSON filename to store the JSON structure and default parameters.
+#' @param overwrite Boolean, a flag to overwrite the 'JSON file'.
+#' @param package R package that contains the JSON schema to validate the JSON file.
+#'
+#' @return Character, name of the created JSON file
 #' @export
 #'
 # #' @examples

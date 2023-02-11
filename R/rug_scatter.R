@@ -1,7 +1,7 @@
-
 #' Scatter plot
 #'
-#' @param lp List of parameters including information to create a scatterplot
+#' @param lp List of parameters including information to create a scatter plot. The list
+#' is created using the function \code{read_rugjson()}
 #' @param verbose Additional information
 #'
 #' @return A ggplot object
@@ -22,29 +22,9 @@ rug_scatter <- function(lp, verbose = TRUE) {
 
   varnames <- colnames(dt)
 
-  if (! lp$y_variable %in% varnames)
-    stop(paste("'",lp$y_variable,"' must be a column in the file",lp$filename))
-
-  if (! lp$x_variable %in% varnames)
-    stop(paste("'",lp$x_variable,"' must be a column in the file",lp$filename))
-
   p <- paste(
-    "ggplot2::ggplot(dt, ggplot2::aes(","x = lp$x_variable, y = lp$y_variable",
-    if (!is.null(lp$fill))
-      if (lp$fill %in% fnames)
-        ",fill = lp$fill",
-    if (!is.null(lp$colour))
-      if (lp$colour %in% varnames)
-        ", colour = lp$colour",
-    if (!is.null(lp$shape))
-      if (lp$shape %in% varnames)
-        ", shape = lp$shape",
-    if (!is.null(lp$size))
-      if (lp$size %in% nnames)
-        ", size = lp$size",
-    if (!is.null(lp$stroke))
-      if (lp$stroke %in% nnames)
-        ", stroke = lp$stroke",
+    "ggplot2::ggplot(dt, ggplot2::aes(",
+    add_aesthetics(lp$aesthetics,varnames),
     ")) +\n  ggplot2::geom_point(",
     add_attributes(lp),
     ") +\n",

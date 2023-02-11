@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Scatterplot",
   "type":"object",
   "properties": {
     "description": {
@@ -24,32 +26,83 @@
       "uniqueItems": true,
       "default": null
     },
-    "y_variable": {
-      "title": "Y variable",
-      "description": "Variable for the vertical axis",
-      "type": "string",
-      "required": true,
-      "default": "<Y required column name>"
-    },
-    "x_variable": {
-      "title": "X variable",
-      "description": "Variable for the horizontal axis",
-      "type": "string",
-      "default": "<X required column name>",
-      "required": true
+    "aesthetics": {
+      "title": "Aesthetics",
+      "description": "The aesthetics (must be a column in the data) that heatmap plots understand",
+      "help_url": "https://cran.r-project.org/web/packages/ggplot2/vignettes/ggplot2-specs.html",
+      "type": "object",
+      "properties": {
+        "y_variable": {
+          "title": "Y variable",
+          "description": "Variable for the vertical axis",
+          "type": "string",
+          "required": true,
+          "default": "<Y required column name>"
+        },
+        "x_variable": {
+          "title": "X variable",
+          "description": "Variable for the horizontal axis",
+          "type": "string",
+          "default": "<X required column name>",
+          "required": true
+        },
+        "fill": {
+          "title": "Fill",
+          "description": "Column representing 'color' to fill the tiles",
+          "type": ["string", "null"],
+          "default": null
+        },
+        "alpha": {
+          "title": "Opacity",
+          "description": "Transparency level",
+	        "type": ["string", "null"],
+	        "default": null
+        },
+        "group": {
+          "title": "Group",
+          "description": "Columns/variable name to create groups",
+          "type": ["string","null"],
+          "default": null
+        },
+        "shape": {
+          "title": "Shape",
+          "description": "Columns/variable name to encode shape",
+          "type": ["string","null"],
+          "default": null
+        },
+        "colour": {
+          "title": "Colour",
+          "description": "Line colour",
+          "type": ["string","null"],
+          "default": null
+        },
+        "size": {
+          "title": "Size",
+          "description": "Size of the data point",
+          "type": ["number","null"],
+          "default": null
+        },
+        "stroke": {
+          "title": "stroke",
+          "description": "Size of the stroke",
+          "type": ["number","null"],
+          "default": null
+        }
+      }
     },
     "position" : {
       "title" : "Position",
       "description": "Dodge or identity position",
-      "type": "string",
-      "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"],
-	    "default": "identity"
-    },
-    "group": {
-      "title": "Group",
-      "description": "Columns/variable name to create groups",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"],
+        },
+        {
+          "type": "null"
+        }
+      ],
+	    "default": null
     },
     "colour": {
       "title": "Colour",
@@ -97,9 +150,12 @@
                      "triangle", "triangle open", "triangle filled", "triangle square",
                      "triangle down open", "triangle down filled", "plus", "cross",
                      "asterisk"]
+        },
+        {
+          "type": "null"
         }
       ],
-      "default": 19
+      "default": null
     },
     "facet_row":{
       "title": "Facet row",
@@ -117,7 +173,7 @@
       "title": "Opacity",
       "description": "Transparency level",
 	    "type": ["number", "null"],
-	    "default":0.5,
+	    "default":null,
 	    "minimum":0,
 	    "maximum":1
     },
@@ -198,14 +254,14 @@
                   "default": null
                 },
                 "width": {
-                  "title": "Width",
+                  "title": "Width (not used yet)",
                   "description": "Width of the key in cm",
                   "type": ["number", "null"],
                   "exclusiveMinimum": 0,
                   "default": null
                 },
                 "height": {
-                  "title": "Height",
+                  "title": "Height (not used yet)",
                   "description": "Height of the key in cm",
                   "type": ["number", "null"],
                   "exclusiveMinimum": 0,

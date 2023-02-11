@@ -1,4 +1,6 @@
 {
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Violin plots",
   "type":"object",
   "properties": {
     "description": {
@@ -24,36 +26,82 @@
       "uniqueItems": true,
       "default": null
     },
-    "y_variable": {
-      "title": "Y variable",
-      "description": "Variable for the vertical axis",
-      "type": "string",
-      "required": true,
-      "default": "<Y required column name>"
-    },
-    "x_variable": {
-      "title": "X variable",
-      "description": "Variable for the horizontal axis",
-      "type": ["string","null"],
-      "default": null
-    },
-    "factorx": {
-      "title":"Convert to factor",
-      "type" : "boolean",
-      "default" : false
+    "aesthetics": {
+      "title": "Aesthetics",
+      "description": "The aesthetics (must be a column in the data) that heatmap plots understand",
+      "help_url": "https://cran.r-project.org/web/packages/ggplot2/vignettes/ggplot2-specs.html",
+      "type": "object",
+      "properties": {
+        "y_variable": {
+          "title": "Y variable",
+          "description": "Variable for the vertical axis",
+          "type": "string",
+          "required": true,
+          "default": "<Y required column name>"
+        },
+        "x_variable": {
+          "title": "X variable",
+          "description": "Required variable for the horizontal axis",
+          "type": "string",
+          "default": "''",
+          "required": true
+        },
+        "factorx": {
+          "title":"Convert to factor",
+          "type" : "boolean",
+          "default" : false
+        },
+        "fill": {
+          "title": "Fill",
+          "description": "Column representing 'colour' to fill the plot",
+          "type": ["string", "null"],
+          "default": null
+        },
+        "alpha": {
+          "title": "Opacity",
+          "description": "Transparency level",
+	        "type": ["string", "null"],
+	        "default": null
+        },
+        "group": {
+          "title": "Group",
+          "description": "Columns/variable name to create groups",
+          "type": ["string","null"],
+          "default": null
+        },
+        "colour": {
+          "title": "Colour",
+          "description": "Line colour",
+          "type": ["string","null"],
+          "default": null
+        },
+        "size": {
+          "title": "Size",
+          "description": "Size of the data point",
+          "type": ["number","null"],
+          "default": null
+        },
+        "linetype": {
+          "title": "Line type",
+          "description": "Line type",
+          "type": ["string","null"],
+          "default": null
+        }
+      }
     },
     "position" : {
       "title" : "Position",
       "description": "Dodge or identity position",
-      "type": "string",
-      "enum": [ "identity", "dodge", "dodge2"],
-	    "default": "dodge"
-    },
-    "group": {
-      "title": "Group",
-      "description": "Columns/variable name to create groups",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": [ "identity", "dodge", "dodge2"]
+        },
+        {
+          "type": "null"
+        }
+      ],
+	    "default": null
     },
     "colour": {
       "title": "Colour",
@@ -67,13 +115,37 @@
       "type": ["string","null"],
       "default": null
     },
+    "alpha": {
+      "title": "Opacity",
+      "description": "Transparency level",
+	    "type": ["number", "null"],
+	    "default":null,
+	    "minimum":0,
+	    "maximum":1
+    },
     "linetype": {
       "title": "Line type",
-      "description": "Line type",
-      "type": "string",
-      "enum" : ["blank", "solid", "dashed", "dotted", "dotdash",
-      "longdash", "twodash"],
-      "default": "solid"
+      "description": "Appearance of the line type",
+      "anyOf": [
+        {
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 6
+        },
+        {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 8
+        },
+        {
+          "type": "string",
+          "enum": ["solid", "dashed", "dotted", "dotdash", "longdash", "twodash"]
+        },
+        {
+          "type":"null"
+        }
+      ],
+      "default": null
     },
     "size":{
       "title": "Size",
@@ -81,10 +153,38 @@
       "type": ["number","null"],
       "default": null
     },
-    "weight":{
-      "title": "Weight",
-      "description": "Weight",
-      "type": ["number","null"],
+    "trim":{
+      "title": "Trim",
+      "description": "If TRUE (default), trim the tails of the violins to the range of the data",
+      "type": ["boolean","null"],
+      "default": null
+    },
+    "scale": {
+      "title": "Scale",
+      "description": "if 'area' (default), all violins have the same area (before trimming the tails). If 'count', areas are scaled proportionally to the number of observations. If 'width', all violins have the same maximum width",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": ["area","count", "width"]
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "orientation": {
+      "title": "Orientation",
+      "description": "The orientation of the layer",
+      "anyOf": [
+        {
+          "type": "string",
+          "enum": ["x","y"]
+        },
+        {
+          "type": "null"
+        }
+      ],
       "default": null
     },
     "facet_row":{
@@ -98,14 +198,6 @@
       "description": "Variable to create facets in vertical direction",
       "type": ["string","null"],
       "default": null
-    },
-    "alpha": {
-      "title": "Opacity",
-      "description": "Transparency level",
-	    "type": ["number", "null"],
-	    "default":0.5,
-	    "minimum":0,
-	    "maximum":1
     },
     "labels": {
       "title" : "Plot labels",
@@ -208,7 +300,7 @@
 	      },
         "width":{
           "title": "Width",
-          "description": "width of boxplot",
+          "description": "width of the boxplot",
           "type": "number",
           "default":0.1
         }
