@@ -317,6 +317,93 @@
         }
       }
     },
+    "colour_scales": {
+      "title": "Gradient colour scales",
+      "description": "Create fill and colour gradients",
+      "type": "object",
+      "properties": {
+        "fill_gradient": {
+          "title": "Scale colour gradient",
+          "description": "Creates a two colour gradient (low-high)",
+          "type": "object",
+          "properties": {
+            "method": {
+              "title": "Gradient type",
+              "description": "Type low-high='gradient', low-mid-high='gradient2', n-colour='gradientn'",
+              "anyOf":[
+                {
+                  "type": "string",
+                  "enum": [ "gradient", "gradient2","gradientn"]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null
+            },
+            "low": {
+              "title": "Low",
+              "description": "Low end of the gradient",
+              "type": ["string", "null"],
+              "default": null
+            },
+            "mid": {
+              "title": "colour for mid point",
+              "description": "colour for mid point",
+              "type": ["string", "null"],
+              "default": null
+            },
+            "high": {
+              "title": "Low",
+              "description": "High end of the gradient",
+              "type": ["string", "null"],
+              "default": null
+            },
+            "na.value": {
+              "title": "NA value",
+              "description": "Colour to use for missing values",
+              "type": ["string", "null"],
+              "default": null
+            },
+            "guide": {
+              "title": "Type of legend",
+              "description": "Use 'colourbar' for continuous colour bar, or 'legend' for discrete colour legend.",
+              "anyOf": [
+                {
+                  "type": "string",
+                  "enum": [ "colourbar", "legend"]
+                },
+                {
+                  "type": "null"
+                }
+              ],
+    	        "default": null
+            },
+            "colours": {
+              "title": "Colours",
+              "description": "Vector of colours to use for n-colour gradientn",
+              "type": "object",
+              "properties": {
+                "n":{
+                  "title" : "n",
+                  "description": "number of colours to generate",
+                  "type": "integer",
+                  "minimum": 4,
+                  "default": 5,
+                  "required": true
+                },
+                "palette": {
+                  "title": "Palette",
+                  "description": "HCL palette, visit https://blog.r-project.org/2019/04/01/hcl-based-color-palettes-in-grdevices/",
+                  "type": ["string","null"],
+                  "default": null
+                }
+              }
+            }
+          }
+        }
+      }
+    },
 	  "rotxlabs": {
 	    "title": "Rotate x labels",
 	    "type": "number",

@@ -5,6 +5,62 @@ iscolor <- function(lcols) {
   })
 }
 
+add_fill_gradient <- function(fill_gradient){
+
+  pal <- fill_gradient$colours$palette
+  scalevals <- ""
+  scalevals <- paste(scalevals," +\n\tggplot2::scale_fill_",
+        fill_gradient$method,"(",
+        if (fill_gradient$method == "gradientn")
+        {
+          paste0("colors = hcl.colors(lp$colour_scales$fill_gradient$colours$n",
+                 if (!pal %in% hcl.pals()){
+                   warning("Palette '",pal,"' not found, using 'viridis' instead")
+                 }
+                 else
+                   ", palette = 'lp$colour_scales$fill_gradient$colours$palette'"
+                 ,
+                 "),"
+          )
+        }
+        else {
+          lmh <- ""
+          if (!is.null(fill_gradient$low))
+              if (iscolor(fill_gradient$low))
+                lmh <- paste0(lmh,"low = 'lp$colour_scales$fill_gradient$low',")
+              else
+                warning("'",fill_gradient$low,"' is not a color, using default instead")
+
+          if (fill_gradient$method == "gradient2")
+            if (!is.null(fill_gradient$mid))
+              if (iscolor(fill_gradient$mid))
+                lmh <- paste0(lmh," mid = 'lp$colour_scales$fill_gradient$mid',")
+              else
+                warning("'",fill_gradient$mid,"' is not a color, using default instead")
+
+          if (!is.null(fill_gradient$high))
+            if (iscolor(fill_gradient$high))
+              lmh <- paste0(lmh," high = 'lp$colour_scales$fill_gradient$high',")
+            else
+              warning("'",fill_gradient$high,"' is not a color, using default instead")
+        },
+
+        if (!is.null(fill_gradient$na.value))
+            if (iscolor(fill_gradient$na.value))
+              " na.value = 'lp$colour_scales$fill_gradient$na.value',"
+            else
+              warning("'",fill_gradient$na.value,"' is not a color, using default instead")
+        ,
+        if (!is.null(fill_gradient$na.guide))
+          " guide = 'lp$colour_scales$fill_gradient$guide',"
+        ,
+        sep=""
+        )
+  if (length(scalevals) > 1)
+    scalevals <- gsub('.{1}$', '', scalevals)
+
+  scalevals <- paste0(scalevals,")")
+}
 
 add_facets <- function(splot,lpars,factornames){
 
@@ -244,7 +300,14 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$labels\\$colour" = as.character(lparams$labels$colour),
       "lp\\$labels\\$fill" = as.character(lparams$labels$fill),
       "lp\\$labels\\$caption" = as.character(lparams$labels$caption),
-      "lp\\$theme\\$legend\\$key\\$size" = as.character(lparams$theme$legend$key$size)
+      "lp\\$theme\\$legend\\$key\\$size" = as.character(lparams$theme$legend$key$size),
+      "lp\\$colour_scales\\$fill_gradient\\$low" = as.character(lparams$colour_scales$fill_gradient$low),
+      "lp\\$colour_scales\\$fill_gradient\\$mid" = as.character(lparams$colour_scales$fill_gradient$mid),
+      "lp\\$colour_scales\\$fill_gradient\\$high" = as.character(lparams$colour_scales$fill_gradient$high),
+      "lp\\$colour_scales\\$fill_gradient\\$na.value" = as.character(lparams$colour_scales$fill_gradient$na.value),
+      "lp\\$colour_scales\\$fill_gradient\\$guide" = as.character(lparams$colour_scales$fill_gradient$guide),
+      "lp\\$colour_scales\\$fill_gradient\\$colours\\$n" = as.character(lparams$colour_scales$fill_gradient$colours$n),
+      "lp\\$colour_scales\\$fill_gradient\\$colours\\$palette" = as.character(lparams$colour_scales$fill_gradient$colours$palette)
     )
   )
 }
