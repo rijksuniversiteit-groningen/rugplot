@@ -96,7 +96,7 @@
       "anyOf": [
         {
           "type": "string",
-          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"],
+          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"]
         },
         {
           "type": "null"
