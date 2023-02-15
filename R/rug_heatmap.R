@@ -34,6 +34,11 @@ rug_heatmap <- function(lp, verbose = TRUE) {
     if (!is.null(lp$colour_scales$fill_gradient$method))
       add_fill_gradient(lp$colour_scales$fill_gradient)
     ,
+    if (is.null(lp$axes_scales$y_discrete$labels))
+      "+\n\tggplot2::scale_y_discrete(labels = NULL)"
+    else if (lp$axes_scales$y_discrete$labels[1] != 'waiver()')
+      add_scales_y_discrete(lp$axes_scales$y_discrete$labels)
+    ,
     if (!is.null(lp$theme$legend$key$size))
       " +\n\tggplot2::guides(color = ggplot2::guide_legend(override.aes = list(size = lp$theme$legend$key$size)))"
     ,

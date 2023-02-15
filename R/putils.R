@@ -62,6 +62,16 @@ add_fill_gradient <- function(fill_gradient){
   scalevals <- paste0(scalevals,")")
 }
 
+add_scales_y_discrete <- function(ylabels){
+
+  paste(" +\n\tggplot2::scale_y_discrete(labels = c(",
+      paste(ylabels, collapse = ', ')
+    ,
+    "))",
+    sep = ""
+  )
+}
+
 add_facets <- function(splot,lpars,factornames){
 
   if (!is.null(lpars$facet_row))

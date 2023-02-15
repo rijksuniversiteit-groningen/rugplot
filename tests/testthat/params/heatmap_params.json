@@ -62,6 +62,19 @@
             }
         }
     },
+    "axes_scales": {
+        "x_discrete": {
+            "labels": ["waiver()"]
+        },
+        "y_discrete": {
+            "labels": ["'normValmedTIms51' = 'MTIms'", "'normValmedTI51' = 'MedTI'",
+            "'normValmedSpeed' = 'MedSpeed'", "'normValmedLsdD51' = 'LsdD'",
+            "'normValmedLsd51' = 'Lsd'", "'normValmedLrmslD51' = 'LrmslD'",
+            "'normValmedLrms51' = 'Lrms'", "'normValmedLcovD51' = 'medLcovD'",
+            "'normValmedLcov51' = 'medLcov'", "'normValmedK' = 'medK'",
+            "'normValmeanK' = 'meanK'"]
+        }
+    },
     "rotxlabs": 0,
     "save": {
         "save": false,
