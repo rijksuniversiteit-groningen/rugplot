@@ -2,7 +2,7 @@
     "description": "Parameters to create a heatmap plot using the 'rugplot' R package",
     "filename": "./data/exergamelf.csv",
     "variables": null,
-    "method": "raster",
+    "method": "tile",
     "aesthetics": {
         "y_variable": "myVars",
         "x_variable": "idrow",
@@ -15,9 +15,9 @@
         "linewidth": null,
         "width": null
     },
-    "position": "identity",
+    "position": null,
     "size": null,
-    "interpolate": false,
+    "interpolate": true,
     "alpha": null,
     "colour": null,
     "linetype": null,
@@ -47,6 +47,20 @@
         "values": null,
         "breaks": null,
         "labels": null
+    },
+    "colour_scales": {
+        "fill_gradient": {
+            "method": "gradient2",
+            "low": "#a50026",
+            "mid": "#ffffbf",
+            "high": "#313695",
+            "na.value": null,
+            "guide": null,
+            "colours": {
+                "n": 20,
+                "palette": "RdYlGn"
+            }
+        }
     },
     "rotxlabs": 0,
     "save": {
