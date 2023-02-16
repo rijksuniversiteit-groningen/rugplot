@@ -62,6 +62,22 @@ add_fill_gradient <- function(fill_gradient){
   scalevals <- paste0(scalevals,")")
 }
 
+# add quotes to discrete labels/breaks
+addquotes <- function(ss) {
+  paste(sQuote(stringr::str_trim(stringr::str_split(ss,"=")[[1]],
+                                 side="both")), collapse = " = ")
+}
+
+add_scales_discrete <- function(labs,eje){
+
+  paste(" +\n\tggplot2::scale_",eje,"_discrete(labels = c(",
+        paste(sapply(labs,addquotes),collapse = ', ')
+    ,
+    "))",
+    sep = ""
+  )
+}
+
 add_facets <- function(splot,lpars,factornames){
 
   if (!is.null(lpars$facet_row))

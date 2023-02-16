@@ -287,6 +287,46 @@
         }
       }
     },
+    "axes_scales":{
+      "title": "Position scales",
+      "description": "Position scales for discrete data",
+      "type": "object",
+      "properties": {
+        "x_discrete":{
+          "title": "Scale x discrete",
+          "description": "It is used to set values for discrete x scale aesthetics",
+          "type": "object",
+          "properties": {
+            "labels": {
+              "title": "Labels",
+              "description": "A character vector giving labels. This way [\"lab = newlab\", \"lab2 = newlab2\", ...], without backslashes",
+              "type": ["array","null"],
+              "items" : {
+                "type": "string"
+              },
+              "default":"waiver()"
+            }
+          }
+        },
+        "y_discrete":{
+          "title": "Scale y discrete",
+          "description": "It is used to set values for discrete x or y scale aesthetics",
+          "type": "object",
+          "properties": {
+            "labels": {
+              "title": "Labels",
+              "description": "A character vector giving labels. This way [\"lab = newlab\", ...], without backslashes",
+              "type": ["array","null"],
+              "items" : {
+                "type": "string"
+              },
+              "default": ["waiver()"]
+            }
+          }
+
+        }
+      }
+    },
     "boxplot":{
       "title": "Boxplot",
       "description": "Add a boxplot",
