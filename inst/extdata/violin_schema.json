@@ -300,11 +300,11 @@
             "labels": {
               "title": "Labels",
               "description": "A character vector giving labels. This way [\"lab = newlab\", \"lab2 = newlab2\", ...], without backslashes",
-              "type": ["array","null"],
+              "type": ["array", "string", "null"],
               "items" : {
                 "type": "string"
               },
-              "default": ["waiver()"]
+              "default": "waiver()"
             }
           }
         },
@@ -316,11 +316,11 @@
             "labels": {
               "title": "Labels",
               "description": "A character vector giving labels. This way [\"lab = newlab\", ...], without backslashes",
-              "type": ["array","null"],
+              "type": ["array", "string", "null"],
               "items" : {
                 "type": "string"
               },
-              "default": ["waiver()"]
+              "default": "waiver()"
             }
           }
 
