@@ -416,7 +416,7 @@
           "properties": {
             "labels": {
               "title": "Labels",
-              "description": "A character vector giving labels (must be same length as breaks). This way [\"'lab' = 'newlab'\", ...], without the backslashes",
+              "description": "A character vector giving labels (must be same length as breaks). This way [\"lab = newlab\", \"lab2 = newlab2\", ...], without backslashes",
               "type": ["array","null"],
               "items" : {
                 "type": "string"
@@ -432,7 +432,7 @@
           "properties": {
             "labels": {
               "title": "Labels",
-              "description": "A character vector giving labels (must be same length as breaks). This way [\"'lab' = 'newlab'\", ...], without the backslashes",
+              "description": "A character vector giving labels (must be same length as breaks). This way [\"lab = newlab\", ...], without backslashes",
               "type": ["array","null"],
               "items" : {
                 "type": "string"

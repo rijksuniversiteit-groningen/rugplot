@@ -68,10 +68,10 @@ addquotes <- function(ss) {
                                  side="both")), collapse = " = ")
 }
 
-add_scales_y_discrete <- function(ylabels){
+add_scales_discrete <- function(labs,eje){
 
-  paste(" +\n\tggplot2::scale_y_discrete(labels = c(",
-        paste(sapply(ylabels,addquotes),collapse = ', ')
+  paste(" +\n\tggplot2::scale_",eje,"_discrete(labels = c(",
+        paste(sapply(labs,addquotes),collapse = ', ')
     ,
     "))",
     sep = ""

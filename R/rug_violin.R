@@ -68,8 +68,19 @@ rug_violin <- function(lp, verbose = TRUE) {
     add_aesthetics(lp$aesthetics,varnames),
     ")) +\n  ggplot2::geom_violin(",
     add_attributes(lp),
-    ") +\n",
-    "  ggplot2::theme_bw() +\n",
+    ")",
+    # TODO: the following 8 lines of code
+    if (is.null(lp$axes_scales$y_discrete$labels))
+      "+\n\tggplot2::scale_y_discrete(labels = NULL)"
+    else if (lp$axes_scales$y_discrete$labels[1] != 'waiver()')
+      add_scales_discrete(lp$axes_scales$y_discrete$labels,"y")
+    ,
+    if (is.null(lp$axes_scales$x_discrete$labels))
+      "+\n\tggplot2::scale_x_discrete(labels = NULL)"
+    else if (lp$axes_scales$x_discrete$labels[1] != 'waiver()')
+      add_scales_discrete(lp$axes_scales$x_discrete$labels,"x")
+    ,
+    "+\n\tggplot2::theme_bw() +\n",
     "  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
     sep =""
    )

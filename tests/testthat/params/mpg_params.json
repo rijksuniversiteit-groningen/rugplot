@@ -4,7 +4,7 @@
     "variables": null,
     "aesthetics": {
         "y_variable": "hwy",
-        "x_variable": "''",
+        "x_variable": "class",
         "factorx": false,
         "fill": null,
         "alpha": null,
@@ -37,6 +37,14 @@
         "values": null,
         "breaks": null,
         "labels": null
+    },
+    "axes_scales": {
+        "x_discrete": {
+            "labels": ["2seater = 2SEATER"]
+        },
+        "y_discrete": {
+            "labels": ["waiver()"]
+        }
     },
     "boxplot": {
         "addboxplot": false,
