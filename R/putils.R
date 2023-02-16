@@ -62,10 +62,16 @@ add_fill_gradient <- function(fill_gradient){
   scalevals <- paste0(scalevals,")")
 }
 
+# add quotes to discrete labels/breaks
+addquotes <- function(ss) {
+  paste(sQuote(stringr::str_trim(stringr::str_split(ss,"=")[[1]],
+                                 side="both")), collapse = " = ")
+}
+
 add_scales_y_discrete <- function(ylabels){
 
   paste(" +\n\tggplot2::scale_y_discrete(labels = c(",
-      paste(ylabels, collapse = ', ')
+        paste(sapply(ylabels,addquotes),collapse = ', ')
     ,
     "))",
     sep = ""

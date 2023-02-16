@@ -54,7 +54,7 @@
             "low": "#a50026",
             "mid": "#ffffbf",
             "high": "#313695",
-            "na.value": null,
+            "na.value": "black",
             "guide": null,
             "colours": {
                 "n": 20,
@@ -67,23 +67,23 @@
             "labels": ["waiver()"]
         },
         "y_discrete": {
-            "labels": ["'normValmedTIms51' = 'MTIms'", "'normValmedTI51' = 'MedTI'",
-            "'normValmedSpeed' = 'MedSpeed'", "'normValmedLsdD51' = 'LsdD'",
-            "'normValmedLsd51' = 'Lsd'", "'normValmedLrmslD51' = 'LrmslD'",
-            "'normValmedLrms51' = 'Lrms'", "'normValmedLcovD51' = 'medLcovD'",
-            "'normValmedLcov51' = 'medLcov'", "'normValmedK' = 'medK'",
-            "'normValmeanK' = 'meanK'"]
+            "labels": ["normValmedTIms51 = MTIms", "normValmedTI51 = MedTI",
+            "normValmedSpeed = MedSpeed", "normValmedLsdD51 = LsdD",
+            "normValmedLsd51 = Lsd", "normValmedLrmslD51 = LrmslD",
+            "normValmedLrms51 = Lrms", "normValmedLcovD51 = medLcovD",
+            "normValmedLcov51 = medLcov", "normValmedK = medK",
+            "normValmeanK = meanK"]
         }
     },
     "rotxlabs": 0,
     "save": {
-        "save": false,
-        "outputfilename": null,
-        "overwrite": false,
-        "width": 15,
+        "save": true,
+        "outputfilename": "exergaming_heatmap",
+        "overwrite": true,
+        "width": 20,
         "height": 10,
-        "dpi": 72,
-        "device": "pdf",
+        "dpi": 300,
+        "device": "png",
         "sanitize": true
     }
 }
