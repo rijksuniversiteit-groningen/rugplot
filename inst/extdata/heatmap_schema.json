@@ -421,7 +421,7 @@
               "items" : {
                 "type": "string"
               },
-              "default":"waiver()"
+              "default":["waiver()"]
             }
           }
         },
