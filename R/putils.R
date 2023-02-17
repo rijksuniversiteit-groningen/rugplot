@@ -64,8 +64,9 @@ add_fill_gradient <- function(fill_gradient){
 
 # add quotes to discrete labels/breaks
 addquotes <- function(ss) {
-  paste(sQuote(stringr::str_trim(stringr::str_split(ss,"=")[[1]],
-                                 side="both")), collapse = " = ")
+  # paste(sQuote(stringr::str_trim(stringr::str_split(ss,"=")[[1]],
+  #                                side="both")), collapse = " = ")
+  paste(paste0("'",stringr::str_trim(stringr::str_split(ss,"=")[[1]]),"'"),collapse = " = ")
 }
 
 add_scales_discrete <- function(labs,eje){
