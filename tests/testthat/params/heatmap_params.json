@@ -4,8 +4,8 @@
     "variables": null,
     "method": "tile",
     "aesthetics": {
-        "y_variable": "idrow",
-        "x_variable": "myVars",
+        "y_variable": "myVars",
+        "x_variable": "idrow",
         "fill": "normVal",
         "alpha": null,
         "group": null,
@@ -28,7 +28,7 @@
         "title": null,
         "subtitle": null,
         "tag": null,
-        "x": null,
+        "x": "$\\\\\\\\kappa$",
         "y": null,
         "colour": null,
         "fill": null,
@@ -64,15 +64,15 @@
     },
     "axes_scales": {
         "x_discrete": {
+            "labels": "waiver()"
+        },
+        "y_discrete": {
             "labels": ["medTIms51 = MTIms", "medTI51 = MedTI",
             "medSpeed = MedSpeed", "medLsdD51 = LsdD",
             "medLsd51 = Lsd", "medLrmslD51 = LrmslD",
             "medLrms51 = Lrms", "medLcovD51 = medLcovD",
-            "medLcov51 = medLcov", "medK = medK",
-            "meanK = meanK"]
-        },
-        "y_discrete": {
-            "labels": ["waiver()"]
+            "medLcov51 = medLcov", "medK = $\\\\kappa$",
+            "meanK = $\\\\overline{\\\\kappa}$"]
         }
     },
     "rotxlabs": 45,
@@ -80,11 +80,11 @@
         "save": true,
         "outputfilename": "exergaming_heatmap",
         "overwrite": true,
-        "width": 10,
-        "height": 30,
+        "width": 20,
+        "height": 10,
         "dpi": 300,
-        "device": "png",
-        "sanitize": true
+        "device": "tikz",
+        "sanitize": false
     }
 }
 

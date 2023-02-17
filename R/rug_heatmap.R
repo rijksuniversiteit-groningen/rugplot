@@ -94,8 +94,8 @@ rug_heatmap <- function(lp, verbose = TRUE) {
   }
 
   if (!is.null(lp$save))
-    save_plot(lp,p,"-violin-",verbose=verbose)
+    save_plot(lp,p,"-heatmap-",verbose=verbose)
 
-  message("Violin plot visualization done.")
+  message("Heatmap done.")
   p
 }
