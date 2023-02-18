@@ -119,7 +119,7 @@
     "size":{
       "title": "Size",
       "description": "Size",
-      "type": ["number","string","null"],
+      "type": ["number","null"],
       "default": null
     },
     "stroke": {

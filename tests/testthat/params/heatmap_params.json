@@ -17,7 +17,7 @@
     },
     "position": null,
     "size": null,
-    "interpolate": true,
+    "interpolate": null,
     "alpha": null,
     "colour": null,
     "linetype": null,
@@ -77,7 +77,7 @@
     },
     "rotxlabs": 45,
     "save": {
-        "save": true,
+        "save": false,
         "outputfilename": "exergaming_heatmap",
         "overwrite": true,
         "width": 20,
