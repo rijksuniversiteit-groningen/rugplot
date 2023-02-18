@@ -289,6 +289,7 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$aesthetics\\$linetype" = as.character(lparams$aesthetics$linetype),
       "lp\\$aesthetics\\$linewidth" = as.character(lparams$aesthetics$linewidth),
       "lp\\$aesthetics\\$shape" = as.character(lparams$aesthetics$shape),
+      "lp\\$aesthetics\\$size" = as.character(lparams$aesthetics$size),
       "lp\\$aesthetics\\$stroke" = as.character(lparams$aesthetics$stroke),
       "lp\\$aesthetics\\$width" = as.character(lparams$aesthetics$width),
       "lp\\$aesthetics\\$group" = as.character(lparams$aesthetics$group),
