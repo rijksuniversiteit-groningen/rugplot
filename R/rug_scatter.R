@@ -80,8 +80,8 @@ rug_scatter <- function(lp, verbose = TRUE) {
   }
 
   if (!is.null(lp$save))
-    save_plot(lp,p,"-violin-",verbose=verbose)
+    save_plot(lp,p,"-scatter-",verbose=verbose)
 
-  message("Violin plot visualization done.")
+  message("Scatter plot visualization done.")
   p
 }
