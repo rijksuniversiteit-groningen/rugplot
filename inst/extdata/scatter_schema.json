@@ -79,7 +79,7 @@
         "size": {
           "title": "Size",
           "description": "Size of the data point",
-          "type": ["number","null"],
+          "type": ["string","null"],
           "default": null
         },
         "stroke": {
