@@ -71,7 +71,8 @@ rug_pca <- function(lp, verbose = TRUE){
   if (verbose)
     message(pcacols)
   # PCA
-  tpca <- stats::prcomp(Filter(is.numeric,dplyr::select(cols,all_of(pcacols))),scale=lp$scale)
+  tpca <- stats::prcomp(na.omit(Filter(is.numeric,dplyr::select(cols,all_of(pcacols)))),
+                        scale=lp$scale)
 
   if (verbose)
     message(summary(tpca))
