@@ -482,6 +482,7 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
       htmlwidgets::saveWidget(ip, outputfile)
     }
     else if (tk) {
+      message("Creating the LaTeX file")
       td <- tempdir()
       oldwd <- getwd()
       tempfile <- file.path(td,'tmpplot.tex')
@@ -498,7 +499,7 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
         ofile <- tinytex::pdflatex(tempfile)
         if (file.exists(ofile)){
           message(ofile, " created using pdflatex.")
-          file.copy(from = ofile, to = file.path(oldwd,outputfile))
+          file.copy(from = ofile, to = file.path(oldwd,outputfile), overwrite = lparams$save$overwrite)
         }
         setwd(oldwd)
       },
