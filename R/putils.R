@@ -492,13 +492,22 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
 
       setwd(td)
       tryCatch({
+        # options(tikzLatex = "/home/rstudio/bin/lualatex")
+        # options(tikzDefaultEngine="luatex")
+
+        options(tikzDocumentDeclaration = "\\documentclass[tikz,crop=true]{standalone}")
+
         tikzDevice::tikz(tempfile,standAlone=TRUE,sanitize = lparams$save$sanitize,width = cmwidth,
-                       height = cmheight, verbose = verbose)
+                       height = cmheight, engine = "luatex", verbose = verbose)
           print(myplot)
         dev.off()
-        ofile <- tinytex::pdflatex(tempfile)
+
+        # if (tinytex::is_tinytex())
+          ofile <- tinytex::lualatex(tempfile)
+        # else
+        #   ofile <- tools::pdflatex(tempfile)
         if (file.exists(ofile)){
-          message(ofile, " created using pdflatex.")
+          message(ofile, " created using lualatex.")
           file.copy(from = ofile, to = file.path(oldwd,outputfile), overwrite = lparams$save$overwrite)
         }
         setwd(oldwd)

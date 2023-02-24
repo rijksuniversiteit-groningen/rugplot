@@ -30,6 +30,7 @@ RUN apt-get update && \
     && mv ~/.TinyTeX /opt/TinyTeX \
     && /opt/TinyTeX/bin/*/tlmgr path add \
     && tlmgr install metafont mfware inconsolata tex ae parskip listings pgf preview grfext \
+    && tlmgr install standalone luatex85 pgfplots\
     && tlmgr path add \
     && chown -R root:staff /opt/TinyTeX \
     && chmod -R g+w /opt/TinyTeX \
