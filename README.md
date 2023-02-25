@@ -160,24 +160,36 @@ plot produced with `rugplot` can be found
 [here](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/pcaprojections.html). 
 
 The `tikz` device option can generate high quality LaTeX graphics
-using the `tikzDevice` R package. Naturally, a LaTeX installation is
-needed to generate these high quality visualization plots. If a LaTex
-intallation is already in the system, big chances are that
-`tikzDevice` will find the LaTeX compiler. If that is not the case you
-will have to set some options. Probably you will only need the
-following option.
+using the `tikzDevice` R package. In particular, `rugplot` uses
+[tinyTeX](https://yihui.org/tinytex/#for-r-users) and `lualatex` as
+compiler. The `tikzLualatex` should be configured providing the LaTeX
+path.
 
 ```r
-options(tikzLatex = '/path/to/pdflatex')
+# Linux
+options(tikzLualatex = '/path/to/lualatex')
+
+# windows
+options(tikzLualatex = "C:\\path_to\\TinyTeX\\bin\\win32\\lualatex.exe")
+```
+
+The following command will display the LaTeX path.
+```
+tinytex::tinytex_root()
+```
+
+You may need to install additional packages
+
+```
+tinytex::tlmgr_search('luatex85.sty')
+tinytex::tlmgr_install('luatex85')
 ```
 
 See the [tikzDevice
 documentation](https://cran.r-project.org/web/packages/tikzDevice/vignettes/tikzDevice.pdf)
-for further details. If LaTeX is not installed in the system,
-[tinyTeX](https://yihui.org/tinytex/#for-r-users) could be a good
-option. Once `tikzDevice` and `LaTeX` are installed, setting the
-`device` option in the JSON parameters file as follows will be enough
-to produce a tikz LaTeX visualization.
+for further details. Once `tikzDevice` and `LaTeX` are installed,
+setting the `device` option in the JSON parameters file as follows
+will be enough to produce a tikz LaTeX visualization.
 
 ```r
   "device": "tikz",
@@ -206,6 +218,8 @@ As a result, we get the following plot.
 
 ![alt tikz](tests/testthat/results/mpg-tikzformula.png)
 
+Tick labels are escaped in a different way, using four backslashes, see [this heatmap](https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/heatmaps.html) as an example. 
+
 NOTE: Only for the `tikz` option, setting `sanitize` to `true` it may
 break a LaTeX formula. However, `sanitize` in the `rugplot` R package
 is by default `true` because it is expected that some special LaTeX
@@ -218,7 +232,7 @@ for further details) should be removed or escaped.
 A more direct way to use the `rugplot` R package without the need for
 the installation of an R environment is by means of containers.
 
-## `rugplot` Docker container (comming soon)
+## `rugplot` Docker container
 
 The visualizations implemented in the `rugplot` R package can be
 created using a command line interface.
