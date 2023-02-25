@@ -1,6 +1,8 @@
 # rugplot: ReUsable Graphics
 
 <!-- badges: start -->
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/rijksuniversiteit-groningen/rugplot/HEAD?urlpath=rstudio)
+
 <!-- badges: end -->
 
 The aim of the `rugplot`, R package based on

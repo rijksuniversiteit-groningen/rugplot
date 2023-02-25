@@ -1,28 +1,19 @@
-FROM rocker/tidyverse
+FROM rocker/binder:4.2.0
 
-ENV CRAN_URL "http://cran.rstudio.com"
+## Declares build arguments
+ARG NB_USER
+ARG NB_UID
 
-RUN apt-get update && \
-    apt-get install -y  build-essential \
-    libcurl4-gnutls-dev \
-    libfontconfig1-dev \
-    freetype2-demos \
-    libgit2-dev \
-    dirmngr \
-    libnode-dev \
-    libzmq3-dev \
-    libgmp3-dev \
-    libmpfr-dev \
-    libpng-dev \
-    libjpeg-dev \
-    libtiff-dev \
-    libharfbuzz-dev \
-    libfribidi-dev \
-    libxml2-dev \
-    libxtst6 \
-    libxt6 \
-    pandoc \
-    libssl-dev \
+COPY --chown=${NB_USER} . ${HOME}
+
+ENV DEBIAN_FRONTEND=noninteractive
+USER root
+
+RUN echo "Checking for 'apt.txt'..." \
+    ; if test -f "apt.txt" ; then \
+    apt-get update --fix-missing > /dev/null\
+    && xargs -a apt.txt apt-get install --yes \
+    && apt-get clean > /dev/null \
     && rm -rf /var/lib/apt/lists/* \
     && wget -qO- \
       "https://yihui.org/tinytex/install-unx.sh" | \
@@ -34,19 +25,11 @@ RUN apt-get update && \
     && tlmgr path add \
     && chown -R root:staff /opt/TinyTeX \
     && chmod -R g+w /opt/TinyTeX \
-    && chmod -R g+wx /opt/TinyTeX/bin
+    && chmod -R g+wx /opt/TinyTeX/bin \
+    ; fi
 
-# install R and customed R packages
-RUN R -e "library(devtools); \
- install_version( package = 'ggplot2', repos='${CRAN_URL}'); \
- install_version( package = 'dplyr',  repos='${CRAN_URL}'); \
- install_version( package = 'jsonlite', repos='${CRAN_URL}'); \
- install_version( package = 'ggfortify', repos='${CRAN_URL}'); \
- install_version( package = 'htmlwidgets', repos='${CRAN_URL}'); \
- install_version( package = 'tikzDevice', repos='${CRAN_URL}'); \
- install_version( package = 'tinytex', repos='${CRAN_URL}');"
+RUN sed -i 's/256MiB/2GiB/' /etc/ImageMagick-6/policy.xml
+USER ${NB_USER}
 
-RUN R -e 'devtools::install_github("ropensci/plotly")'
-RUN R -e 'devtools::install_github("ropensci/jsonvalidate")'
-
-# docker build -t rugplot:rstudio .
+## Run an install.R script, if it exists.
+RUN if [ -f install.R ]; then R --quiet -f install.R; fi
