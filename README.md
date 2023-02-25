@@ -33,7 +33,7 @@ devtools::install_github("rijksuniversiteit-groningen/rugplot")
 
   # Step 1, create a JSON file and edit the next two parameters
   # "filename": "iris.csv",
-  # "colour": "species",
+  # "colour": "class",
   jsonfile <- create_rugjson(visplot = 'pca')
 	
   # Step 2, read the PCA parameters
