@@ -169,10 +169,13 @@ path.
 
 ```r
 # Linux
-options(tikzLualatex = '/path/to/lualatex')
+options(tikzLualatex = "/path/to/lualatex")
 
-# windows
+# Windows
 options(tikzLualatex = "C:\\path_to\\TinyTeX\\bin\\win32\\lualatex.exe")
+
+# both, Windows or Linux
+options(tikzDefaultEngine = "luatex")
 ```
 
 The following command will display the LaTeX path.
