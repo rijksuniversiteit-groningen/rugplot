@@ -1,7 +1,7 @@
 # rugplot: ReUsable Graphics
 
 <!-- badges: start -->
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/rijksuniversiteit-groningen/rugplot/HEAD?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/rijksuniversiteit-groningen/rugplot/binder?urlpath=lab)
 
 <!-- badges: end -->
 
