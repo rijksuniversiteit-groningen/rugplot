@@ -399,6 +399,23 @@ create_rugjson <- function(visplot, jsonfile= NULL, overwrite = FALSE, package =
   return(jsonfile)
 }
 
+#' JSON schema for a visualization plot
+#'
+#' @param visplot
+#'
+#' @return string jsonschema
+#' @export
+#'
+# #' @examples
+rug_jsonschema <- function(visplot){
+  jschemafilename <- jschema(visplot)
+
+  jsfile <- system.file("extdata", jschemafilename, package = 'rugplot')
+  strschema <- readLines(jsfile)
+  # return(jsonlite::prettify(strschema))
+  return(strschema)
+}
+
 #' Valid `rug` plot
 #'
 #' @param visplot  A `rug` plot.

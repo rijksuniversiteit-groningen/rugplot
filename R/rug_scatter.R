@@ -55,18 +55,19 @@ rug_scatter <- function(lp, verbose = TRUE) {
   p <- eval(parse(text = p))
 
   # manual color
-  if (!is.null(lp$color_manual)) {
-    vals <- lp$color_manual$values
+  vals <- lp$color_manual$values
+  # TODO: verify that the length of breaks, labels and values are correct
+  if (!is.null(vals) & length(vals) > 0) {
+
     if (verbose)
       message(paste("colors:",vals))
-    if (!is.null(vals)) {
-      p <- p + ggplot2::scale_color_manual(values = vals,
+
+    p <- p + ggplot2::scale_color_manual(values = vals,
                                            breaks = NULL)
 
-      p <- p + ggplot2::scale_fill_manual(values = vals,
+    p <- p + ggplot2::scale_fill_manual(values = vals,
                                           breaks = lp$color_manual$breaks,
                                           labels = lp$color_manual$labels)
-    }
   }
 
   if (!is.null(lp$boxplot) && lp$boxplot$addboxplot == TRUE){

@@ -1,5 +1,6 @@
 {
   "title": "Scatterplot",
+  "description": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/scatterplots.html",
   "type":"object",
   "properties": {
     "description": {
@@ -8,139 +9,237 @@
       "type": "string",
       "default": "Parameters to create a scatter plot using the 'rugplot' R package"
     },
+    "help": {
+      "title": "Help",
+      "description": "Help showing the description of the parameters",
+      "type": "string",
+      "default": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/scatterplots.html"
+    },
     "filename": {
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",
-      "type": "string",
-      "default": "<filename path>",
-      "required": true
+      "type": "string"
     },
     "variables": {
       "title": "Column/Variable names",
       "description": "List of column names to be loaded from the datafile",
-      "type": ["array", "null"],
+      "type": "array",
       "items": {
-        "type": "string"
+        "type": "string",
+        "$comment": "enumColumns"
       },
-      "uniqueItems": true,
-      "default": null
+      "default": [],
+      "uniqueItems": true
     },
     "aesthetics": {
       "title": "Aesthetics",
-      "description": "The aesthetics (must be a column in the data) that heatmap plots understand",
-      "help_url": "https://cran.r-project.org/web/packages/ggplot2/vignettes/ggplot2-specs.html",
+      "description": "The aesthetics (column names in the data) that geom_point understand",
       "type": "object",
       "properties": {
         "y_variable": {
-          "title": "Y variable",
+          "title": "Y variable (required)",
           "description": "Variable for the vertical axis",
           "type": "string",
-          "required": true,
-          "default": "<Y required column name>"
+          "$comment": "enumCols"
         },
         "x_variable": {
-          "title": "X variable",
+          "title": "X variable (required)",
           "description": "Variable for the horizontal axis",
           "type": "string",
-          "default": "<X required column name>",
-          "required": true
+          "$comment": "enumCols"
         },
         "fill": {
           "title": "Fill",
-          "description": "Column representing 'color' to fill the tiles",
-          "type": ["string", "null"],
-          "default": null
+          "description": "Column representing 'color'",
+          "anyOf": [
+              {
+                  "title": "Default fill",
+                  "type": "null"
+              },
+              {
+                  "title": "Variable to fill the marks",
+                  "type": "string",
+                  "$comment": "enumCols"
+              }
+          ]
         },
         "alpha": {
           "title": "Opacity",
           "description": "Transparency level",
-	        "type": ["string", "null"],
-	        "default": null
+          "anyOf": [
+            {
+              "title": "Default transparency",
+              "type": "null"
+            },
+            {
+              "title": "Transparency level",
+              "type": "string",
+              "$comment": "enumCols"
+            }
+        ]
         },
         "group": {
           "title": "Group",
           "description": "Columns/variable name to create groups",
-          "type": ["string","null"],
-          "default": null
+          "anyOf": [
+                { "title": "Default group",
+                "type": "null"
+                },
+                {
+                  "title": "Group by categorical column",
+                  "type": "string",
+                  "$comment": "enumCols"
+                }
+            ]
         },
         "shape": {
           "title": "Shape",
           "description": "Columns/variable name to encode shape",
-          "type": ["string","null"],
-          "default": null
+          "anyOf": [
+            { "title": "Default column for shapes",
+                "type": "null"
+            },
+            {
+              "title": "Shape by categorical column",
+              "type": "string",
+            "$comment": "enumCols"
+            }
+            ]
         },
         "colour": {
           "title": "Colour",
-          "description": "Line colour",
-          "type": ["string","null"],
-          "default": null
+          "description": "Point colour",
+          "anyOf": [
+            { "title": "Default color column",
+                "type": "null"
+            },
+            {
+              "title": "Colum to color the points",
+              "type": "string",
+                  "$comment": "enumCols"
+            }
+        ]
         },
         "size": {
           "title": "Size",
           "description": "Size of the data point",
-          "type": ["string","null"],
-          "default": null
+          "anyOf": [
+            { "title": "Default size column",
+                "type": "null"
+            },
+            {
+              "title": "Column variable for size",
+              "type": "string",
+                  "$comment": "enumCols"
+            }
+            ]
         },
         "stroke": {
           "title": "stroke",
           "description": "Size of the stroke",
-          "type": ["number","null"],
-          "default": null
+          "anyOf": [
+            { "title": "Default stroke column",
+                "type": "null"
+            },
+            {
+              "title": "Stroke column",
+              "type": "string",
+                  "$comment": "enumCols"
+            }
+            ]
         }
-      }
+      },
+      "required": ["x_variable", "y_variable"]
     },
     "position" : {
       "title" : "Position",
       "description": "Dodge or identity position",
       "anyOf": [
         {
-          "type": "string",
-          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"]
+            "title": "Default position",
+          "type": "null"
         },
         {
-          "type": "null"
+          "title": "Position",
+          "type": "string",
+          "enum": [ "identity", "dodge", "dodge2","jitter","jitterdodge","nudge","stack"]
         }
-      ],
-	    "default": null
+      ]
     },
     "colour": {
       "title": "Colour",
       "description": "Line color",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+            { "title": "Default colour",
+                "type": "null"
+            },
+        {
+              "title": "colour",
+              "type": "string"
+            }
+        ]
     },
     "fill": {
       "title": "Fill",
       "description": "Color to fill",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+            { "title": "Default color fill",
+                "type": "null"
+            },
+        {
+              "title": "Colour to fill",
+              "type": "string"
+            }
+
+        ]
     },
     "size":{
       "title": "Size",
       "description": "Size",
-      "type": ["number","null"],
-      "default": null
+      "anyOf": [
+            { "title": "Default size value",
+                "type": "null"
+            },
+            {
+              "title": "Size",
+              "type": "number"
+            }
+        ]
     },
     "stroke": {
       "title": "Stroke in mm",
       "description": "For shapes 21-24, The size of the filled part is controlled by size, the size of the stroke is controlled by stroke. The total size of the point is the sum of the two.",
-      "type": ["number","string","null"],
-      "minimum": 0,
-      "default": null
+      "anyOf": [
+      { "title": "Default stroke value",
+                "type": "null"
+            },
+          {
+              "title": "Stroke in mm",
+              "type": "number"
+            }
+        ],
+      "minimum": 0
     },
     "shape": {
       "title": "Shape",
       "description": "Shape of the data points",
       "anyOf": [
         {
+            "title": "Default shape",
+          "type": "null"
+        },
+        {
+        "title": "Shape of the data points 1-25",
           "type": "integer",
           "minimum": 1,
           "maximum": 25
         },
         {
+            "title": "hex",
           "type": "string"
         },
         {
+            "title": "Predefined shape names",
           "type": "string",
           "enum": ["circle", "circle open", "circle filled", "circle cross",
                      "circle plus", "circle small", "bullet", "square", "square open",
@@ -149,85 +248,160 @@
                      "triangle", "triangle open", "triangle filled", "triangle square",
                      "triangle down open", "triangle down filled", "plus", "cross",
                      "asterisk"]
-        },
-        {
-          "type": "null"
         }
-      ],
-      "default": null
+      ]
     },
     "facet_row":{
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+           { "title": "Default horizontal facet column",
+                "type": "null"
+            },
+          {
+              "title": "Column for horizontal facets",
+              "type": "string",
+              "$comment": "enumCols"
+            }
+        ]
     },
     "facet_column":{
-      "title": "Facet row",
+      "title": "Facet column",
       "description": "Variable to create facets in vertical direction",
-      "type": ["string","null"],
-      "default": null
+      "anyOf": [
+            { "title": "Default vertical facet column",
+                "type": "null"
+            },
+            {
+              "title": "Column for vertical facets",
+              "type": "string",
+            "$comment": "enumCols"
+            }
+        ]
     },
     "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
-	    "type": ["number", "null"],
-	    "default":null,
-	    "minimum":0,
-	    "maximum":1
+    "anyOf": [
+            { "title": "Default transparency value",
+                "type": "null"
+            },
+            {
+              "title": "Transparency value between 0 - 1",
+              "type": "number",
+              "minimum":0.0,
+              "maximum":1.0
+            }
+        ]
     },
     "labels": {
       "title" : "Plot labels",
       "description": "Plot labels",
       "type": "object",
       "properties": {
-  	    "title":{
-  	      "title": "Title",
-  	      "description": "Title of the plot",
-	        "type": ["string","null"],
-	        "default": null
-	      },
-  	    "subtitle":{
-  	      "title": "Subtitle",
-  	      "description": "Subtitle of the plot",
-	        "type": ["string","null"],
-	        "default": null
-	      },
-  	    "tag":{
-  	      "title": "Tag",
-  	      "description": "typically used for labelling a subplot with a letter",
-	        "type": ["string","null"],
-	        "default": null
-	      },
-	      "x": {
-	        "title": "x label",
-	        "description": "x label",
-	        "type": ["string", "null"],
-	        "default": null
-	      },
-	      "y": {
-	        "title": "y label",
-	        "description": "y label",
-	        "type": ["string", "null"],
-	        "default": null
-	      },
-	      "colour": {
-	        "title": "Colour label",
-	        "description": "Colour label legend",
-	        "type": ["string", "null"],
-	        "default": null
-	      },
-	      "fill": {
-	        "title": "Fill label",
-	        "description": "Colour label legend",
-	        "type": ["string", "null"],
-	        "default": null
-	      },
-	      "caption":{
-	        "title": "Caption",
-	        "type": ["string", "null"],
-	        "default": null
-	      }
+    "title":{
+      "title": "Title",
+        "description": "Title of the plot",
+        "anyOf": [
+            { "title": "Default title",
+                "type": "null"
+            },
+        {
+              "title": "Title of the plot",
+              "type": "string"
+            }
+        ]
+      },
+      "subtitle":{
+        "title": "Subtitle",
+        "description": "Subtitle of the plot",
+        "anyOf": [
+            { "title": "Default subtitle",
+                "type": "null"
+            },
+            {
+              "title": "Subtitle of the plot",
+              "type": "string"
+            }
+        ]
+      },
+      "tag":{
+        "title": "Tag",
+        "description": "typically used for labelling a subplot with a letter",
+        "anyOf": [
+            { "title": "Default tag",
+                "type": "null"
+            },
+            {
+              "title": "Tag (labelling a subplot with a letter)",
+              "type": "string"
+            }
+        ]
+      },
+      "x": {
+        "title": "x label",
+        "description": "x label",
+            "anyOf": [
+            { "title": "Default x label",
+                "type": "null"
+            },
+            {
+              "title": "x label",
+              "type": "string"
+            }
+        ]
+      },
+      "y": {
+        "title": "y label",
+        "description": "y label",
+            "anyOf": [
+            { "title": "Default y label",
+                "type": "null"
+            },
+            {
+              "title": "y label",
+              "type": "string"
+            }
+        ]
+      },
+      "colour": {
+        "title": "Colour label",
+        "description": "Colour label legend",
+        "anyOf": [
+            { "title": "Default colour label legend",
+                "type": "null"
+            },
+            {
+              "title": "Colour label legend",
+              "type": "string"
+            }
+        ]
+      },
+      "fill": {
+        "title": "Fill label",
+        "description": "Colour fill legend",
+          "anyOf": [
+            { "title": "Default fill color legend",
+                "type": "null"
+            },
+            {
+              "title": "Colour fill legend",
+              "type": "string"
+            }
+        ]
+      },
+      "caption":{
+        "title": "Caption",
+        "anyOf": [
+            { "title": "Default caption",
+                "type": "null"
+            },
+            {
+              "title": "Caption",
+              "type": "string"
+            }
+        ]
+      }
       }
     },
     "theme": {
@@ -241,30 +415,39 @@
           "type": "object",
           "properties": {
             "key":{
-              "title": "Key",
+              "title": "Theme, leyend Key properties",
               "description": "Key properties",
               "type": "object",
               "properties": {
                 "size": {
                   "title": "Size",
                   "description": "Size of the key in cm",
-                  "type": ["number", "null"],
-                  "exclusiveMinimum": 0,
-                  "default": null
-                },
-                "width": {
-                  "title": "Width (not used yet)",
-                  "description": "Width of the key in cm",
-                  "type": ["number", "null"],
-                  "exclusiveMinimum": 0,
-                  "default": null
+                  "anyOf": [
+                        {
+                          "title": "Default size",
+                          "type": "null"
+                        },
+                        {
+                          "title": "Size of the key in cm",
+                          "type": "number",
+                          "exclusiveMinimum": 0
+                        }
+                    ]
                 },
                 "height": {
                   "title": "Height (not used yet)",
                   "description": "Height of the key in cm",
-                  "type": ["number", "null"],
-                  "exclusiveMinimum": 0,
-                  "default": null
+                  "anyOf": [
+                        {
+                            "title": "Default Height",
+                            "type": "null"
+                        },
+                        {
+                            "title": "Height of the key in cm",
+                            "type": "number",
+                            "exclusiveMinimum": 0
+                        }
+                    ]
                 }
               }
             }
@@ -280,29 +463,29 @@
         "values" : {
           "title": "Color values",
           "description": "Hexadecimal colors",
-          "type": ["array", "null"],
+          "type": "array",
           "items": {
             "type": "string"
           },
-          "default": null
+          "default": []
         },
         "breaks": {
           "title": "Breaks",
           "description": "Variable categories to be colored",
-          "type": ["array", "null"],
+          "type": "array",
           "items": {
             "type": "string"
           },
-          "default": null
+          "default":[]
         },
         "labels": {
           "title": "Labels",
           "description": "A character vector giving labels",
-          "type": ["array", "null"],
+          "type": "array",
           "items": {
             "type": "string"
           },
-          "default": null
+          "default":[]
         }
       }
     },
@@ -311,12 +494,11 @@
       "description": "Add a boxplot",
       "type": "object",
       "properties": {
-	      "addboxplot": {
-	        "title": "Add boxplot",
-	        "type": "boolean",
-	        "default": false,
-	        "required": true
-	      },
+      "addboxplot": {
+        "title": "Add boxplot",
+        "type": "boolean",
+        "default": false
+      },
         "width":{
           "title": "Width",
           "description": "width of boxplot",
@@ -325,77 +507,87 @@
         }
       }
     },
-	  "rotxlabs": {
-	    "title": "Rotate x labels",
-	    "type": "number",
-      "default": 0,
-      "minimum": -360,
-      "exclusiveMinimum": true,
-      "maximum": 360
-	  },
+  "rotxlabs": {
+    "title": "Rotate x labels",
+    "anyOf": [
+        { "title": "Default rotate x labels",
+                "type": "null"
+        },
+        {
+            "title": "Rotate x labels",
+            "type": "number",
+            "default": 0,
+            "minimum": -360,
+            "maximum": 360
+        }
+    ]
+  },
     "save": {
-	    "title": "Save",
-	    "type": "object",
-	    "properties" : {
-	      "save": {
-	        "title": "Save file?",
-	        "type": "boolean",
-	        "default": false,
-	        "required": true
-	      },
-	      "outputfilename": {
-	        "title": "Output filename",
-	        "description": "Filename including path (optional)",
-	        "type": ["string", "null"],
-	        "default": null,
-	        "required": false
-	      },
-	      "overwrite": {
-	        "title": "Overwrite file?",
-	        "type": "boolean",
-	        "default": false,
-	        "required": true
-	      },
-	      "width" : {
-	        "title": "Width",
-	        "description": "Output width in centimeters",
-	        "type": "number",
-	        "default":15,
-	        "minimum":1,
-	        "maximum":2000,
-	        "required": true
-	      },
-	      "height":{
-	        "title": "Height",
-	        "description": "Output height in centimeters",
-	        "type": "number",
-	        "default":10,
-	        "minimum":1,
-	        "maximum":2000,
-	        "required": true
-	      },
-	      "dpi":{
-	        "title": "dpi",
-	        "description": "Dots per inch",
-	        "type": "number",
-	        "default":72,
-	        "required": true
-	      },
-    	  "device": {
-	        "title": "Device",
-	        "description": "File format, note: 'tikz' produce a LaTeX-pdf file",
-	        "type": "string",
-	        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
-	        "png", "bmp", "svg", "html","tikz"],
-	        "default": "pdf"
-	      },
-	      "sanitize":{
-	        "title": "Sanitize",
-	        "description": "Should special LaTeX characters be replaced, required for 'tikz'",
-	        "type": "boolean",
-	        "default": true
-	      }
-	    }
+    "title": "Save",
+    "type": "object",
+    "properties" : {
+      "save": {
+        "title": "Save file?",
+        "type": "boolean",
+        "default": false
+      },
+      "outputfilename": {
+        "title": "Output filename",
+        "description": "Filename including path (optional)",
+        "anyOf": [
+            {
+                "title": "Default output filename",
+                "type": "null"
+            },
+            {
+                  "title": "Output filename",
+                  "type": "string"
+            }
+        ]
+      },
+      "overwrite": {
+        "title": "Overwrite file?",
+        "type": "boolean",
+        "default": false
+      },
+      "width" : {
+        "title": "Width",
+        "description": "Output width in centimeters",
+        "type": "number",
+        "default":15,
+        "minimum":1,
+        "maximum":2000
+      },
+      "height":{
+        "title": "Height",
+        "description": "Output height in centimeters",
+        "type": "number",
+        "default":10,
+        "minimum":1,
+        "maximum":2000
+      },
+      "dpi":{
+        "title": "dpi",
+        "description": "Dots per inch",
+        "type": "number",
+        "default":72
+      },
+      "device": {
+        "title": "Device",
+        "description": "File format, note: 'tikz' produce a LaTeX-pdf file",
+        "type": "string",
+        "enum": [ "eps", "ps", "tex", "pdf", "jpeg", "tiff",
+        "png", "bmp", "svg", "html","tikz"],
+        "default": "pdf"
+      },
+      "sanitize":{
+        "title": "Sanitize",
+        "description": "Should special LaTeX characters be replaced, required for 'tikz'",
+        "type": "boolean",
+        "default": true
+      }
     }
-  }
+    }
+  },
+  "required": ["filename"]
 }
