@@ -58,10 +58,13 @@ rug_pca <- function(lp, verbose = TRUE){
 
   pcacols <- colnames(cols)
 
-  if (!iscolor(lp$colour) && !(lp$colour %in% pcacols)){
-    warning(paste0("'",lp$colour,"' is not a colour nor column name of the file."))
-    lp$colour <- NULL
-  }
+  if (!is.null(lp$colour))
+    if (!iscolor(lp$colour) | !(lp$colour %in% pcacols)){
+        warning(paste0("The colour parameter is not a colour nor column name of the file."))
+      lp$colour <- ""
+    }
+    else
+      lp$colour <- " colour = lp$colour,"
 
   if (verbose)
     message(str(cols))
@@ -75,13 +78,14 @@ rug_pca <- function(lp, verbose = TRUE){
   tpca <- stats::prcomp(Filter(is.numeric,dplyr::select(cols,all_of(pcacols))),
                         scale=lp$scale)
 
-  if (verbose)
-    message(summary(tpca))
+  # if (verbose)
+  #   message(summary(tpca))
   # load `.__T__[:base` to fix `! Objects of type prcomp not supported by autoplot.`
   ggfortify::`.__T__[:base`
 
-  p <- paste("ggplot2::autoplot(tpca, data = cols, colour = 'lp$colour',
-                         loadings = lp$biplot, loadings.colour = 'black',
+  # TODO: add colour as aesthetics i.e. column variable
+  p <- paste("ggplot2::autoplot(tpca, data = cols, ",lp$colour,
+                         " loadings = lp$biplot, loadings.colour = 'black',
                          loadings.label = lp$biplot,
                          loadings.label.colour = 'black',
                          loadings.label.size = 4) +\n  ",
@@ -99,7 +103,7 @@ rug_pca <- function(lp, verbose = TRUE){
 
   p <- eval(parse(text = p))
 
-  if (!is.null(lp$save))
+  if (lp$save$save)
     save_plot(lp,p,"-pca-",verbose=verbose)
 
   message("PCA projection done.")
