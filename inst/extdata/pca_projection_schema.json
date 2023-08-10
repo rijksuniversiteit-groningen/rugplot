@@ -1,4 +1,6 @@
 {
+  "title": "PCA projection",
+  "description":"https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/pcaprojections.html",
   "type":"object",
   "properties": {
     "description": {
@@ -6,12 +8,6 @@
       "description": "Description of the template",
       "type": "string",
       "default": "Parameters for a PCA projection using the 'rugplot' R package"
-    },
-    "help": {
-      "title": "Help",
-      "description": "Help showing the description of the parameters",
-      "type": "string",
-      "default": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/pcaprojections.html"
     },
     "filename": {
       "title": "Filename",

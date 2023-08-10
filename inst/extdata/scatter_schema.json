@@ -9,12 +9,6 @@
       "type": "string",
       "default": "Parameters to create a scatter plot using the 'rugplot' R package"
     },
-    "help": {
-      "title": "Help",
-      "description": "Help showing the description of the parameters",
-      "type": "string",
-      "default": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/scatterplots.html"
-    },
     "filename": {
       "title": "Filename",
       "description": "File in table format, see the data.table::fread function for more details",

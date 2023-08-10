@@ -1,5 +1,6 @@
 {
   "title": "Violin plots",
+  "description": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/violinplots.html",
   "type":"object",
   "properties": {
     "description": {
