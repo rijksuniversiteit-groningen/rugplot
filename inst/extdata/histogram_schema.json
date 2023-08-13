@@ -35,7 +35,7 @@
           "description": "Variable for the vertical axis",
             "anyOf": [
               {
-                  "title": "Default y variable",
+                  "title": "Set y variable",
                   "type": "null"
               },
               {
@@ -56,7 +56,7 @@
           "description": "Column representing 'color'",
           "anyOf": [
                         {
-                    "title": "Default fill",
+                    "title": "Set fill column",
                   "type": "null"
               },
               {
@@ -71,7 +71,7 @@
           "description": "Transparency level",
           "anyOf": [
             {
-              "title": "Default transparency",
+              "title": "Set transparency",
               "type": "null"
             },
             {
@@ -85,7 +85,7 @@
           "title": "Group",
           "description": "Columns/variable name to create groups",
           "anyOf": [
-                { "title": "Default group",
+                { "title": "Set group column",
                 "type": "null"
                 },
                 {
@@ -99,7 +99,7 @@
           "title": "Colour",
           "description": "Point colour",
           "anyOf": [
-            { "title": "Default color column",
+            { "title": "Set color column",
                 "type": "null"
             },
             {
@@ -113,7 +113,7 @@
           "title": "Size",
           "description": "Size of the data point",
           "anyOf": [
-            { "title": "Default size column",
+            { "title": "Set size column",
                 "type": "null"
             },
             {
@@ -127,7 +127,7 @@
           "title": "Line type",
           "description": "Line type",
           "anyOf": [
-            { "title": "Default size column",
+            { "title": "Set size column",
                 "type": "null"
             },
             {
@@ -144,7 +144,7 @@
       "title": "Colour",
       "description": "Line color",
       "anyOf": [
-            { "title": "Default colour",
+            { "title": "Set line colour",
                 "type": "null"
             },
         {
@@ -157,7 +157,7 @@
       "title": "Fill",
       "description": "Color to fill",
       "anyOf": [
-            { "title": "Default color fill",
+            { "title": "Set fill colour",
                 "type": "null"
             },
         {
@@ -171,7 +171,7 @@
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
       "anyOf": [
-           { "title": "Default horizontal facet column",
+           { "title": "Set column for horizontal facets",
                 "type": "null"
             },
           {
@@ -185,7 +185,7 @@
       "title": "Facet column",
       "description": "Variable to create facets in vertical direction",
       "anyOf": [
-            { "title": "Default vertical facet column",
+            { "title": "Set column for vertical facets",
                 "type": "null"
             },
             {
@@ -199,7 +199,7 @@
       "title": "Bin width",
       "description": "Numeric integer representing bin size",
       "anyOf": [
-            { "title": "Default bin width",
+            { "title": "Set bin width",
                 "type": "null"
             },
             {
@@ -212,7 +212,7 @@
       "title": "Opacity",
       "description": "Transparency level",
         "anyOf": [
-            { "title": "Default transparency value",
+            { "title": "Set transparency value",
                 "type": "null"
             },
             {
@@ -232,7 +232,7 @@
       "title": "Title",
         "description": "Title of the plot",
         "anyOf": [
-            { "title": "Default title",
+            { "title": "Set plot title",
                 "type": "null"
             },
         {
@@ -245,7 +245,7 @@
         "title": "Subtitle",
         "description": "Subtitle of the plot",
         "anyOf": [
-            { "title": "Default subtitle",
+            { "title": "Set subtitle",
                 "type": "null"
             },
             {
@@ -256,9 +256,9 @@
       },
       "tag":{
         "title": "Tag",
-        "description": "typically used for labelling a subplot with a letter",
+        "description": "Typically used for labelling a subplot with a letter",
         "anyOf": [
-            { "title": "Default tag",
+            { "title": "Set tag",
                 "type": "null"
             },
             {
@@ -271,7 +271,7 @@
         "title": "x label",
         "description": "x label",
             "anyOf": [
-            { "title": "Default x label",
+            { "title": "Set x label",
                 "type": "null"
             },
             {
@@ -284,7 +284,7 @@
         "title": "y label",
         "description": "y label",
             "anyOf": [
-            { "title": "Default y label",
+            { "title": "Set y label",
                 "type": "null"
             },
             {
@@ -297,7 +297,7 @@
         "title": "Colour label",
         "description": "Colour label legend",
         "anyOf": [
-            { "title": "Default colour label legend",
+            { "title": "Set colour label legend",
                 "type": "null"
             },
             {
@@ -310,7 +310,7 @@
         "title": "Fill label",
         "description": "Colour fill legend",
           "anyOf": [
-            { "title": "Default fill color legend",
+            { "title": "Set fill color legend",
                 "type": "null"
             },
             {
@@ -322,7 +322,7 @@
       "caption":{
         "title": "Caption",
         "anyOf": [
-            { "title": "Default caption",
+            { "title": "Set caption",
                 "type": "null"
             },
             {
@@ -336,7 +336,7 @@
     "rotxlabs": {
     "title": "Rotate x labels",
     "anyOf": [
-        { "title": "Default rotate x labels",
+        { "title": "Set angle to rotate x labels",
                 "type": "null"
         },
         {
@@ -362,7 +362,7 @@
         "description": "Filename including path (optional)",
         "anyOf": [
             {
-                "title": "Default output filename",
+                "title": "Set output filename",
                 "type": "null"
             },
             {
