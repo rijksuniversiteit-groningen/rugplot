@@ -10,29 +10,20 @@
       "default": "Parameters for a PCA projection using the 'rugplot' R package"
     },
     "filename": {
-      "title": "Filename",
+      "title": "Filename (required)",
       "description": "Csv file including more than 3 columns",
-      "type": "string",
-      "default": "<filename path>"
+      "type": "string"
     },
     "variables": {
       "title": "Column names",
       "description": "List of numeric column names to be used to apply PCA",
-      "anyOf": [
-            { "title": "Default variables",
-                "type": "null"
-            },
-            {
-              "title": "List of variables",
-              "type": "array",
-              "items": {
-                "type": "string",
-                "$comment": "enumColumns"
-               },
-              "uniqueItems": true,
-              "minItems": 3
-            }
-          ]
+      "type": "array",
+      "items": {
+        "type": "string",
+        "$comment": "enumColumns"
+      },
+      "uniqueItems": true,
+      "default": []
       },
       "scale":{
         "title": "Scale",
@@ -44,7 +35,7 @@
         "title":"colour",
         "description": "Categorical variable to colour the projected points",
           "anyOf": [
-            { "title": "Default color column",
+            { "title": "Set color column",
                 "type": "null"
             },
             {
@@ -69,7 +60,7 @@
           "title": "Title",
             "description": "Title of the plot",
             "anyOf": [
-                { "title": "Default title",
+                { "title": "Set plot title",
                     "type": "null"
                 },
                 {
@@ -82,7 +73,7 @@
         "title": "Subtitle",
         "description": "Subtitle of the plot",
         "anyOf": [
-            { "title": "Default subtitle",
+            { "title": "Set subtitle",
                 "type": "null"
             },
             {
@@ -95,7 +86,7 @@
           "title": "Tag",
           "description": "typically used for labelling a subplot with a letter",
           "anyOf": [
-            { "title": "Default tag",
+            { "title": "Set tag",
                 "type": "null"
             },
             {
@@ -108,7 +99,7 @@
           "title": "Colour label",
           "description": "Colour label legend",
           "anyOf": [
-            { "title": "Default colour label legend",
+            { "title": "Set colour label legend",
                 "type": "null"
             },
             {
@@ -121,7 +112,7 @@
         "title": "Fill label",
         "description": "Colour fill legend",
           "anyOf": [
-            { "title": "Default fill color legend",
+            { "title": "Set fill color legend",
                 "type": "null"
             },
             {
@@ -133,7 +124,7 @@
       "caption":{
         "title": "Caption",
         "anyOf": [
-            { "title": "Default caption",
+            { "title": "Set caption",
                 "type": "null"
             },
             {
@@ -158,7 +149,7 @@
           "description": "Filename including path (optional)",
           "anyOf": [
                 {
-                "title": "Default output filename",
+                "title": "Set output filename",
                 "type": "null"
                 },
                 {
@@ -173,7 +164,7 @@
                 "default": false
               },
               "width" : {
-                "title": "Width",
+                "title": "Width (cm)",
                 "description": "Output width in centimeters",
                 "type": "number",
                 "default":15,
@@ -181,7 +172,7 @@
                 "maximum":2000
               },
               "height":{
-                "title": "Height",
+                "title": "Height (cm)",
                 "description": "Output height in centimeters",
                 "type": "number",
                 "default":10,

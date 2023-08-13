@@ -1,7 +1,7 @@
 {
     "description": "Parameters to create a histogram(s) using the 'rugplot' R package",
     "filename": "data/iris.csv",
-    "variables": null,
+    "variables": [],
     "aesthetics": {
         "y_variable": null,
         "x_variable": "sepal_length",

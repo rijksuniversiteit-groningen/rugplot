@@ -59,12 +59,12 @@ rug_pca <- function(lp, verbose = TRUE){
   pcacols <- colnames(cols)
 
   if (!is.null(lp$colour))
-    if (!iscolor(lp$colour) | !(lp$colour %in% pcacols)){
+    if (!iscolor(lp$colour) & !(lp$colour %in% pcacols)){
         warning(paste0("The colour parameter is not a colour nor column name of the file."))
       lp$colour <- ""
     }
     else
-      lp$colour <- " colour = lp$colour,"
+      lp$colour <- paste0(" colour = '", lp$colour,"',")
 
   if (verbose)
     message(str(cols))

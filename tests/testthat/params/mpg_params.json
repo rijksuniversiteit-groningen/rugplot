@@ -1,7 +1,7 @@
 {
     "description": "Parameters to create violin plots using the 'rugplot' R package",
     "filename": "data/ggplotmpg.csv",
-    "variables": null,
+    "variables": [],
     "aesthetics": {
         "y_variable": "hwy",
         "x_variable": "class",
@@ -9,7 +9,7 @@
         "fill": null,
         "alpha": null,
         "group": null,
-        "colour": null,
+        "colour": "class",
         "size": null
     },
     "position": null,
@@ -34,9 +34,9 @@
         "caption": null
     },
     "color_manual": {
-        "values": null,
-        "breaks": null,
-        "labels": null
+        "values": [],
+        "breaks": [],
+        "labels": []
     },
     "axes_scales": {
         "x_discrete": {

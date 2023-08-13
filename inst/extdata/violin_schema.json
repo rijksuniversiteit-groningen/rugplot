@@ -10,7 +10,7 @@
       "default": "Parameters to create violin plots using the 'rugplot' R package"
     },
     "filename": {
-      "title": "Filename",
+      "title": "Filename (required)",
       "description": "File in table format, see the data.table::fread function for more details",
       "type": "string"
     },
@@ -594,7 +594,7 @@
         "default": false
       },
       "width" : {
-        "title": "Width",
+        "title": "Width (cm)",
         "description": "Output width in centimeters",
         "type": "number",
         "default":15,
@@ -602,7 +602,7 @@
         "maximum":2000
       },
       "height":{
-        "title": "Height",
+        "title": "Height (cm)",
         "description": "Output height in centimeters",
         "type": "number",
         "default":10,

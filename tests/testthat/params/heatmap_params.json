@@ -1,7 +1,7 @@
 {
     "description": "Parameters to create a heatmap plot using the 'rugplot' R package",
     "filename": "./data/exergamelf2.csv",
-    "variables": null,
+    "variables": [],
     "method": "tile",
     "aesthetics": {
         "y_variable": "myVars",
@@ -44,9 +44,9 @@
         }
     },
     "color_manual": {
-        "values": null,
-        "breaks": null,
-        "labels": null
+        "values": [],
+        "breaks": [],
+        "labels": []
     },
     "colour_scales": {
         "fill_gradient": {

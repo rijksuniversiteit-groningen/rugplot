@@ -1,7 +1,7 @@
 {
     "description": "Parameters to create a scatter plot using the 'rugplot' R package",
     "filename": "data/iris.csv",
-    "variables": null,
+    "variables": [],
     "aesthetics": {
         "y_variable": "petal_length",
         "x_variable": "sepal_width",
@@ -42,9 +42,9 @@
         }
     },
     "color_manual": {
-        "values": null,
-        "breaks": null,
-        "labels": null
+        "values": [],
+        "breaks": [],
+        "labels": []
     },
     "boxplot": {
         "addboxplot": false,
