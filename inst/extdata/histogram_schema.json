@@ -140,7 +140,11 @@
       },
         "required": ["x_variable"]
     },
-    "colour": {
+    "attributes":{
+      "title":"Attributes",
+      "type": "object",
+      "properties": {
+        "colour": {
       "title": "Colour",
       "description": "Line color",
       "anyOf": [
@@ -153,10 +157,10 @@
             }
         ]
     },
-    "fill": {
-      "title": "Fill",
-      "description": "Color to fill",
-      "anyOf": [
+        "fill": {
+        "title": "Fill",
+        "description": "Color to fill",
+        "anyOf": [
             { "title": "Set fill colour",
                 "type": "null"
             },
@@ -166,36 +170,8 @@
             }
 
         ]
-    },
-    "facet_row":{
-      "title": "Facet row",
-      "description": "Variable to create facets in horizontal direction",
-      "anyOf": [
-           { "title": "Set column for horizontal facets",
-                "type": "null"
-            },
-          {
-              "title": "Column for horizontal facets",
-              "type": "string",
-              "$comment": "enumCols"
-            }
-        ]
-    },
-    "facet_column":{
-      "title": "Facet column",
-      "description": "Variable to create facets in vertical direction",
-      "anyOf": [
-            { "title": "Set column for vertical facets",
-                "type": "null"
-            },
-            {
-              "title": "Column for vertical facets",
-              "type": "string",
-            "$comment": "enumCols"
-            }
-        ]
-    },
-    "bin_width":{
+      },
+        "bin_width":{
       "title": "Bin width",
       "description": "Numeric integer representing bin size",
       "anyOf": [
@@ -208,7 +184,7 @@
             }
         ]
     },
-    "alpha": {
+        "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
         "anyOf": [
@@ -222,6 +198,57 @@
               "maximum":1.0
             }
         ]
+    },
+        "rotxlabs": {
+    "title": "Rotate x labels",
+    "anyOf": [
+        { "title": "Set angle to rotate x labels",
+                "type": "null"
+        },
+        {
+            "title": "Rotate x labels",
+            "type": "number",
+            "default": 0,
+            "minimum": -360,
+            "maximum": 360
+        }
+    ]
+  }
+      }
+    },
+    "facets": {
+      "title":"Facets",
+      "type": "object",
+      "properties": {
+        "facet_row":{
+          "title": "Facet row",
+          "description": "Variable to create facets in horizontal direction",
+          "anyOf": [
+            { "title": "Set column for horizontal facets",
+                "type": "null"
+            },
+            {
+              "title": "Column for horizontal facets",
+              "type": "string",
+              "$comment": "enumCols"
+            }
+        ]
+      },
+        "facet_column":{
+          "title": "Facet column",
+          "description": "Variable to create facets in vertical direction",
+          "anyOf": [
+            { "title": "Set column for vertical facets",
+                "type": "null"
+            },
+            {
+              "title": "Column for vertical facets",
+              "type": "string",
+            "$comment": "enumCols"
+            }
+          ]
+        }
+      }
     },
     "labels": {
       "title" : "Plot labels",
@@ -333,21 +360,6 @@
       }
       }
     },
-    "rotxlabs": {
-    "title": "Rotate x labels",
-    "anyOf": [
-        { "title": "Set angle to rotate x labels",
-                "type": "null"
-        },
-        {
-            "title": "Rotate x labels",
-            "type": "number",
-            "default": 0,
-            "minimum": -360,
-            "maximum": 360
-        }
-    ]
-  },
     "save": {
       "title": "Save",
       "type": "object",

@@ -145,7 +145,11 @@
       },
       "required": ["x_variable", "y_variable"]
     },
-    "position" : {
+    "attributes": {
+      "title":"Attributes",
+      "type": "object",
+      "properties": {
+        "position" : {
       "title" : "Position",
       "description": "Dodge or identity position",
       "anyOf": [
@@ -160,7 +164,7 @@
         }
       ]
     },
-    "colour": {
+        "colour": {
       "title": "Colour",
       "description": "Line color",
       "anyOf": [
@@ -173,7 +177,7 @@
             }
         ]
     },
-    "fill": {
+        "fill": {
       "title": "Fill",
       "description": "Color to fill",
       "anyOf": [
@@ -187,7 +191,7 @@
 
         ]
     },
-    "size":{
+        "size":{
       "title": "Size",
       "description": "Size",
       "anyOf": [
@@ -200,7 +204,7 @@
             }
         ]
     },
-    "stroke": {
+        "stroke": {
       "title": "Stroke in mm",
       "description": "For shapes 21-24, The size of the filled part is controlled by size, the size of the stroke is controlled by stroke. The total size of the point is the sum of the two.",
       "anyOf": [
@@ -214,7 +218,7 @@
         ],
       "minimum": 0
     },
-    "shape": {
+        "shape": {
       "title": "Shape",
       "description": "Shape of the data points",
       "anyOf": [
@@ -245,35 +249,22 @@
         }
       ]
     },
-    "facet_row":{
-      "title": "Facet row",
-      "description": "Variable to create facets in horizontal direction",
-      "anyOf": [
-           { "title": "Default horizontal facet column",
+        "rotxlabs": {
+    "title": "Rotate x labels",
+    "anyOf": [
+        { "title": "Default rotate x labels",
                 "type": "null"
-            },
-          {
-              "title": "Column for horizontal facets",
-              "type": "string",
-              "$comment": "enumCols"
-            }
-        ]
-    },
-    "facet_column":{
-      "title": "Facet column",
-      "description": "Variable to create facets in vertical direction",
-      "anyOf": [
-            { "title": "Default vertical facet column",
-                "type": "null"
-            },
-            {
-              "title": "Column for vertical facets",
-              "type": "string",
-            "$comment": "enumCols"
-            }
-        ]
-    },
-    "alpha": {
+        },
+        {
+            "title": "Rotate x labels",
+            "type": "number",
+            "default": 0,
+            "minimum": -360,
+            "maximum": 360
+        }
+    ]
+  },
+        "alpha": {
       "title": "Opacity",
       "description": "Transparency level",
     "anyOf": [
@@ -287,6 +278,42 @@
               "maximum":1.0
             }
         ]
+    }
+      }
+    },
+    "facets": {
+      "title":"Facets",
+      "type": "object",
+      "properties": {
+        "facet_row":{
+      "title": "Facet row",
+      "description": "Variable to create facets in horizontal direction",
+      "anyOf": [
+           { "title": "Default horizontal facet column",
+                "type": "null"
+            },
+          {
+              "title": "Column for horizontal facets",
+              "type": "string",
+              "$comment": "enumCols"
+            }
+        ]
+    },
+        "facet_column":{
+      "title": "Facet column",
+      "description": "Variable to create facets in vertical direction",
+      "anyOf": [
+            { "title": "Default vertical facet column",
+                "type": "null"
+            },
+            {
+              "title": "Column for vertical facets",
+              "type": "string",
+            "$comment": "enumCols"
+            }
+        ]
+    }
+      }
     },
     "labels": {
       "title" : "Plot labels",
@@ -501,21 +528,6 @@
         }
       }
     },
-  "rotxlabs": {
-    "title": "Rotate x labels",
-    "anyOf": [
-        { "title": "Default rotate x labels",
-                "type": "null"
-        },
-        {
-            "title": "Rotate x labels",
-            "type": "number",
-            "default": 0,
-            "minimum": -360,
-            "maximum": 360
-        }
-    ]
-  },
     "save": {
     "title": "Save",
     "type": "object",

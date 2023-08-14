@@ -67,7 +67,7 @@ rug_violin <- function(lp, verbose = TRUE) {
     "ggplot2::ggplot(dt, ggplot2::aes(",
     add_aesthetics(lp$aesthetics,varnames),
     ")) +\n  ggplot2::geom_violin(",
-    add_attributes(lp),
+    add_attributes(lp$attributes),
     ")",
     # TODO: the following 8 lines of code
     if (is.null(lp$axes_scales$y_discrete$labels))
@@ -88,9 +88,9 @@ rug_violin <- function(lp, verbose = TRUE) {
   if (!is.null(lp$labels))
     p <- add_labels(p,lp$labels)
 
-  p <- add_facets(p,lp,fnames)
+  p <- add_facets(p,lp$facets,fnames)
 
-  if (!is.null(lp$rotxlabs))
+  if (!is.null(lp$attributes$rotxlabs))
     p <- paste(p,
       " +\n  ggplot2::theme(\n    ",
         "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n",sep="")

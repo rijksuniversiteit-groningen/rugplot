@@ -150,7 +150,11 @@
         },
         "required": ["x_variable", "y_variable"]
     },
-    "position": {
+    "attributes":{
+      "title":"Attributes",
+      "type": "object",
+      "properties": {
+        "position": {
         "title": "Position",
         "description": "Dodge or identity position",
         "anyOf": [
@@ -165,7 +169,7 @@
             }
         ]
     },
-    "colour": {
+        "colour": {
         "title": "Colour",
         "description": "Line color",
         "anyOf": [
@@ -179,7 +183,7 @@
             }
         ]
     },
-    "fill": {
+        "fill": {
       "title": "Fill",
       "description": "Color to fill the violin plots",
       "anyOf": [
@@ -193,7 +197,7 @@
             }
         ]
     },
-    "alpha": {
+        "alpha": {
         "title": "Opacity",
         "description": "Transparency level",
 	    "anyOf": [
@@ -209,7 +213,7 @@
             }
         ]
     },
-    "linetype": {
+        "linetype": {
       "title": "Line type",
       "description": "Appearance of the line type",
       "anyOf": [
@@ -236,7 +240,7 @@
             }
         ]
     },
-    "size":{
+        "size":{
       "title": "Size",
       "description": "Size",
         "anyOf": [
@@ -250,7 +254,7 @@
             }
         ]
     },
-    "trim":{
+        "trim":{
       "title": "Trim",
       "description": "If TRUE (default), trim the tails of the violins to the range of the data",
       "anyOf": [
@@ -264,7 +268,7 @@
             }
         ]
     },
-    "scale": {
+        "scale": {
       "title": "Scale",
       "description": "if 'area' (default), all violins have the same area (before trimming the tails). If 'count', areas are scaled proportionally to the number of observations. If 'width', all violins have the same maximum width",
       "anyOf": [
@@ -279,7 +283,7 @@
             }
         ]
     },
-    "orientation": {
+        "orientation": {
       "title": "Orientation",
       "description": "The orientation of the layer",
       "anyOf": [
@@ -294,7 +298,28 @@
             }
         ]
     },
-    "facet_row":{
+        "rotxlabs": {
+    "title": "Rotate x labels",
+    "anyOf": [
+        { "title": "Default rotate x labels",
+                "type": "null"
+        },
+        {
+            "title": "Rotate x labels",
+            "type": "number",
+            "default": 0,
+            "minimum": -360,
+            "maximum": 360
+        }
+    ]
+  }
+      }
+    },
+    "facets": {
+      "title":"Facets",
+      "type": "object",
+      "properties": {
+        "facet_row":{
       "title": "Facet row",
       "description": "Variable to create facets in the row direction",
       "anyOf": [
@@ -308,7 +333,7 @@
             }
         ]
     },
-    "facet_column":{
+        "facet_column":{
       "title": "Facet column",
       "description": "Variable to create facets in the column direction",
       "anyOf": [
@@ -321,6 +346,8 @@
             "$comment": "enumCols"
             }
         ]
+    }
+      }
     },
     "labels": {
         "title" : "Plot labels",
@@ -550,25 +577,10 @@
       },
         "required": ["addboxplot", "width"]
     },
-	"rotxlabs": {
-    "title": "Rotate x labels",
-    "anyOf": [
-        { "title": "Default rotate x labels",
-                "type": "null"
-        },
-        {
-            "title": "Rotate x labels",
-            "type": "number",
-            "default": 0,
-            "minimum": -360,
-            "maximum": 360
-        }
-    ]
-  },
     "save": {
-    "title": "Save",
-    "type": "object",
-    "properties" : {
+      "title": "Save",
+      "type": "object",
+      "properties" : {
       "save": {
         "title": "Save file?",
         "type": "boolean",

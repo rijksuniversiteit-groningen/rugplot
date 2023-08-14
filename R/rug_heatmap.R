@@ -25,8 +25,8 @@ rug_heatmap <- function(lp, verbose = TRUE) {
   p <- paste(
     "ggplot2::ggplot(dt, ggplot2::aes(",
       add_aesthetics(lp$aesthetics,varnames),
-    ")) +\n  ggplot2::geom_",lp$method,"(",
-      add_attributes(lp),
+    ")) +\n  ggplot2::geom_",lp$attributes$method,"(",
+      add_attributes(lp$attributes),
     ") +\n",
     "  ggplot2::theme_bw() +\n",
     "  ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5)",
@@ -54,9 +54,9 @@ rug_heatmap <- function(lp, verbose = TRUE) {
   if (!is.null(lp$labels))
     p <- add_labels(p,lp$labels)
 
-  p <- add_facets(p,lp,fnames)
+  p <- add_facets(p,lp$facets,fnames)
 
-  if (!is.null(lp$rotxlabs))
+  if (!is.null(lp$attributes$rotxlabs))
     p <- paste(p,
                " +\n  ggplot2::theme(\n    ",
                "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n",sep="")

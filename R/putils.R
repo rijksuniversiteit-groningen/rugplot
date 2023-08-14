@@ -226,51 +226,51 @@ add_aesthetics <- function(aesvars, columnnames){
 add_attributes <- function(lparams){
   atts <- paste(
     if (!is.null(lparams$fill) && iscolor(lparams$fill)){
-      "fill = 'lp$fill',"
+      "fill = 'lp$attributes$fill',"
     },
     if (!is.null(lparams$colour) && iscolor(lparams$colour)){
-        " colour = 'lp$colour',"
+        " colour = 'lp$attributes$colour',"
     },
     if (!is.null(lparams$position)){
-        " position = 'lp$position',"
+        " position = 'lp$attributes$position',"
     },
     if (!is.null(lparams$alpha)){
-        " alpha = lp$alpha,"
+        " alpha = lp$attributes$alpha,"
     },
     if (!is.null(lparams$linetype)){
-        " linetype = 'lp$linetype',"
+        " linetype = 'lp$attributes$linetype',"
     },
     if (!is.null(lparams$width)){
-      " linewidth = 'lp$width',"
+      " linewidth = 'lp$attributes$width',"
     },
     if (!is.null(lparams$shape))
         if (lparams$shape %in% shape_names)
-            " shape = 'lp$shape',"
+            " shape = 'lp$attributes$shape',"
         else if (is.numeric(lparams$shape)){
-            " shape = lp$shape,"
+            " shape = lp$attributes$shape,"
         } else if (length(lparams$shape)==1)
-          " shape = 'lp$shape',"
+          " shape = 'lp$attributes$shape',"
     ,
     if (!is.null(lparams$size)){
-        " size = lp$size,"
+        " size = lp$attributes$size,"
     },
     if (!is.null(lparams$stroke)){
-      " stroke = lp$stroke,"
+      " stroke = lp$attributes$stroke,"
     },
     if (!is.null(lparams$weight)){
-       " width = lp$weight,"
+       " width = lp$attributes$weight,"
     },
     if (!is.null(lparams$trim)){
-      " trim = lp$trim,"
+      " trim = lp$attributes$trim,"
     },
     if (!is.null(lparams$scale)){
-      " scale = lp$scale,"
+      " scale = lp$attributes$scale,"
     },
     if (!is.null(lparams$interpolate)){
-      " interpolate = lp$interpolate,"
+      " interpolate = lp$attributes$interpolate,"
     },
     if (!is.null(lparams$orientation)){
-      " orientation = lp$orientation,"
+      " orientation = lp$attributes$orientation,"
     },
     sep = ""
   )
@@ -294,22 +294,22 @@ replace_vars <- function(ggcode_plot, lparams){
       "lp\\$aesthetics\\$width" = as.character(lparams$aesthetics$width),
       "lp\\$aesthetics\\$group" = as.character(lparams$aesthetics$group),
       "lp\\$aesthetics\\$weight" = as.character(lparams$aesthetics$weight),
-      "lp\\$colour" = as.character(lparams$colour),
-      "lp\\$fill" = as.character(lparams$fill),
+      "lp\\$attributes\\$colour" = as.character(lparams$colour),
+      "lp\\$attributes\\$fill" = as.character(lparams$fill),
       "lp\\$biplot" = as.character(lparams$biplot),
-      "lp\\$alpha" = as.character(lparams$alpha),
-      "lp\\$linetype" = as.character(lparams$linetype),
-      "lp\\$rotxlabs" = as.character(lparams$rotxlabs),
-      "lp\\$position" = as.character(lparams$position),
-      "lp\\$size" = as.character(lparams$size),
-      "lp\\$weight" = as.character(lparams$weight),
-      "lp\\$alpha" = as.character(lparams$alpha),
-      "lp\\$stroke" = as.character(lparams$stroke),
-      "lp\\$shape" = as.character(lparams$shape),
-      "lp\\$trim" = as.character(lparams$trim),
-      "lp\\$scale" = as.character(lparams$scale),
-      "lp\\$interpolate" = as.character(lparams$interpolate),
-      "lp\\$orientation" = as.character(lparams$orientation),
+      "lp\\$attributes\\$alpha" = as.character(lparams$attributes$alpha),
+      "lp\\$attributes\\$linetype" = as.character(lparams$attributes$linetype),
+      "lp\\$attributes\\$rotxlabs" = as.character(lparams$attributes$rotxlabs),
+      "lp\\$attributes\\$position" = as.character(lparams$attributes$position),
+      "lp\\$attributes\\$size" = as.character(lparams$attributes$size),
+      "lp\\$attributes\\$weight" = as.character(lparams$attributes$weight),
+      "lp\\$attributes\\$alpha" = as.character(lparams$attributes$alpha),
+      "lp\\$attributes\\$stroke" = as.character(lparams$attributes$stroke),
+      "lp\\$attributes\\$shape" = as.character(lparams$attributes$shape),
+      "lp\\$attributes\\$trim" = as.character(lparams$attributes$trim),
+      "lp\\$attributes\\$scale" = as.character(lparams$attributes$scale),
+      "lp\\$attributes\\$interpolate" = as.character(lparams$attributes$interpolate),
+      "lp\\$attributes\\$orientation" = as.character(lparams$attributes$orientation),
       "lp\\$labels\\$title" = lparams$labels$title,
       "lp\\$labels\\$subtitle" = as.character(lparams$labels$subtitle),
       "lp\\$labels\\$tag" = as.character(lparams$labels$tag),

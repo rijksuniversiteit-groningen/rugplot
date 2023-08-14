@@ -75,7 +75,7 @@ rug_histogram <- function(lp, verbose = TRUE){
             # if (!is.null(lp$colour) && lp$colour %in% list_factors)
             #   ", color = lp$colour, fill = lp$colour",
             ")) +\n  ggplot2::geom_histogram(",
-            add_attributes(lp),
+            add_attributes(lp$attributes),
             ") +\n  ggplot2::theme_bw() +\n  ",
             "ggplot2::theme(plot.title = ggplot2::element_text(hjust = 0.5))",
             sep =""
@@ -83,9 +83,9 @@ rug_histogram <- function(lp, verbose = TRUE){
   if (!is.null(lp$labels))
     p <- add_labels(p,lp$labels)
 
-  p <- add_facets(p,lp,list_factors)
+  p <- add_facets(p,lp$facets,list_factors)
 
-  if (!is.null(lp$rotxlabs))
+  if (!is.null(lp$attributes$rotxlabs))
     p <- paste(p,
                " + ggplot2::theme(\n    ",
                "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n")

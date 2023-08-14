@@ -12,12 +12,17 @@
         "size": null,
         "linetype": null
     },
-    "colour": null,
-    "fill": null,
-    "facet_row": null,
-    "facet_column": null,
-    "bin_width": null,
-    "alpha": null,
+    "attributes": {
+      "colour": null,
+      "fill": null,
+      "bin_width": null,
+      "alpha": null,
+      "rotxlabs": null
+    },
+    "facets": {
+      "facet_row": null,
+      "facet_column": null
+    },
     "labels": {
         "title": null,
         "subtitle": null,
@@ -28,7 +33,6 @@
         "fill": null,
         "caption": null
     },
-    "rotxlabs": null,
     "save": {
         "save": false,
         "outputfilename": null,

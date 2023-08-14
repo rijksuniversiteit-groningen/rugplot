@@ -12,17 +12,21 @@
         "colour": "class",
         "size": null
     },
-    "position": null,
-    "colour": null,
-    "fill": null,
-    "alpha": null,
-    "linetype": null,
-    "size": null,
-    "trim": null,
-    "scale": null,
-    "orientation": null,
-    "facet_row": null,
-    "facet_column": null,
+    "attributes":{
+      "position": null,
+      "colour": null,
+      "fill": null,
+      "alpha": null,
+      "linetype": null,
+      "size": null,
+      "trim": null,
+      "scale": null,
+      "orientation": null
+    },
+    "facets":{
+      "facet_row": null,
+      "facet_column": null
+    },
     "labels": {
         "title": null,
         "subtitle": null,

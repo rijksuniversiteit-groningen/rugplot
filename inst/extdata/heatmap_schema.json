@@ -24,17 +24,6 @@
       },
       "uniqueItems": true
     },
-    "method": {
-      "title": "ggplot heatmap method",
-      "description": "Function method to plot the tiles of the heatmap",
-      "type": "string",
-      "enum": [
-        "rect",
-        "tile",
-        "raster"
-      ],
-      "default": "raster"
-    },
     "aesthetics": {
       "title": "Aesthetics",
       "description": "The aesthetics (must be a column in the data) that heatmap plots understand",
@@ -170,7 +159,22 @@
         "fill"
       ]
     },
-    "position": {
+    "attributes": {
+      "title":"Attributes",
+      "type": "object",
+      "properties": {
+        "method": {
+          "title": "ggplot heatmap method",
+          "description": "Function method to plot the tiles of the heatmap",
+          "type": "string",
+          "enum": [
+            "rect",
+            "tile",
+            "raster"
+          ],
+          "default": "raster"
+        },
+        "position": {
       "title": "Position",
       "description": "Dodge or identity position",
       "anyOf": [
@@ -193,7 +197,7 @@
         }
       ]
     },
-    "size": {
+        "size": {
       "title": "Size",
       "description": "Set aesthetic size to a fixed value",
       "anyOf": [
@@ -208,7 +212,7 @@
         }
       ]
     },
-    "interpolate": {
+        "interpolate": {
       "title": "Interpolate",
       "description": "If TRUE interpolate linearly, if FALSE don't interpolate.",
       "anyOf": [
@@ -222,7 +226,7 @@
         }
       ]
     },
-    "alpha": {
+        "alpha": {
       "title": "Opacity",
       "description": "Set aesthetics alpha (transparency) to a fixed value",
       "anyOf": [
@@ -238,7 +242,7 @@
         }
       ]
     },
-    "colour": {
+        "colour": {
       "title": "Colour",
       "description": "Set aesthetics colour to a fixed value",
       "anyOf": [
@@ -252,7 +256,7 @@
         }
       ]
     },
-    "linetype": {
+        "linetype": {
       "title": "Line type",
       "description": "Appearance of the line type",
       "anyOf": [
@@ -287,7 +291,7 @@
         }
       ]
     },
-    "linewidth": {
+        "linewidth": {
       "title": "Line width",
       "description": "The unit of linewidth is roughly 0.75 mm",
       "anyOf": [
@@ -302,7 +306,29 @@
         }
       ]
     },
-    "facet_row": {
+        "rotxlabs": {
+      "title": "Rotate x labels",
+      "anyOf": [
+        {
+          "title": "Default rotate x labels",
+          "type": "null"
+        },
+        {
+          "title": "Rotate x labels",
+          "type": "number",
+          "default": 0,
+          "minimum": -360,
+          "maximum": 360
+        }
+      ]
+    }
+      }
+    },
+    "facets":{
+      "title":"Facets",
+      "type": "object",
+      "properties": {
+        "facet_row": {
       "title": "Facet row",
       "description": "Variable to create facets in the row direction",
       "anyOf": [
@@ -317,7 +343,7 @@
         }
       ]
     },
-    "facet_column": {
+        "facet_column": {
       "title": "Facet column",
       "description": "Variable to create facets in the column direction",
       "anyOf": [
@@ -331,6 +357,8 @@
           "$comment": "enumCols"
         }
       ]
+    }
+      }
     },
     "labels": {
       "title": "Plot labels",
@@ -755,22 +783,6 @@
           }
         }
       }
-    },
-    "rotxlabs": {
-      "title": "Rotate x labels",
-      "anyOf": [
-        {
-          "title": "Default rotate x labels",
-          "type": "null"
-        },
-        {
-          "title": "Rotate x labels",
-          "type": "number",
-          "default": 0,
-          "minimum": -360,
-          "maximum": 360
-        }
-      ]
     },
     "save": {
       "title": "Save",

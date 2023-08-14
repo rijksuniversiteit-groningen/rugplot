@@ -13,15 +13,20 @@
         "size": null,
         "stroke": null
     },
-    "position": "identity",
-    "colour": null,
-    "fill": null,
-    "size": 0.1,
-    "stroke": null,
-    "shape": 21,
-    "facet_row": null,
-    "facet_column": null,
-    "alpha": null,
+    "attributes":{
+      "position": "identity",
+      "colour": null,
+      "fill": null,
+      "size": 0.1,
+      "stroke": null,
+      "shape": 21,
+      "alpha": null,
+      "rotxlabs": 0
+    },
+    "facets":{
+      "facet_row": null,
+      "facet_column": null
+    },
     "labels": {
         "title": null,
         "subtitle": null,
@@ -50,7 +55,6 @@
         "addboxplot": false,
         "width": 0.1
     },
-    "rotxlabs": 0,
     "save": {
         "save": false,
         "outputfilename": null,

@@ -2,7 +2,6 @@
     "description": "Parameters to create a heatmap plot using the 'rugplot' R package",
     "filename": "./data/exergamelf2.csv",
     "variables": [],
-    "method": "tile",
     "aesthetics": {
         "y_variable": "myVars",
         "x_variable": "idrow",
@@ -15,15 +14,21 @@
         "linewidth": null,
         "width": null
     },
-    "position": null,
-    "size": null,
-    "interpolate": null,
-    "alpha": null,
-    "colour": null,
-    "linetype": null,
-    "linewidth": null,
-    "facet_row": null,
-    "facet_column": null,
+    "attributes":{
+      "method": "tile",
+      "position": null,
+      "size": null,
+      "interpolate": null,
+      "alpha": null,
+      "colour": null,
+      "linetype": null,
+      "linewidth": null,
+      "rotxlabs": 45
+    },
+    "facets":{
+      "facet_row": null,
+      "facet_column": null
+    },
     "labels": {
         "title": null,
         "subtitle": null,
@@ -75,7 +80,6 @@
             "meanK = $\\\\overline{\\\\kappa}$"]
         }
     },
-    "rotxlabs": 45,
     "save": {
         "save": false,
         "outputfilename": "exergaming_heatmap",
