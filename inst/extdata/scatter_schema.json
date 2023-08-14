@@ -1,6 +1,6 @@
 {
   "title": "Scatterplot",
-  "description": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/scatterplots.html",
+  "description": "https://docker-cds.readthedocs.io/en/latest/visualization/rugplot/gui/scatter.html",
   "type":"object",
   "properties": {
     "description": {

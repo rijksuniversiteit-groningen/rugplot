@@ -110,11 +110,13 @@ rug_violin <- function(lp, verbose = TRUE) {
       message(paste("colors:",vals))
     if (!is.null(vals)) {
       p <- p + ggplot2::scale_color_manual(values = vals,
-                                        breaks = NULL)
+                                           breaks = lp$color_manual$breaks,
+                                           labels = lp$color_manual$labels,
+                                           aesthetics = c("colour", "fill"))
 
-      p <- p + ggplot2::scale_fill_manual(values = vals,
-                                         breaks = lp$color_manual$breaks,
-                                        labels = lp$color_manual$labels)
+      # p <- p + ggplot2::scale_fill_manual(values = vals,
+      #                                    breaks = lp$color_manual$breaks,
+      #                                   labels = lp$color_manual$labels)
     }
   }
 
