@@ -62,7 +62,7 @@
                 "description": "Column representing 'colour' to fill the plot",
                 "anyOf": [
                     {
-                        "title": "Default fill",
+                        "title": "Set fill-colour variable",
                         "type": "null"
                     },
                     {
@@ -77,7 +77,7 @@
                 "description": "Transparency level",
 	            "anyOf": [
                     {
-                        "title": "Default transparency",
+                        "title": "Set transparency variable",
                         "type": "null"
                     },
                     {
@@ -92,7 +92,7 @@
                 "description": "Columns/variable name to create groups",
                 "anyOf": [
                     {
-                        "title": "Default group",
+                        "title": "Set group variable",
                         "type": "null"
                     },
                     {
@@ -107,11 +107,11 @@
                 "description": "Line colour",
                 "anyOf": [
                     {
-                        "title": "Default color column",
+                        "title": "Set line-color variable",
                         "type": "null"
                     },
                     {
-                        "title": "Colum to color the lines",
+                        "title": "Column to color the lines",
                         "type": "string",
                         "$comment": "enumCols"
                     }
@@ -122,7 +122,7 @@
                 "description": "Size",
                 "anyOf": [
                     {
-                        "title": "Default size column",
+                        "title": "Set size variable",
                         "type": "null"
                     },
                     {
@@ -137,7 +137,7 @@
                 "description": "Line type",
                 "anyOf": [
                     {
-                        "title": "Default linetype column",
+                        "title": "Set linetype variable",
                         "type": "null"
                     },
                     {
@@ -323,7 +323,7 @@
       "title": "Facet row",
       "description": "Variable to create facets in the row direction",
       "anyOf": [
-           { "title": "Default row facet row",
+           { "title": "Set row facets",
                 "type": "null"
             },
           {
@@ -337,7 +337,7 @@
       "title": "Facet column",
       "description": "Variable to create facets in the column direction",
       "anyOf": [
-            { "title": "Default facet column",
+            { "title": "Set column facets",
                 "type": "null"
             },
             {

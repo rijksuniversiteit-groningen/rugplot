@@ -47,7 +47,7 @@
           "description": "Column representing 'color'",
           "anyOf": [
               {
-                  "title": "Default fill",
+                  "title": "Set fill colour variable",
                   "type": "null"
               },
               {
@@ -62,7 +62,7 @@
           "description": "Transparency level",
           "anyOf": [
             {
-              "title": "Default transparency",
+              "title": "Set transparency level",
               "type": "null"
             },
             {
@@ -76,7 +76,7 @@
           "title": "Group",
           "description": "Columns/variable name to create groups",
           "anyOf": [
-                { "title": "Default group",
+                { "title": "Set group variable",
                 "type": "null"
                 },
                 {
@@ -90,7 +90,7 @@
           "title": "Shape",
           "description": "Columns/variable name to encode shape",
           "anyOf": [
-            { "title": "Default column for shapes",
+            { "title": "Set shape variable",
                 "type": "null"
             },
             {
@@ -104,7 +104,7 @@
           "title": "Colour",
           "description": "Point colour",
           "anyOf": [
-            { "title": "Default color column",
+            { "title": "Set color variable",
                 "type": "null"
             },
             {
@@ -118,7 +118,7 @@
           "title": "Size",
           "description": "Size of the data point",
           "anyOf": [
-            { "title": "Default size column",
+            { "title": "Set size variable",
                 "type": "null"
             },
             {
@@ -132,7 +132,7 @@
           "title": "stroke",
           "description": "Size of the stroke",
           "anyOf": [
-            { "title": "Default stroke column",
+            { "title": "Set stroke variable",
                 "type": "null"
             },
             {
@@ -289,7 +289,7 @@
       "title": "Facet row",
       "description": "Variable to create facets in horizontal direction",
       "anyOf": [
-           { "title": "Default horizontal facet column",
+           { "title": "Set row facets",
                 "type": "null"
             },
           {
@@ -303,7 +303,7 @@
       "title": "Facet column",
       "description": "Variable to create facets in vertical direction",
       "anyOf": [
-            { "title": "Default vertical facet column",
+            { "title": "Set column facets",
                 "type": "null"
             },
             {
@@ -442,14 +442,14 @@
               "properties": {
                 "size": {
                   "title": "Size",
-                  "description": "Size of the key in cm",
+                  "description": "Size of the key",
                   "anyOf": [
                         {
-                          "title": "Default size",
+                          "title": "Set colour-legend-guide size",
                           "type": "null"
                         },
                         {
-                          "title": "Size of the key in cm",
+                          "title": "Size of the key",
                           "type": "number",
                           "exclusiveMinimum": 0
                         }
@@ -460,7 +460,7 @@
                   "description": "Height of the key in cm",
                   "anyOf": [
                         {
-                            "title": "Default Height",
+                            "title": "Set height (not used)",
                             "type": "null"
                         },
                         {

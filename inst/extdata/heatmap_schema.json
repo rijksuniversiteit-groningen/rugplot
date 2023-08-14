@@ -52,7 +52,7 @@
           "description": "Transparency level",
           "anyOf": [
             {
-              "title": "Default transparency",
+              "title": "Set transparency variable",
               "type": "null"
             },
             {
@@ -67,7 +67,7 @@
           "description": "Columns/variable name to create groups",
           "anyOf": [
             {
-              "title": "Default group",
+              "title": "Set group variable",
               "type": "null"
             },
             {
@@ -82,7 +82,7 @@
           "description": "Line color",
           "anyOf": [
             {
-              "title": "Default color column",
+              "title": "Set colour variable",
               "type": "null"
             },
             {
@@ -97,7 +97,7 @@
           "description": "Height",
           "anyOf": [
             {
-              "title": "Default height",
+              "title": "Set height",
               "type": "null"
             },
             {
@@ -112,7 +112,7 @@
           "description": "Line type",
           "anyOf": [
             {
-              "title": "Default linetype column",
+              "title": "Set linetype variable",
               "type": "null"
             },
             {
@@ -127,7 +127,7 @@
           "description": "Line width",
           "anyOf": [
             {
-              "title": "Default width",
+              "title": "Set width variable",
               "type": "null"
             },
             {
@@ -142,7 +142,7 @@
           "description": "Width",
           "anyOf": [
             {
-              "title": "Default width",
+              "title": "Set width variable",
               "type": "null"
             },
             {
@@ -329,11 +329,11 @@
       "type": "object",
       "properties": {
         "facet_row": {
-      "title": "Facet row",
-      "description": "Variable to create facets in the row direction",
-      "anyOf": [
-        {
-          "title": "Default row facet row",
+          "title": "Facet row",
+          "description": "Variable to create facets in the row direction",
+          "anyOf": [
+            {
+              "title": "Set row facets",
           "type": "null"
         },
         {
@@ -344,19 +344,19 @@
       ]
     },
         "facet_column": {
-      "title": "Facet column",
-      "description": "Variable to create facets in the column direction",
-      "anyOf": [
-        {
-          "title": "Default facet column",
-          "type": "null"
-        },
-        {
-          "title": "Column for facets",
-          "type": "string",
-          "$comment": "enumCols"
-        }
-      ]
+          "title": "Facet column",
+          "description": "Variable to create facets in the column direction",
+          "anyOf": [
+            {
+              "title": "Set column facets",
+              "type": "null"
+            },
+            {
+              "title": "Column for facets",
+              "type": "string",
+              "$comment": "enumCols"
+          }
+        ]
     }
       }
     },
@@ -495,14 +495,14 @@
               "properties": {
                 "size": {
                   "title": "Size",
-                  "description": "Size of the key in cm",
+                  "description": "Size of the key",
                   "anyOf": [
                     {
-                      "title": "Default size",
+                      "title": "Set colour-legend-guide size",
                       "type": "null"
                     },
                     {
-                      "title": "Size of the key in cm",
+                      "title": "Size of the key",
                       "type": "number",
                       "exclusiveMinimum": 0
                     }
@@ -513,11 +513,11 @@
                   "description": "Width of the key in cm",
                   "anyOf": [
                     {
-                      "title": "Default Width",
+                      "title": "Set width (not used)",
                       "type": "null"
                     },
                     {
-                      "title": "Width of the key in cm",
+                      "title": "Width of the key",
                       "type": "number",
                       "exclusiveMinimum": 0
                     }
@@ -528,11 +528,11 @@
                   "description": "Height of the key in cm",
                   "anyOf": [
                     {
-                      "title": "Default Height",
+                      "title": "Set height (not used)",
                       "type": "null"
                     },
                     {
-                      "title": "Height of the key in cm",
+                      "title": "Height of the key",
                       "type": "number",
                       "exclusiveMinimum": 0
                     }

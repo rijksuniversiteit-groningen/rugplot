@@ -56,7 +56,7 @@
           "description": "Column representing 'color'",
           "anyOf": [
                         {
-                    "title": "Set fill column",
+                    "title": "Set colour-fill variable",
                   "type": "null"
               },
               {
@@ -66,12 +66,12 @@
               }
           ]
         },
-         "alpha": {
+        "alpha": {
           "title": "Opacity",
           "description": "Transparency level",
           "anyOf": [
             {
-              "title": "Set transparency",
+              "title": "Set transparency variable",
               "type": "null"
             },
             {
@@ -85,7 +85,7 @@
           "title": "Group",
           "description": "Columns/variable name to create groups",
           "anyOf": [
-                { "title": "Set group column",
+                { "title": "Set group variable",
                 "type": "null"
                 },
                 {
@@ -99,7 +99,7 @@
           "title": "Colour",
           "description": "Point colour",
           "anyOf": [
-            { "title": "Set color column",
+            { "title": "Set colour variable",
                 "type": "null"
             },
             {
@@ -113,7 +113,7 @@
           "title": "Size",
           "description": "Size of the data point",
           "anyOf": [
-            { "title": "Set size column",
+            { "title": "Set size variable",
                 "type": "null"
             },
             {
@@ -127,7 +127,7 @@
           "title": "Line type",
           "description": "Line type",
           "anyOf": [
-            { "title": "Set size column",
+            { "title": "Set size variable",
                 "type": "null"
             },
             {
@@ -224,11 +224,11 @@
           "title": "Facet row",
           "description": "Variable to create facets in horizontal direction",
           "anyOf": [
-            { "title": "Set column for horizontal facets",
+            { "title": "Set row facets",
                 "type": "null"
             },
             {
-              "title": "Column for horizontal facets",
+              "title": "Column for row facets",
               "type": "string",
               "$comment": "enumCols"
             }
@@ -238,7 +238,7 @@
           "title": "Facet column",
           "description": "Variable to create facets in vertical direction",
           "anyOf": [
-            { "title": "Set column for vertical facets",
+            { "title": "Set column facets",
                 "type": "null"
             },
             {
