@@ -108,7 +108,7 @@
                 "type": "null"
             },
             {
-              "title": "Colum to color the points",
+              "title": "Column to color the points",
               "type": "string",
                   "$comment": "enumCols"
             }
@@ -154,7 +154,7 @@
       "description": "Dodge or identity position",
       "anyOf": [
         {
-            "title": "Default position",
+            "title": "Set position",
           "type": "null"
         },
         {
@@ -168,7 +168,7 @@
       "title": "Colour",
       "description": "Line color",
       "anyOf": [
-            { "title": "Default colour",
+            { "title": "Set colour",
                 "type": "null"
             },
         {
@@ -181,7 +181,7 @@
       "title": "Fill",
       "description": "Color to fill",
       "anyOf": [
-            { "title": "Default color fill",
+            { "title": "Set color fill",
                 "type": "null"
             },
         {
@@ -195,7 +195,7 @@
       "title": "Size",
       "description": "Size",
       "anyOf": [
-            { "title": "Default size value",
+            { "title": "Set size value",
                 "type": "null"
             },
             {
@@ -208,7 +208,7 @@
       "title": "Stroke in mm",
       "description": "For shapes 21-24, The size of the filled part is controlled by size, the size of the stroke is controlled by stroke. The total size of the point is the sum of the two.",
       "anyOf": [
-      { "title": "Default stroke value",
+      { "title": "Set stroke value",
                 "type": "null"
             },
           {
@@ -223,7 +223,7 @@
       "description": "Shape of the data points",
       "anyOf": [
         {
-            "title": "Default shape",
+            "title": "Set shape",
           "type": "null"
         },
         {
@@ -252,7 +252,7 @@
         "rotxlabs": {
     "title": "Rotate x labels",
     "anyOf": [
-        { "title": "Default rotate x labels",
+        { "title": "Set x label rotation",
                 "type": "null"
         },
         {
@@ -268,7 +268,7 @@
       "title": "Opacity",
       "description": "Transparency level",
     "anyOf": [
-            { "title": "Default transparency value",
+            { "title": "Set transparency value",
                 "type": "null"
             },
             {
@@ -324,7 +324,7 @@
       "title": "Title",
         "description": "Title of the plot",
         "anyOf": [
-            { "title": "Default title",
+            { "title": "Set title",
                 "type": "null"
             },
         {
@@ -337,7 +337,7 @@
         "title": "Subtitle",
         "description": "Subtitle of the plot",
         "anyOf": [
-            { "title": "Default subtitle",
+            { "title": "Set subtitle",
                 "type": "null"
             },
             {
@@ -350,7 +350,7 @@
         "title": "Tag",
         "description": "typically used for labelling a subplot with a letter",
         "anyOf": [
-            { "title": "Default tag",
+            { "title": "Set tag",
                 "type": "null"
             },
             {
@@ -363,7 +363,7 @@
         "title": "x label",
         "description": "x label",
             "anyOf": [
-            { "title": "Default x label",
+            { "title": "Set x label",
                 "type": "null"
             },
             {
@@ -376,7 +376,7 @@
         "title": "y label",
         "description": "y label",
             "anyOf": [
-            { "title": "Default y label",
+            { "title": "Set y label",
                 "type": "null"
             },
             {
@@ -389,7 +389,7 @@
         "title": "Colour label",
         "description": "Colour label legend",
         "anyOf": [
-            { "title": "Default colour label legend",
+            { "title": "Set colour label legend",
                 "type": "null"
             },
             {
@@ -402,7 +402,7 @@
         "title": "Fill label",
         "description": "Colour fill legend",
           "anyOf": [
-            { "title": "Default fill color legend",
+            { "title": "Set fill color legend",
                 "type": "null"
             },
             {
@@ -414,7 +414,7 @@
       "caption":{
         "title": "Caption",
         "anyOf": [
-            { "title": "Default caption",
+            { "title": "Set caption",
                 "type": "null"
             },
             {
