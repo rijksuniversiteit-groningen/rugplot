@@ -542,7 +542,7 @@
         "description": "Filename including path (optional)",
         "anyOf": [
             {
-                "title": "Default output filename",
+                "title": "Set output filename",
                 "type": "null"
             },
             {
