@@ -93,7 +93,7 @@ rug_violin <- function(lp, verbose = TRUE) {
   if (!is.null(lp$attributes$rotxlabs))
     p <- paste(p,
       " +\n  ggplot2::theme(\n    ",
-        "axis.text.x = ggplot2::element_text(angle = lp$rotxlabs, hjust = 1))\n",sep="")
+        "axis.text.x = ggplot2::element_text(angle = lp$attributes$rotxlabs, hjust = 1))\n",sep="")
 
   p <- replace_vars(p,lp)
 
