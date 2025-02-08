@@ -502,10 +502,11 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
           print(myplot)
         dev.off()
 
-        # if (tinytex::is_tinytex())
+        if (tinytex::is_tinytex())
           ofile <- tinytex::lualatex(tempfile)
-        # else
-        #   ofile <- tools::pdflatex(tempfile)
+        else
+          ofile <- system(paste("lualatex", tempfile), intern = TRUE)
+        
         if (file.exists(ofile)){
           message(ofile, " created using lualatex.")
           file.copy(from = ofile, to = file.path(oldwd,outputfile), overwrite = lparams$save$overwrite)
