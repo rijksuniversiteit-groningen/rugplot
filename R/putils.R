@@ -521,6 +521,7 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
 
         if (nzchar(Sys.which("lualatex"))) {
           ofile <- system(paste("lualatex", tempfile), intern = TRUE)
+          ofile <- ofile[1]
         } else if (tinytex::is_tinytex()) {
           ofile <- tinytex::lualatex(tempfile)
         } else {
