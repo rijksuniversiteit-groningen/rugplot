@@ -502,10 +502,13 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
           print(myplot)
         dev.off()
 
-        if (tinytex::is_tinytex())
-          ofile <- tinytex::lualatex(tempfile)
-        else
+        if (nzchar(Sys.which("lualatex"))) {
           ofile <- system(paste("lualatex", tempfile), intern = TRUE)
+        } else if (tinytex::is_tinytex()) {
+          ofile <- tinytex::lualatex(tempfile)
+        } else {
+          stop("No LaTeX installation found. Please install TeX Live or TinyTeX.")
+        }
         
         if (file.exists(ofile)){
           message(ofile, " created using lualatex.")
