@@ -524,7 +524,7 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
           match <- regexpr("Output written on (.+\\.pdf)", output)
           # Check if match found, i.e., if there is a valid match position
           
-          if any((attr(match, "match.length") > 0)) {
+          if (any(attr(match, "match.length") > 0)) {
             full_output <- regmatches(output, match)[1] 
             # Extract just the filename from the full match
             ofile <- sub("Output written on ", "", full_output)
