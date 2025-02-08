@@ -520,8 +520,17 @@ save_plot <- function(lparams, myplot, suffix = "",verbose = FALSE){
         dev.off()
 
         if (nzchar(Sys.which("lualatex"))) {
-          ofile <- system(paste("lualatex", tempfile), intern = TRUE)
-          ofile <- ofile[1]
+          output <- system(paste("lualatex", tempfile), intern = TRUE)
+          match <- regexpr("Output written on (.+\\.pdf)", output)
+          # Check if match found, i.e., if there is a valid match position
+          
+          if (attr(match, "match.length") > 0) {
+            full_output <- regmatches(output, match)[1] 
+            # Extract just the filename from the full match
+            ofile <- sub("Output written on ", "", full_output)
+          } else {
+            stop("LaTeX did not produce an output PDF file.")
+          }
         } else if (tinytex::is_tinytex()) {
           ofile <- tinytex::lualatex(tempfile)
         } else {
