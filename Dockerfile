@@ -4,7 +4,7 @@ FROM rocker/binder:4.2.0
 ARG NB_USER
 ARG NB_UID
 
-COPY --chown=${NB_USER} apt.txt install.R ${HOME}
+COPY --chown=${NB_USER} apt.txt install.R ${HOME}/
 
 ENV DEBIAN_FRONTEND=noninteractive
 USER root
